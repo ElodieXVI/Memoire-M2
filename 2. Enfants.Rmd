@@ -1,0 +1,317 @@
+---
+title: La population étudiée
+author: "Élodie Lemaire"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+    pdf_document:
+    latex_engine: lualatex
+header-includes:
+  - \usepackage[normal,labelfont=bf]{caption}
+  - \usepackage[bottom]{footmisc}
+  - \usepackage{mdframed}
+linestretch: 1.25
+fontsize: 11
+mainfont: Times
+urlcolor: blue
+lang: fr
+---
+```{r setup, include=FALSE}
+setwd("/Users/elodielemaire/Dropbox/QESS2/M2 - Mémoire")
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+options(tinytex.verbose = TRUE)
+library(pacman)
+p_load(tidyverse,knitr,questionr,readxl,survey,gtsummary, rstatix, magrittr, #Pour analyses et manipulation
+       ggcharts, huxtable, #pour les tableaux
+       GGally, extrafont) #pour les graphiques
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+
+source("Code/Recodage.R")
+```
+
+# Quelques éléments introductifs
+|           En 2017, l’Enquête auprès des établissements et services de la protection de l’enfance a permis à la Direction de la Recherche, des Études, de l'Évaluation et des Statistiques (DREES) de réaliser un bilan national de l’action de l’Aide sociale à l’enfance (ASE). L’enquête a ainsi révélé que 61 000 enfants ou adolescents étaient alors hébergés au sein des structures de l’ASE. Les chiffres publiés en mai 2020 sont globalement encourageants pour la Protection de l’enfance : un taux d’occupation global de 95%, 97% des jeunes hébergés scolarisés, un accroissement régulier depuis les vagues d’enquête de 2008 et 2012 des places d’hébergements, et aussi une plus grande diversité par rapport à 2012 dans l’offre des hébergements (Abassi, 2020).
+
+# 2. Qui sont les enfants de l'enquête ?
+## Quelques mesures générales
+
+```{r observation, include = FALSE}
+cprop(table(ens$SEX, ens$enq))
+cprop(svytable(~SEX + enq, ensw))
+
+svymean(~age, sorw, na.rm=T)
+svymean(~age, enfw, na.rm=T)
+
+freq(enf$age <= 11)
+
+cprop(table(ens$MNA, ens$enq))
+cprop(svytable(~MNA + enq, ensw))
+
+ggplot(ens) +
+  aes(x = age, fill = enq) +
+  geom_bar() +
+  scale_color_binned() +
+  theme_minimal()
+```
+
+La population présente dans ces données se distinguent donc en deux catégories : les enfants présents au 15/12/2017 et les enfants sortis au cours de l'année 2017. Dans les deux cas, en majorité il s'agit de garçons : 61.9% pour les enfants présents et 65.2% pour les enfants sortis. 
+Leur moyenne d'âge pour les enfants présents est de 13 ans et pour ceux sortis de 14 ans.
+
+Une grande partie de notre population sont des mineurs isolés étrangers (MIE ou MNA), pour l'ensemble on en a 23,1% de MNA dans notre population : 18.5% pour les enfants présents, 28.4% pour les enfants sortis. 
+
+Une partie moindre de la population est concernée par une situation de handicap, ils représentent 9% de l'échantillon total : 11,9% pour les enfants présents, 5,8% pour les enfants sortis.
+
+## Mesures de placement 
+```{r MES_rec}
+ens$enq %<>% fct_recode("Enfants présents" = "enf",
+                        "Enfants sortis" = "sor")
+## Réordonnancement de ens$MES_rec
+ens$MES_rec <- factor(ens$MES_rec,
+  levels = c("Administrative", "Judiciaire", "Juge", "Pénale", "Milieu ouvert", "Autre")
+)
+ensw <- svydesign(ids = ~1, data = ens, weights = ~ ens$poids)
+
+ensw %>%
+  tbl_svysummary(include = c("MES_rec", "enq"), 
+                 by = enq,
+                 missing = "no",
+                 label =list(MES_rec ~ "Mesure principale de placement"),
+                 statistic = list(all_categorical() ~ "{p}% ({n_unweighted})")) %>% 
+  bold_labels()%>%
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 65 375 enfants de l'enquête, données pondérées.") %>%
+  set_number_format(NA) %>% 
+  set_caption("Mesure principale de placement des enfants présents et sortis placés à l'ASE")
+```
+
+```{r chisq2, include=FALSE}
+chisq_test(ens$MES_rec, ens$enq)
+svychisq(~MES_rec + enq, ensw)
+
+ggtable(data = na.omit(ens),columnsX = "MES_rec",columnsY = "enq",cells = "col.prop",mapping = aes(weight = poids),fill = "std.resid", legend = 1) + labs(fill = "Résidus\ndu Chi²") + coord_flip() + ggtitle("")
+```
+
+En observant le tableau 1, on s'aperçoit que les deux populations des tables enf et sor sont différentes. Chez les enfants sortis en 2017, parmi les mesures principales, on observe une sur-représentation par rapport aux enfants présents en 2017, des mesures pénales de placement, c'est-à-dire des placement pré et post sentenciel, induisant logiquement un placement temporaire et bref. 
+
+À l'inverse, on observe chez les enfants sortis une sous-représentation des mesures judiciaire de placements, c'est-à-dire des placements à l'ASE par le juge des enfants au titre de l’enfance en danger (y compris placement à domicile), de la délégation de l'Autorité parentale à l'ASE (DAP), à un particulier ou à un établissement, du retrait partiel de l'autorité parentale,et encore de tutelle déférée à l'ASE. Ces mesures représentent les principaux motifs de présence de ces enfants dans les établissements relevant de l'ASE, ce qui est cohérent puisqu'il s'agit des cas de figures auxquels l'ASE a été conçu à répondre.
+
+
+```{r mna1, include = FALSE}
+mna_ens <- subset(ens, MNA == "1")
+mna_enf <- subset(enf, MNA == "1")
+mna_sor <- subset(sor, MNA == "1")
+
+mna_ens$poids2 <- (mna_ens$poids/0.9713142)
+
+mna_ensw <- svydesign(ids = ~1, data = mna_ens, weights = ~ mna_ens$poids2)
+
+mna_ensw %>% 
+  tbl_svysummary(include = c("SEX", "age","CATEG_rec","HEBE_rec", "enq"), 
+                 by = enq,
+                 missing = "no",
+                 label =list(CATEG_rec ~ "Type d'établissement", 
+                             SEX ~ "Sexe",
+                             age ~ "Âge", 
+                             HEBE_rec ~ "Type d'hébergement"),
+                 statistic = list(all_categorical() ~ "{p}% ({n_unweighted})",
+                                  all_continuous()~ "{mean}")) %>% 
+  bold_labels()%>%
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 15 110 MNA de l'enquête, données pondérées.") %>%
+  set_number_format(NA) %>% 
+  set_caption("Mesures principales de placement des MNA présents et sortis placés à l'ASE")
+```
+
+```{r chisq, include=FALSE}
+chisq_test(mna_ens$MES_rec, mna_ens$enq)
+svychisq(~MES_rec + enq, mna_ensw)
+
+require(GGally)
+ggtable(data = na.omit(mna_ens),columnsX = "MES_rec",columnsY = "enq",cells = "col.prop",mapping = aes(weight = poids2),fill = "std.resid", legend = 1) + labs(fill = "Résidus\ndu Chi²") + coord_flip() + ggtitle("MNA")
+```
+
+\mdfsetup{%
+middlelinewidth=2pt,
+backgroundcolor=gray!10,
+roundcorner=10pt}
+\begin{mdframed}[frametitle=Les mineurs isolés étrangers dans nos données]
+
+Les MNA représente 15 110 individus dans cette enquête, soit 23\% des enfants présents et sortis en 2017 (28,4\% des enfants sortis et 18,5\% des enfants présents). Ce sont en majorité des hommes que ce soit parmi les enfants présents ou sortis en 2017 (91\% et 93\% d'hommes), avec un âge moyen de 16 ans. Ils sont majoritairement orientés vers des établissements de type MECS (71\% des enfants présents et 42\% des enfants sortis) ou foyers de l'enfance (26\% enfants présents et 57\% des enfants sortis). Enfin, ils sont en grande majorité concernés par les types d'hébergements en internat collectif (56\% et 73\%) ou en hébergement éclaté (38\% et 22\%) hors chambre d'hôtel. Leurs mesures principales de placements relèvent du judiciaire et de l'administratif. On les retrouve aussi particulièrement dans les mesures principales de type autre, par exemple accueil d'urgence, qui explique une surreprésentation des enfants sortis de la catégorie autre.
+
+\end{mdframed}
+
+# 3. Le sexe dans le placement
+
+\mdfsetup{%
+middlelinewidth=2pt,
+backgroundcolor=red!10,
+roundcorner=10pt}
+\begin{mdframed}
+
+L'ensemble des analyses suivantes n'incluent pas les MNA et les enfants ayant pour mesure principale en 2017 une mesure pénale. En effet, les MNA ont été retiré de l'analyse puisqu'ils s'agit en grande majorité d'hommes à plus de 90\%. Les enfants ayant une mesure pénale principale sont peu nombreux dans notre échantillon et représente une population particulière de l'ASE. 
+
+\end{mdframed}
+
+```{r filter, include=FALSE}
+sor %<>% subset(MNA == 0)
+enf %<>% subset(MNA == 0) 
+ens %<>% subset(MNA == 0)
+```
+## Âge par sexe dans les enfants présents et sortis en 2017
+
+```{r tab age sex, message=FALSE}
+t3 <- ensw %>% tbl_svysummary(include = c("SEX", "age"), by = SEX, label = list(age ~ "Ensemble"), missing = "no",statistic = list(all_continuous() ~ "{mean}")) %>% add_p()
+t2 <- sorw %>% tbl_svysummary(include = c("SEX", "age"), by = SEX, label = list(age ~ "Âge enfants sortis"), missing = "no",statistic = list(all_continuous() ~ "{mean}")) %>% add_p()
+t1 <- enfw %>% tbl_svysummary(include = c("SEX", "age"), by = SEX, label = list(age ~ "Âge enfants présents"), missing = "no",statistic = list(all_continuous() ~ "{mean}")) %>% add_p()
+
+tbl_stack(tbls = list(t1,t2,t3)) %>% 
+  bold_labels()%>%
+  as_hux_table() %>%
+  add_footnote("Source : ES-PE 2017, données pondérées.") %>%
+  set_number_format(NA) %>%
+  set_caption("Moyenne d'âge par sexe des enfants présents et sortis en 2017")
+```
+
+En moyenne les filles présentes et sorties des établissements de l'ASE en 2017 sont plus jeunes que les garçons d'une demi année.
+
+## La présence des filles dans les différents types d'établissement
+
+```{r sexx, include = FALSE}
+chisq.test(table(sor$CATEG_rec, sor$SEX))
+chisq.residuals(table(sor$CATEG_rec, sor$SEX)) #effet dans lieux de vie sous repres des femMES_rec
+
+chisq.test(table(enf$CATEG_rec, enf$SEX))
+chisq.residuals(table(enf$CATEG_rec, enf$SEX))# sous repres dans les foyers, dans les lieux, et sur dans les villages
+
+chisq.test(table(ens$CATEG_rec, ens$SEX))
+chisq.residuals(table(ens$CATEG_rec, ens$SEX)) # sur représentation dans les villages et sous très forte dans les lieux de vie.
+```
+
+Pour les enfants sortis, on observe que les filles sont surreprésentées en pouponnières, en village pour enfants ainsi qu'en MECS. Elles sont par contre sous-représentées en foyers de l'enfance. 
+
+Pour les enfants présents, on observe une légère surreprésentation des filles en pouponnières, et une importante en villages pour enfant. Elle sont par contre sous-représentées de nouveau dans les foyers de l'enfance.
+
+```{r sex1, out.width="40%", include = FALSE}
+par(mfrow = c(1, 2))
+
+require(ggpubr)
+g1<- ggplot(na.omit(enf)) +
+  aes(x = CATEG_rec, fill = SEX) +
+  geom_bar(position = "fill") +
+  geom_hline(yintercept = 0.50, linetype = "dashed", color = "black") +
+  ylab("Pourcentage") +
+  xlab("Type d'établissement") +
+  ggtitle("Enfants présents") +
+  labs(subtitle = "Chi-deux = <0.0001")+
+  coord_flip() +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  theme_bw()
+
+g2 <- ggplot(na.omit(sor)) +
+  aes(x = CATEG_rec, fill = SEX) +
+  geom_bar(position = "fill") +
+  geom_hline(yintercept = 0.50, linetype = "dotted", color = "black") +
+  ylab("Pourcentage") +
+  xlab("Type d'établissement") +
+  ggtitle("Enfants sortis") +
+  labs(subtitle = "Chi-deux = <0.0001") +
+  coord_flip() +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  theme_bw()
+
+ggarrange(g1,g2)
+```
+
+```{r sexcomp, out.width="60%"}
+ggplot(na.omit(ens)) +
+  aes(x = CATEG_rec, fill = SEX, by = CATEG_rec, label = f(after_stat(prop))) +
+  geom_bar(position = "fill") +
+  geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
+  scale_fill_manual(values = wes_palette("IsleofDogs1")) +
+  ylab("Pourcentage") +
+  xlab("Type d'établissement") +
+  ggtitle("Répartition par sexe des enfants présents et sortis en 2017 dans \n les établissements de l'ASE") +
+  labs(caption = "Source : ES-PE, 2017. \n Champ : Sur les 27 391 enfants présents et les 20 389 enfants sortis en 2017.")+
+  coord_flip() +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  theme_bw() +
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), legend.position = "bottom",axis.text.x = element_blank())
+```
+
+## La présence des filles par type d'hébergement
+
+```{r sexhebe, include = FALSE}
+lprop(svytable(~HEBE + SEX, ensw))
+lprop(table(ens$HEBE, ens$SEX))
+
+chisq.test(svytable(~HEBE + SEX, ensw))
+chisq.residuals(svytable(~HEBE+ SEX, ensw))
+
+chisq.test(svytable(~HEBE_rec3+ SEX, enfw))
+chisq.residuals(svytable(~HEBE_rec3+ SEX, enfw))
+
+chisq.test(svytable(~HEBE + SEX, sorw))
+chisq.residuals(svytable(~HEBE_rec3+ SEX, sorw))
+```
+
+Parmi les enfants sortis, les filles sont sous-représentées dans les lieux de vie, ainsi qu'en hébergement éclaté, notamment en hôtel. Elle sont surreprésentées en pouponnières, ainsi qu'en domicile et assistants familiaux.
+
+Parmi les enfants présents, il en va de même : les filles sont sousreprésentées dans l'hébergement éclaté, mais sur représentées dans le domicile et en assistants familiaux. Elles sont par contre surreprésentées en internat collectif.
+
+```{r heb sex, out.width="60%"}
+ggplot(na.omit(ens)) +
+  aes(x = HEBE, fill= SEX, by = HEBE_rec3, label = f(after_stat(prop))) +
+  geom_bar(position = "fill") +
+  geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
+  scale_fill_manual(values = wes_palette("IsleofDogs1")) +
+  ylab("Effectifs") +
+  xlab("Type d'hébergement") +
+  ggtitle("Répartition par sexe des enfants présents et sortis en 2017 dans les \n hébergements de l'ASE") +
+  labs(caption = "Source : ES-PE, 2017. \n Champ : Sur les 27 391 enfants présents et les 20 389 enfants sortis en 2017.")+
+  coord_flip() +
+  theme_bw()+
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), legend.position = "bottom",axis.text.x = element_blank())
+```
+
+## En fonction de ce que les établissements déclarent en termes de répartition des enfants par sexe
+
+```{r repsex2, out.width="60%"}
+t1 <- ens %>% subset(CATEG_rec != "Pouponnières" & CATEG_rec != "Villages") 
+
+t1%>%
+tbl_summary(include = c("CATEG_rec", "REPSEX"), by = REPSEX, statistic = list(all_categorical() ~ "{p}% ({n})")) %>% add_p()%>% 
+  bold_labels()%>%
+  as_hux_table() %>%
+  add_footnote("Source : ES-PE 2017, données non-pondérées.") %>%
+  set_number_format(NA) %>%
+  set_caption("Les établissements qui déclarent répartir par sexe les enfants dans leurs différents hébergement par type d'établissement")
+```
+
+```{r repsex3, out.width="60%", include = FALSE}
+t1 <- ensw %>% tbl_svysummary(include = c("HEBE", "REPSEX"), by = REPSEX, statistic = list(all_categorical() ~ "{p}% ({n})")) %>% add_p()
+
+t1 %>% 
+  bold_labels()%>%
+  as_hux_table() %>%
+  add_footnote("Source : ES-PE 2017, données non-pondérées.") %>%
+  set_number_format(NA) %>%
+  set_caption("Les établissements qui déclarent répartir par sexe les enfants dans leurs différents hébergement par type d'établissement")
+```
+
+```{r repsex, out.width="60%", include=FALSE}
+ggplot(na.omit(ens)) +
+  aes(x = HEBE, fill= SEX, by = HEBE_rec3, label = f(after_stat(prop))) +
+  geom_bar(position = "fill") +
+  geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
+  scale_fill_manual(values = wes_palette("IsleofDogs1")) +
+  ylab("Effectifs") +
+  xlab("Type d'hébergement") +
+  ggtitle("") +
+  labs(caption = "Source : ES-PE, 2017. \n Champ : Sur les 27 391 enfants présents et les 20 389 enfants sortis en 2017.")+
+  facet_wrap(vars(REPSEX)) +
+  coord_flip() +
+  theme_bw()+
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), legend.position = "bottom",axis.text.x = element_blank())
+```
+

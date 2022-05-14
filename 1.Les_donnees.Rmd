@@ -1,0 +1,297 @@
+---
+title: "Les données : l'enquête ES-PE"
+author: "Élodie Lemaire"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+    pdf_document:
+    latex_engine: lualatex
+header-includes:
+  - \usepackage[normal,labelfont=bf]{caption}
+  - \usepackage[bottom]{footmisc}
+  - \usepackage{mdframed}
+bibliography: QESS_M2.bib
+linestretch: 1.25
+fontsize: 11
+mainfont: Times
+urlcolor: blue
+lang: fr
+---
+
+```{r setup, include=FALSE}
+setwd("/Users/elodielemaire/Dropbox/QESS2/M2 - Mémoire")
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+
+library(pacman)
+p_load(tidyverse,knitr,questionr,readxl,survey,gtsummary, rstatix, magrittr, #Pour analyses et manipulation
+       ggcharts, huxtable, #pour les tableaux
+       GGally, extrafont, wesanderson) #pour les graphiques
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+
+source("Code/Recodage.R")
+```
+
+# Les données : l'enquête aupès des établissements et services de la protection de l'enfance 2017 (ES-PE)
+
+L’Enquête auprès des établissements et services de la protection de l’enfance de 2017 a été menée par la DREES et a permis de recueillir des informations sur 1 319 établissements de l’ASE sur les 1 963 existants disposant en tout de 64 700 places d’hébergements pour un peu plus de 61 000 enfants [@abassi_61_2020]. Les données comprennent aussi les structures et services de la protection judiciaire de la jeunesse (PJJ) (les centres éducatifs fermés, les centres éducatifs renforcés, les établissements de placement éducatif, les établissements de placement éducatif et d'insertion, secteur associatif habilité de la PJJ autre que CEF/CER), mais nous nous intéresserons uniquement aux structures directement gérées par l’ASE.
+
+Les différents types d’établissements d’accueil habilités par l’ASE sont représentés dans la base de données : les maisons d’enfants à caractère social (MECS), mais aussi les foyers de l’enfance, les pouponnières, les villages d’enfants et les lieux de vie. Ces établissements répondent notamment à des questions portant sur le type de public qu’ils accueillent ou non dans leur structure, des données qui seront importantes dans notre étude. Le questionnaire interroge aussi le nombre et le profil du personnel en place, ainsi que le nombre d’enfants présents et de sorties au cours de l’année 2017. Une partie du questionnaire est dévolue au public accueilli et pour ne citer que les questions principales, il demande l’âge, le type de la première mesure principale de prise en charge ou étiquetage, et de la mesure principale en 2017, l’occupation la journée et la scolarisation.
+Enfin, une partie entière du questionnaire est dévolue à l’action éducative en milieu ouvert (AEMO), l’action éducative en domicile et la prévention spécialisée. Mais hormis pour l’AEMO, il y a peu de chances que nous exploitions ces données ou simplement en complément d’analyse étant donné que les mesures éducatives en milieu ouvert précèdent et/ou complètent les mesures de placements.
+Les limites de cette enquête sont celles générales des statistiques en France concernant l’Aide sociale à l’enfance. Les données ici disponibles comme le résume Isabelle Frechon ont « avant tout une visée gestionnaire » [@frechon_impossible_2002] et ont été dressées par les structures elles-mêmes. Il existe des effets territoriaux du fait de l’organisation même de la Protection de l’enfance qui délègue l’organisation de sa politique aux services départementaux de l’ASE [@marquet_les_2013]. Une des limites des données transmises est qu’elles ne donnent pas les départements des structures enquêtés pour des raisons de protection des données.
+
+# 1. Quels sont les établissments qui ont répondus à l'enquête ? 
+
+En tout 1 319 établissements relevant directement de l'ASE ont répondu à l'enquête sur les 2 119 établissements figurant dans le Fichier national des établissements sanitaires et sociaux (Finess), soit 62.2% des établissements.
+
+````{r obs12, out.width = "60%"}
+f <- function(x) {
+  res <- scales::percent(x, accuracy = 1)
+  res[x < .05] <- scales::percent(x[x < .05], accuracy = 1, suffix = "")
+  res[x < .01] <- ""
+  res
+}
+
+obs$CATEG_rec %<>% fct_recode("Pouponnières, n = 37" = "Pouponnières",
+    "Foyers, n = 252" = "Foyers",
+    "Villages, n = 28" = "Villages",
+    "MECS, n = 1330" = "MECS",
+    "Lieux de vie, n = 491" = "Lieux de vie")
+
+g1 <- ggplot(na.omit(obs)) +
+  aes(x = CATEG_rec, fill = STATUT_REP, by = CATEG_rec, label = f(after_stat(prop))) +
+  geom_bar(position = "fill") +
+  geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
+  scale_fill_manual(values = wes_palette("Darjeeling1")) +
+  ggtitle("Graphique - Taux de réponses par catégorie d'établissement à \n l'enquête") +
+  xlab("Type d'établissement") +
+  ylab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  labs(caption = "Source : ES-PE 2017. \n
+Champ : Sur les 2119 établissements recensés par la DREES. \n
+Lecture : ", fill = "Statut de réponse :") +
+  coord_flip() +
+  theme_bw() +
+  theme(legend.position = "top")
+g1 + theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+```
+
+````{r obs12 chi2, include = FALSE}
+chisq.test(table(obs$CATEG_rec, obs$STATUT_REP)[c(-1,-3),]) #significatif
+chisq.residuals(table(obs$CATEG_rec, obs$STATUT_REP)[c(-1,-3),])
+#Sur repres des lieux de vie en hors champ, non-rep et sous en répondant. Sur repré des foyers en répondant et sous en non-répondant. Sous repré des mecs en hors-champ.
+```
+En termes d'effectifs, sur l'ensemble du territoire selon le Finess nous avons seulement comme établissements répondants 28 villages pour enfants et 37 pouponnières, contre 1 310 MECS, 491 lieux de vie et 252 Foyers de l'enfance. Les types d'établissements ayant proportionnellement le moins répondus sont surtout les lieux de vie avec seulement 57% d'établissements répondants. Ce type d'établissement est aussi celui qui est surreprésenté aussi dans la catégorie hors-champ. On peut ainsi dire qu'il s'agit du type d'établissement le moins bien représenté dans ces données. Les foyers de l'enfance quant à eux sont surreprésentés parmi les répondants et sous-représenté parmi les non-répondant. Ce qui en fait le type d'établissement avec le meilleur taux de réponse.
+
+````{r obs3 chi2, include = FALSE}
+chisq.test(table(obs$CATEG_rec, obs$CAP_R_rec)[-3,]) #significatif
+chisq.residuals(table(obs$CATEG_rec, obs$CAP_R_rec)[-3,])
+#MECS sur en sureffectif / Lieux sur en plein et sous en sur et sous / Villages pas observable trop peu d'effectifs
+```
+
+````{r obs3, out.width = "60%"}
+g1 <-  ggplot(na.omit(obs)) +
+  aes(x = CATEG_rec, fill = CAP_R_rec, by = CATEG_rec, label = f(after_stat(prop))) +
+  geom_bar(position = "fill") +
+  geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
+  scale_fill_manual(values = wes_palette("Darjeeling1")) +
+  ggtitle("Graphique - Taux d'occupation par catégorie d'établissement à \n l'enquête") +
+  xlab("Catégorie d'établissement") +
+  ylab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  labs(caption = "Source : ES-PE 2017. \n
+Champ : Sur les 2119 établissements recensés par la DREES. \n
+Lecture : ", fill = "Capacité d'accueil :") +
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), legend.position = "bottom") +
+  coord_flip() +
+  theme_bw()+
+  theme(legend.position = "top")
+g1 + theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+```
+
+Concernant les taux d'occupation de ces différents types d'établissements, on observe qu'en 2017 ils sont tous majoritairement pleins. Les situations de sur ou sous effectifs se compensent dans les différents types d'établissements, par exemple pour les MECS 10% de ces établissements sont en sous-effectifs et 10% sont en sur effectifs. Néanmoins en observant les résidus du Chi-deux, on observe que les MECS sont sur-représentés en sureffectif. Une autre situation notable est celle des lieux de vie où ils sont sur-représenté en situation de plein et sous-représentés dans les deux situation de sur et sous effectifs[^1].
+
+[^1]: Faute d'effectifs suffisants, les villages pour enfants on été retiré lors du Chi-deux et de l'estimation de ses résidus.
+
+````{r act1, out.width = "60%"}
+g1 <- ggplot(ens) +
+  geom_bar(aes( x = CATEG_rec, fill = enq), position="dodge") +
+    scale_fill_manual(values = wes_palette("Royal1")) +
+  ggtitle("Graphique - Effectifs des enfants présents et sortis par catégories \n d'établissements") +
+  xlab("Catégorie d'établissement") +
+  ylab("") +
+  labs(caption = "Source : ES-PE 2017. \n
+Champ : Sur les 65 375 enfants de l'enquête ES-PE 2017. \n
+Lecture : ", fill = "") +
+  coord_flip() +
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold")) +
+  theme_bw() +
+  theme(legend.position = "top")
+g1 + theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+```
+
+Il est à noter que l'enquête ES-PE distingue les enfants présents dans les établissements le 15 décembre 2017 et les enfants sortis au cours de l'année 2017. Ainsi, lorsqu'on observe ces deux sous-populations en fonction de leur répartition par types d'établissements, sans surprise se sont les MECS qui accueillent le plus d'effectifs d'enfants présents et sortis, mais surtout d'enfants sortis au cours de l'année 2017. On observerait donc un plus grand turn over dans ce type d'établissements. En second, ce sont les foyers de l'enfance qui accueillent le plus d'enfants.
+
+
+
+````{r proba1, include = FALSE}
+## Un modèle afin de réfléchir sur les types d'établissements les mieux représentés dans l'enquête
+
+#Voir p.4. (problème de mise en page à régler) Interprétation encore à rédiger.
+
+obs_mod <-  subset(obs, STATUT_REP != "Hors-champ")
+require(glm2)
+mod1 <- glm(as.factor(STATUT_REP) ~ CATEG_rec, family = binomial(logit), data = obs_mod)
+summary(mod1)
+mod1 %>% tbl_regression() %>%  bold_p()
+```
+
+```{r proba2, message=FALSE, results='asis', include=FALSE}
+require(nnet)
+## Réordonnancement de obs$STATUT_REP
+obs$STATUT_REP <- obs$STATUT_REP %>%fct_relevel("Répondant", "Hors-champ", "Non-répondant")
+## Recodage de obs$Nbetab en obs$Nbetab_rec
+obs$Nbetab_rec <- cut(obs$Nbetab,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 2, 8))
+## Recodage de obs$CAP_R_rec2
+obs$Nbetab_rec %<>% fct_recode("Un" = "[0,2)", "Plusieurs" = "[2,8]")
+
+lprop(table(obs$CATEG_rec, obs$Nbetab_rec))
+
+mod1 <- multinom(as.factor(STATUT_REP) ~ CATEG_rec + Nbetab_rec + CATEG_rec*Nbetab_rec, data = obs)
+```
+
+``` {r sortie1, include = FALSE}
+m1 <- mod1 %>% tbl_regression(label = list(CATEG_rec ~ "Type d'établissement",
+                                           Nbetab_rec ~ "Nombre de structures")) %>%  bold_p()%>% 
+  bold_labels()%>%
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 2119 établissements visés par l'enquête.") %>%
+  set_number_format(NA) %>% 
+  set_caption("Modèle sur les réponses à l'enquête ES-PE")
+
+m1[,-4]
+```
+## Modèle sur la probabilité par type d'établissement de répartir par sexe et par type d'hébergement
+
+```{r rec_repsex, message=FALSE, results='asis', include=FALSE}
+enf$id <- rownames(enf)
+enf$value <-  1
+
+bheb <- enf %>% pivot_wider(id_cols = ID, naMES_rec_from = HEBE_rec3, values_from = value)
+
+bheb <- rename(bheb, Eclate = 'Hébe éclaté',
+               Assisfam = 'Assistant fam',
+               Lieu = 'Lieu de vie',
+               norep = 'NA',
+               Pouponnieres = Pouponnières,
+               Hotel = Hôtel)
+
+bheb$Domicile<- as.numeric(map(bheb$Domicile, sum))
+bheb$Internat<-as.numeric(map(bheb$Internat, sum))
+bheb$Eclate <- as.numeric(map(bheb$Eclate, sum))
+bheb$Hotel <- as.numeric(map(bheb$Hotel, sum))
+bheb$Assisfam <- as.numeric(map(bheb$Assisfam, sum))
+bheb$Lieu <- as.numeric(map(bheb$Lieu, sum))
+bheb$Pouponnieres <- as.numeric(map(bheb$Pouponnieres, sum))
+bheb$Autres <- as.numeric(map(bheb$Autres, sum))
+bheb$norep <- as.numeric(map(bheb$norep, sum))
+
+comp <- left_join(act, obs, by = "ID", keep = T)
+comp <- rename(comp, ID = ID.x)
+comp <- left_join(comp, bheb, by = "ID", keep = T)
+
+comp %<>% mutate(score_heb = case_when(Domicile > Eclate  ~ "Domicile",
+                                       Domicile > Internat  ~ "Domicile",
+                                       Domicile > Hotel  ~ "Domicile",
+                                       Domicile > Assisfam  ~ "Domicile",
+                                       Domicile > Lieu ~ "Domicile",
+                                       Domicile > norep ~ "Domicile",
+                                       Domicile > Pouponnieres ~ "Domicile",
+                                       Domicile > Autres ~ "Domicile",
+                                       Eclate > Domicile ~ "Hébe éclaté",
+                                       Eclate > Internat ~ "Hébe éclaté",
+                                       Eclate > Hotel ~ "Hébe éclaté",
+                                       Eclate > Assisfam ~ "Hébe éclaté",
+                                       Eclate > Lieu ~ "Hébe éclaté",
+                                       Eclate > norep ~ "Hébe éclaté",
+                                       Eclate > Pouponnieres ~ "Hébe éclaté",
+                                       Eclate > Autres ~ "Hébe éclaté",
+                                       Internat > Eclate ~ "Internat",
+                                       Internat > Domicile ~ "Internat",
+                                       Internat > Hotel ~ "Internat",
+                                       Internat > Assisfam ~ "Internat",
+                                       Internat > Lieu ~ "Internat",
+                                       Internat > norep ~ "Internat",
+                                       Internat > Pouponnieres ~ "Internat",
+                                       Internat > Autres ~ "Internat",
+                                       Hotel > Eclate ~ "Hotel",
+                                       Hotel > Domicile ~ "Hotel",
+                                       Hotel > Internat ~ "Hotel",
+                                       Hotel > Assisfam ~ "Hotel",
+                                       Hotel > Lieu ~ "Hotel",
+                                       Hotel > norep ~ "Hotel",
+                                       Hotel > Pouponnieres ~ "Hotel",
+                                       Hotel > Autres ~ "Hotel",
+                                       Assisfam > Eclate ~ "Assisfam",
+                                       Assisfam > Domicile ~ "Assisfam",
+                                       Assisfam > Internat ~ "Assisfam",
+                                       Assisfam > Hotel ~ "Assisfam",
+                                       Assisfam > Lieu ~ "Assisfam",
+                                       Assisfam > norep ~ "Assisfam",
+                                       Assisfam > Pouponnieres ~ "Assisfam",
+                                       Assisfam > Autres ~ "Assisfam",
+                                       Lieu > Eclate ~ "Lieu",
+                                       Lieu > Domicile ~ "Lieu",
+                                       Lieu > Internat ~ "Lieu",
+                                       Lieu > Hotel ~ "Lieu",
+                                       Lieu > Assisfam ~ "Lieu",
+                                       Lieu > norep ~ "Lieu",
+                                       Lieu > Pouponnieres ~ "Lieu",
+                                       Lieu > Autres ~ "Lieu",
+                                       norep > Eclate ~ "norep",
+                                       norep > Domicile ~ "norep",
+                                       norep > Internat ~ "norep",
+                                       norep > Hotel ~ "norep",
+                                       norep > Lieu ~ "norep",
+                                       norep > Assisfam ~ "norepé",
+                                       norep > Pouponnieres ~ "norep",
+                                       norep > Autres ~ "norep",
+                                       Pouponnieres > Eclate ~ "Poup",
+                                       Pouponnieres > Domicile ~ "Poup",
+                                       Pouponnieres > Internat ~ "Poup",
+                                       Pouponnieres > Hotel ~ "Poup",
+                                       Pouponnieres > Lieu ~ "Poup",
+                                       Pouponnieres > norep ~ "Poup",
+                                       Pouponnieres > Assisfam ~ "Poup",
+                                       Pouponnieres > Autres ~ "Poup",
+                                       Autres > Eclate ~ "Autres",
+                                       Autres > Domicile ~ "Autres",
+                                       Autres > Internat ~ "Autres",
+                                       Autres > Hotel ~ "Autres",
+                                       Autres > Lieu ~ "Autres",
+                                       Autres > norep ~ "Autres",
+                                       Autres > Assisfam ~ "Autres",
+                                       Autres > Pouponnieres ~ "Autres"))
+```
+
+
+```{r probarepsex, message=FALSE, results='asis'}
+p_load(nnet, glm2)
+
+mod1 <- glm(as.factor(REPSEX) ~ CATEG_rec.x + CAP_R_rec + score_heb , family = binomial(logit), data = comp)
+summary(mod1)
+
+mod1 %>% tbl_regression() %>%  
+  bold_p()%>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 2119 établissements visés par l'enquête.") %>%
+  set_number_format(NA) %>% 
+  set_caption("Modèle") 
+```
+## Bibliographie
