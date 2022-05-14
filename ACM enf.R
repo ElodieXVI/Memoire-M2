@@ -93,21 +93,21 @@ plot.MCA(res.MCA,invisible= 'ind',title="Graphe de l'ACM",label =c('var','quali.
 
 res.MCA<-MCA(baseACM,ncp=2,quali.sup=c(3,4,5,6,7,8,9),graph=FALSE)
 res.HCPC<-HCPC(res.MCA,nb.clust=3,kk=100,consol=TRUE,graph=FALSE)
-plot.HCPC(res.HCPC)
+plot.HCPC(res.HCPC, choice = "tree")
 
 e_acm$grp <- res.HCPC$data.clust$clust
 
 cprop(table(e_acm$SEX,e_acm$grp))
 cprop(table(e_acm$age_ed,e_acm$grp))
 cprop(table(e_acm$HEBE_rec1,e_acm$grp))
-
+cprop(table(e_acm$ARES_rec,e_acm$grp))
 
 explor(res.MCA)
 
 res <- explor::prepare_results(res.MCA)
 explor::MCA_var_plot(res, xax = 1, yax = 2, var_sup = TRUE, 
                      var_sup_choice = c("SEX","age_ed", "HAND", "MNA", "SEQ_rec"), var_lab_min_contrib = 0, col_var = "Variable",
-                     symbol_var = "Type", size_var = NULL, size_range = c(10, 300), labels_size = 10,
+                     symbol_var = "Type", size_var = NULL, size_range = c(10, 300), labels_size = 12,
                      point_size = 56, transitions = TRUE, labels_prepend_var = FALSE,
                      xlim = c(-2.09, 2.96), ylim = c(-1.83, 3.22),
                      colors = met.brewer("Tiepolo", 9),

@@ -4,11 +4,11 @@
 library(pacman)
 p_load(tidyverse, survey, haven, magrittr, lubridate)
 
-act <- read_sas("Data/ES-PE 2017/act.sas7bdat")
-enf <- read_sas("Data/ES-PE 2017/enf.sas7bdat")
-sor <- read_sas("Data/ES-PE 2017/sor.sas7bdat")
-obs <- read_sas("Data/ES-PE 2017/obs.sas7bdat")
-per <- read_sas("Data/ES-PE 2017/per.sas7bdat")
+act <- read_sas("ES-PE 2017/act.sas7bdat")
+enf <- read_sas("ES-PE 2017/enf.sas7bdat")
+sor <- read_sas("ES-PE 2017/sor.sas7bdat")
+obs <- read_sas("ES-PE 2017/obs.sas7bdat")
+per <- read_sas("ES-PE 2017/per.sas7bdat")
 
 #Délimitation des données ####
 recode_categ <- function(var) {
