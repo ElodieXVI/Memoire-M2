@@ -4,8 +4,7 @@
 add_pct <- function(var) {
   require(questionr)
   pct <- freq(var)[,c(2)]
-  l <- which.max(pct)
-  var_r <- paste0(levels(var),", ", pct[-l], "%")
+  var_r <- paste0(levels(var),", ", pct, "%")
   levels(var) <- var_r
   return(var)
 }

@@ -2,8 +2,8 @@
 ## Chargement des packages ####
 library(pacman)
 p_load(ggalluvial, MetBrewer, tidyverse,extrafont)
-source("Code/Recodage.R")
-source("Code/Fonctions.R")
+source("Recodage.R")
+source("Fonctions.R")
 
 ## Ajout des pct aux étiquettes ####--------------------------------------------
 sor$HEBE_rec1_t <- add_pct(sor$HEBE_rec1)
