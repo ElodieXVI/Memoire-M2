@@ -4,6 +4,8 @@ p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr,
        explor, webshot, gtsummary, gt, survey, factoextra, magrittr,
        MetBrewer)
 
+source("Code/Recodage.R")
+
 recode_mes2 <- function(var) {
   var <- as.factor(var)
   var_rec <- fct_recode(var, 
@@ -76,16 +78,34 @@ table(s_acm$SRES_rec)
 
 
 var_activ  <- s_acm[,c("ARES_rec", "HEBE_rec1", "SRES_rec")]
-var_illustrativ  <- s_acm[,c("SEX","age_ed","HAND","MNA", "AMES_rec2", "MES_rec2", "SMES_rec2")]
+var_illustrativ  <- s_acm[,c("SEX","age_ed","HAND","MNA")]
 
 baseACM <- cbind.data.frame(var_activ, var_illustrativ)
 summary(baseACM)
 
 Factoshiny(baseACM)
 
-res.MCA<-MCA(baseACM,quali.sup=c(4,5,6,7,8,9,10),graph=FALSE)
+res.MCA<-MCA(baseACM,quali.sup=c(4,5,6,7),graph=FALSE)
 plot.MCA(res.MCA, choix='var',title="Graphe des variables")
 plot.MCA(res.MCA,invisible= 'ind',title="Graphe de l'ACM",label =c('var','quali.sup'))
+
+g1 <- plot.MCA(res.MCA,invisible= 'ind',
+               title="Espace des types d'hébergements en MECS",
+               autoLab = "yes",
+               graph.type = "ggplot",
+               col.var = "#4c3b7f", col.quali.sup = "#88a0dc")
+g1  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 10 522 enfants sortis de MECS au cours de 2017.")+
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), axis.text.x = element_blank())
+
+g2 <- plot.MCA(res.MCA,invisible= c('ind', 'quali.sup'),
+               title="Espace des types d'hébergements en MECS",
+               autoLab = "yes",
+               graph.type = "ggplot",
+               col.var = "#4c3b7f", col.quali.sup = "#88a0dc")
+g2  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 10 522 enfants sortis de MECS au cours de 2017.")+
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), axis.text.x = element_blank())
+
+
 
 
 res.MCA<-MCA(baseACM,ncp=2,quali.sup=c(4,5,6,7,8,9,10),graph=FALSE)
