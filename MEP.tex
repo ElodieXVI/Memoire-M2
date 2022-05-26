@@ -1,0 +1,46 @@
+\usepackage{ragged2e} % alignement
+\usepackage{setspace} % espace entre les lignes
+
+% pour les titres de tables et figures
+\usepackage[normal,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup{format=hang,font=small}
+\captionsetup[table]{name=Tableau}
+\captionsetup[figure]{name=Graphique}
+
+% pour s'assurer que les notes de bas de page reste bien en bas
+\usepackage[bottom]{footmisc}
+
+% pour les encadrés
+\usepackage{mdframed}
+
+
+% pour la police
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+% pour table des matières
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+% pour afficher "Partie" avant chaque titre de section
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{Partie \thesection.}{1em}{}
+
+\usepackage[toc,title,page]{appendix}
+
+% Pour ajouter le titre de chapitre dans lequel on est en haut de la page
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhead[LO,LE]{}
+
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle = {Élodie Lemaire - Mémoire M2 QESS},
+    pdfauthor = {Élodie Lemaire}
+}
+
+\usepackage{amsthm}
+\newtheorem{hyp}{Hypothèse}

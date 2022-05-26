@@ -1,0 +1,47 @@
+---
+output: 
+  pdf_document:
+    includes:
+      in_header: MEP.tex
+    number_sections: true
+linestretch: 1.5
+fontsize: 12
+mainfont: Times
+lang: fr
+geometry: margin=2.5cm
+papersize: a4
+bibliography: QESS_M2.bib
+csl: revue-francaise-de-sociologie.csl
+---
+
+```{r child="pdg.Rmd"}
+```
+
+\newpage
+\begin{spacing}{1}
+
+\phantomsection
+\addcontentsline{toc}{section}{Table des matières}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\end{spacing}
+
+\newpage
+\pagenumbering{arabic}
+\setlength{\parskip}{1em}
+
+```{r child="2. Enfants.Rmd"}
+```
+
+\newpage
+\singlespacing
+\setlength{\parskip}{0.5em}
+
+
+\phantomsection
+\addcontentsline{toc}{section}{Bibliographie}
+\section*{Bibliographie}
+
+<div id="refs"></div>

@@ -1,0 +1,76 @@
+---
+output: pdf_document
+geometry: margin=2.5cm
+fontsize: 12pt
+fontfamily: fourier
+mainfont: Times
+linestretch: 1.5
+indent: true
+header-includes:
+    - \usepackage{ragged2e}
+---
+
+\begin{titlepage}
+
+\par
+\raisebox{-.5\height}{\includegraphics[width=3cm]{logos/Logo_EHESS.jpg}}
+\hfill
+\raisebox{-.5\height}{\includegraphics[width=5.5cm]{logos/logo_ens.png}}
+\par
+
+
+\vspace{1cm}
+\begin{center}
+
+\normalsize{\textit{Master Sciences Sociales - Parcours Quantifier en Sciences Sociales}}
+
+2021-2022
+
+\vspace{5mm}
+
+\textsc{Mémoire de recherche}
+
+\vfill 
+
+{\LARGE\bfseries Entre famille et institution :\par}
+
+{\Large le parcours de placement en Maison d'enfant à caractère social\par}
+
+\vfill
+
+{\large\itshape Soutenu par}
+
+{\large Élodie Lemaire}
+
+\vspace{5mm}
+
+\textit{Session}
+
+Juin 2022
+
+\vspace{5mm}
+
+\textit{Sous les directions de}
+
+Isabelle Frechon, Ined
+
+\textit{et}
+
+Marie Plessz, Inrae
+
+\end{center}
+\end{titlepage}
+\newpage
+
+\pagenumbering{roman}
+
+\phantomsection
+\addcontentsline{toc}{section}{Remerciements}
+\section*{Remerciements}
+
+Je tiens à remercier 
+
+\vspace{.5cm}
+
+
+\newpage

@@ -16,7 +16,7 @@ urlcolor: blue
 lang: fr
 ---
 ```{r setup, include=FALSE}
-setwd("/Users/elodielemaire/Dropbox/QESS2/M2 - Mémoire")
+setwd("/Users/elodielemaire/Desktop/Mémoire M2")
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
 options(tinytex.verbose = TRUE)
 library(pacman)
@@ -25,11 +25,12 @@ p_load(tidyverse,knitr,questionr,readxl,survey,gtsummary, rstatix, magrittr, #Po
        GGally, extrafont) #pour les graphiques
 theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
 
-source("Code/Recodage.R")
+source("Recodage.R")
+source("Fonctions.R")
 ```
 
 # Quelques éléments introductifs
-|           En 2017, l’Enquête auprès des établissements et services de la protection de l’enfance a permis à la Direction de la Recherche, des Études, de l'Évaluation et des Statistiques (DREES) de réaliser un bilan national de l’action de l’Aide sociale à l’enfance (ASE). L’enquête a ainsi révélé que 61 000 enfants ou adolescents étaient alors hébergés au sein des structures de l’ASE. Les chiffres publiés en mai 2020 sont globalement encourageants pour la Protection de l’enfance : un taux d’occupation global de 95%, 97% des jeunes hébergés scolarisés, un accroissement régulier depuis les vagues d’enquête de 2008 et 2012 des places d’hébergements, et aussi une plus grande diversité par rapport à 2012 dans l’offre des hébergements (Abassi, 2020).
+|           En 2017, l’Enquête auprès des établissements et services de la protection de l’enfance a permis à la Direction de la Recherche, des Études, de l'Évaluation et des Statistiques (DREES) de réaliser un bilan national de l’action de l’Aide sociale à l’enfance (ASE). L’enquête a ainsi révélé que 61 000 enfants ou adolescents étaient alors hébergés au sein des structures de l’ASE. Les chiffres publiés en mai 2020 sont globalement encourageants pour la Protection de l’enfance : un taux d’occupation global de 95%, 97% des jeunes hébergés scolarisés, un accroissement régulier depuis les vagues d’enquête de 2008 et 2012 des places d’hébergements, et aussi une plus grande diversité par rapport à 2012 dans l’offre des hébergements ([@abassi_61_2020]).
 
 # 2. Qui sont les enfants de l'enquête ?
 ## Quelques mesures générales
@@ -96,40 +97,7 @@ En observant le tableau 1, on s'aperçoit que les deux populations des tables en
 À l'inverse, on observe chez les enfants sortis une sous-représentation des mesures judiciaire de placements, c'est-à-dire des placements à l'ASE par le juge des enfants au titre de l’enfance en danger (y compris placement à domicile), de la délégation de l'Autorité parentale à l'ASE (DAP), à un particulier ou à un établissement, du retrait partiel de l'autorité parentale,et encore de tutelle déférée à l'ASE. Ces mesures représentent les principaux motifs de présence de ces enfants dans les établissements relevant de l'ASE, ce qui est cohérent puisqu'il s'agit des cas de figures auxquels l'ASE a été conçu à répondre.
 
 
-```{r mna1, include = FALSE}
-mna_ens <- subset(ens, MNA == "1")
-mna_enf <- subset(enf, MNA == "1")
-mna_sor <- subset(sor, MNA == "1")
 
-mna_ens$poids2 <- (mna_ens$poids/0.9713142)
-
-mna_ensw <- svydesign(ids = ~1, data = mna_ens, weights = ~ mna_ens$poids2)
-
-mna_ensw %>% 
-  tbl_svysummary(include = c("SEX", "age","CATEG_rec","HEBE_rec", "enq"), 
-                 by = enq,
-                 missing = "no",
-                 label =list(CATEG_rec ~ "Type d'établissement", 
-                             SEX ~ "Sexe",
-                             age ~ "Âge", 
-                             HEBE_rec ~ "Type d'hébergement"),
-                 statistic = list(all_categorical() ~ "{p}% ({n_unweighted})",
-                                  all_continuous()~ "{mean}")) %>% 
-  bold_labels()%>%
-  as_hux_table() %>% 
-  add_footnote("Source : ES-PE 2017.") %>%
-  add_footnote("Champ : Sur les 15 110 MNA de l'enquête, données pondérées.") %>%
-  set_number_format(NA) %>% 
-  set_caption("Mesures principales de placement des MNA présents et sortis placés à l'ASE")
-```
-
-```{r chisq, include=FALSE}
-chisq_test(mna_ens$MES_rec, mna_ens$enq)
-svychisq(~MES_rec + enq, mna_ensw)
-
-require(GGally)
-ggtable(data = na.omit(mna_ens),columnsX = "MES_rec",columnsY = "enq",cells = "col.prop",mapping = aes(weight = poids2),fill = "std.resid", legend = 1) + labs(fill = "Résidus\ndu Chi²") + coord_flip() + ggtitle("MNA")
-```
 
 \mdfsetup{%
 middlelinewidth=2pt,
@@ -224,6 +192,7 @@ ggarrange(g1,g2)
 ```
 
 ```{r sexcomp, out.width="60%"}
+library(wesanderson)
 ggplot(na.omit(ens)) +
   aes(x = CATEG_rec, fill = SEX, by = CATEG_rec, label = f(after_stat(prop))) +
   geom_bar(position = "fill") +
