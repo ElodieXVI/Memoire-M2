@@ -4,6 +4,7 @@ output:
     includes:
       in_header: MEP.tex
     number_sections: true
+documentclass: book
 linestretch: 1.5
 fontsize: 12
 mainfont: Times
@@ -19,9 +20,9 @@ csl: revue-francaise-de-sociologie.csl
 
 \newpage
 \begin{spacing}{1}
-
 \phantomsection
 \addcontentsline{toc}{section}{Table des matières}
+
 \tableofcontents
 \listoftables
 \listoffigures
@@ -32,6 +33,7 @@ csl: revue-francaise-de-sociologie.csl
 \pagenumbering{arabic}
 \setlength{\parskip}{1em}
 
+\newpage
 ```{r child="2. Enfants.Rmd"}
 ```
 
