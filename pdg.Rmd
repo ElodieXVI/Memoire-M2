@@ -10,6 +10,7 @@ header-includes:
     - \usepackage{ragged2e}
 ---
 
+```{=tex}
 \begin{titlepage}
 
 \par
@@ -58,19 +59,26 @@ Isabelle Frechon, Ined
 
 Marie Plessz, Inrae
 
+
+\vspace{5mm}
+
+\textit{Rapporteur}
+
+Jérôme Deauvieau, Cnrs
+
 \end{center}
 \end{titlepage}
 \newpage
-
+```
 \pagenumbering{roman}
 
+```{=tex}
 \phantomsection
 \addcontentsline{toc}{section}{Remerciements}
 \section*{Remerciements}
-
-Je tiens à remercier 
+```
+Je tiens à remercier
 
 \vspace{.5cm}
-
 
 \newpage

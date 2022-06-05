@@ -1,0 +1,59 @@
+---
+title: "I.A.Populartion Hétérogène"
+author: "Élodie Lemaire"
+date: '2022-06-04'
+output:
+    pdf_document:
+    latex_engine: lualatex
+header-includes:
+  - \usepackage[normal,labelfont=bf]{caption}
+  - \usepackage[bottom]{footmisc}
+  - \usepackage{mdframed}
+bibliography: QESS_M2.bib
+linestretch: 1.25
+fontsize: 11
+mainfont: Times
+urlcolor: blue
+lang: fr
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+
+library(pacman)
+p_load(tidyverse,knitr,questionr,readxl,survey,gtsummary, rstatix, magrittr, #Pour analyses et manipulation
+       ggcharts, huxtable, #pour les tableaux
+       GGally, extrafont, wesanderson) #pour les graphiques
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+
+source("Recodage.R")
+```
+
+
+```{r tab1}
+enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, MNA, age_ed, HAND),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p} \n({n})"),
+                    missing = "no") %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 18 440 enfants présents en MECS au 12/12/2017.") %>%
+  set_number_format(NA) %>% 
+  set_caption("Résultats de la classification")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+mecs <- subset(enf, CATEG_rec == "MECS")
+
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

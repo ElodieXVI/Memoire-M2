@@ -305,10 +305,10 @@ recode_age <- function(var) {
                  include.lowest = TRUE,
                  right = FALSE,
                  dig.lab = 4,
-                 breaks = c(0, 3, 6, 11, 16, 18, 27)
+                 breaks = c(0, 4, 7, 13, 15, 18, 27)
   )
   var_rec <- var_rec %>%
-    fct_recode("0_2" = "[0,3)", "3_5" = "[3,6)", "6_10" = "[6,11)", "11_15" = "[11,16)", "16_18" = "[16,18)", "18_+" = "[18,27]")
+    fct_recode("0_3" = "[0,4)", "4_6" = "[4,7)", "7_12" = "[7,13)", "13_14" = "[13,15)", "15_17" = "[15,18)", "18_+" = "[18,27]")
   print(table(var_rec, useNA = "ifany"))
   return(var_rec)
 }

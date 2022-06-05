@@ -118,7 +118,7 @@ g1  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 18 44
 plot.HCPC(res.HCPC, choice = "tree")
 
 e_acm$grp <- res.HCPC$data.clust$clust
-e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec1, ARES_rec, SEQ_rec),
+e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec1, ARES_rec, SEQ_rec, MNA, HAND),
                     by = grp,
                     percent = "col", 
                     statistic = list(all_categorical() ~ "{p} \n({n})")) %>%   

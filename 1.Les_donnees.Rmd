@@ -18,7 +18,6 @@ lang: fr
 ---
 
 ```{r setup, include=FALSE}
-setwd("/Users/elodielemaire/Dropbox/QESS2/M2 - Mémoire")
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
 
 library(pacman)
@@ -27,7 +26,7 @@ p_load(tidyverse,knitr,questionr,readxl,survey,gtsummary, rstatix, magrittr, #Po
        GGally, extrafont, wesanderson) #pour les graphiques
 theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
 
-source("Code/Recodage.R")
+source("Recodage.R")
 ```
 
 # Les données : l'enquête aupès des établissements et services de la protection de l'enfance 2017 (ES-PE)
@@ -61,17 +60,16 @@ g1 <- ggplot(na.omit(obs)) +
   geom_bar(position = "fill") +
   geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
   scale_fill_manual(values = wes_palette("Darjeeling1")) +
-  ggtitle("Graphique - Taux de réponses par catégorie d'établissement à \n l'enquête") +
   xlab("Type d'établissement") +
   ylab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
   labs(caption = "Source : ES-PE 2017. \n
 Champ : Sur les 2119 établissements recensés par la DREES. \n
-Lecture : ", fill = "Statut de réponse :") +
+Lecture : Parmi les établissements présents sur le fichier FINESS, on observe qu'en tout 71% \n des Maisons d'enfant à caractère social (MECS) ont répondu à l'enquête ES-PE 2017.", fill = "Statut de réponse :") +
   coord_flip() +
   theme_bw() +
   theme(legend.position = "top")
-g1 + theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+g1 + theme(text = element_text(family = "Times"), plot.caption = element_text(face = "italic"))
 ```
 
 ````{r obs12 chi2, include = FALSE}
