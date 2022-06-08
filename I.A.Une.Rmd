@@ -31,12 +31,13 @@ source("Recodage.R")
 
 
 ```{r tab1}
+
 enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, MNA, age_ed, HAND),
                     by = CATEG_rec,
                     percent = "col", 
-                    statistic = list(all_categorical() ~ "{p} \n({n})"),
+                    statistic = list(all_categorical() ~ "{p} ({n_unweighted})"),
                     missing = "no") %>%   
-  modify_header(label = " ") %>% 
+  modify_header(label = "") %>% 
   bold_labels() %>% 
   as_hux_table() %>% 
   add_footnote("Source : ES-PE 2017.") %>%
@@ -45,12 +46,65 @@ enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, MNA, age_ed, HAND),
   set_caption("Résultats de la classification")
 ```
 
+
+
 ## Including Plots
 
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-mecs <- subset(enf, CATEG_rec == "MECS")
+recode_mes2 <- function(var) {
+  var <- as.factor(var)
+  var_rec <- fct_recode(var, 
+                        "Mes admin Min" = "02",
+                        "Mes admin Maj" = "03",
+                        "Judi conf" = "04",
+                        "Judi direct" = "09",
+                        "Judi direct" = "10",
+                        "Judi direct" = "11",
+                        "Judi direct" = "12",
+                        "Judi direct" = "13",
+                        "MO" = "14",
+                        "MO" = "15",
+                        "MO" = "16",
+                        "Mes respo par" = "01",
+                        "Mes respo par" = "17",
+                        "Mes respo par" = "05",
+                        "Mes respo par" = "06",
+                        "Mes respo par" = "07",
+                        "Mes respo par" = "08",
+                        "Autre" = "18",
+                        "Autre" = "19",
+                        "NA" = "")
+  return(var_rec)
+}
+
+
+
+enf$MES_rec <- recode_mes2(enf$MES)
+
+## Réordonnancement de enf$MES_rec
+enf$MES_rec <- enf$MES_rec %>%
+  fct_relevel(
+    "Mes admin Min", "Mes admin Maj", "Judi conf", "Judi direct",
+    "Mes respo par", "MO", "Autre", "NA"
+  )
+## Réordonnancement de enf$CATEG_rec
+enf$CATEG_rec <- enf$CATEG_rec %>%
+  fct_relevel(
+    "MECS", "Foyers", "Lieux de vie", "Villages", "Pouponnières"
+  )
+enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
+
+
+enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no") %>%   
+  modify_header(label = "") %>% 
+  bold_labels() %>%
+  add_p()
 
 
 

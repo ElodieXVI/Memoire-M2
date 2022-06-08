@@ -327,7 +327,13 @@ sor$age_ppd <- recode_age(sor$age_pp)
 enf$age_pp <- enf$ANPP - enf$ANN
 enf$age_ppd <- recode_age(enf$age_pp)
 
+
+# Normalisation de la pondération 
+
+enf$poids2 <- enf$poids_enf/mean(enf$poids_enf)
+sor$poids2 <- sor$poids_sor/mean(sor$poids_sor)
+
 # Pondération ####
-sorw <- svydesign(ids = ~1, data = sor, weights = ~ sor$poids_sor)
-enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids_enf)
+sorw <- svydesign(ids = ~1, data = sor, weights = ~ sor$poids2)
+enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
 ensw <- svydesign(ids = ~ens$enq, data = ens, weights = ~ ens$poids)
