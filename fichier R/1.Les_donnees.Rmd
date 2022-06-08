@@ -55,6 +55,7 @@ obs$CATEG_rec %<>% fct_recode("Pouponnières, n = 37" = "Pouponnières",
     "MECS, n = 1330" = "MECS",
     "Lieux de vie, n = 491" = "Lieux de vie")
 
+obs$CATEG_rec2 <- add_n(obs$CATEG_rec)
 g1 <- ggplot(na.omit(obs)) +
   aes(x = CATEG_rec, fill = STATUT_REP, by = CATEG_rec, label = f(after_stat(prop))) +
   geom_bar(position = "fill") +

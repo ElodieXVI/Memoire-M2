@@ -255,6 +255,13 @@ sor %<>% mutate(dur_pla = as.numeric(as.period(interval(d_anpp, d_ans)), "months
                 dur_av_dpla = as.numeric(as.period(interval(d_anpp, d_ane)), "months"),
                 dur_av_ppla = as.numeric(as.period(interval(d_ann, d_anpp)), "months"))
 
+enf %<>%  mutate(d_anpp = dmy(paste0("1/",MOPP,"/",ANPP)),
+                 d_ane = dmy(paste0("1/",MOE,"/",ANE)),
+                 d_ann = dmy(paste0("1/6/",ANN)),
+                 annee = dmy(paste0("15/12/2017")))
+
+enf %<>% mutate(dur_dpla = as.numeric(as.period(interval(d_ane, annee)), "months"))
+
 # Création d'une variable id ####
 sor$id <- rownames(sor)
 enf$id <- rownames(enf)

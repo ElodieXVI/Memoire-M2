@@ -106,8 +106,45 @@ enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
   bold_labels() %>%
   add_p()
 
+mecs <- subset(enf, CATEG_rec == "MECS")
+mecs %>% tbl_summary(include = c(SEX, MNA),
+                    by = MNA,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no") %>%   
+  modify_header(label = "")
 
 
+
+enfw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_continuous() ~ "Q1 : {p25}, Med : {median}, Moy : {mean}, Q3 : {p75}"),
+                    missing = "no") %>%   
+  modify_header(label = "")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+enf_12 <- read_sas("ES-PE 2017/enf_enf.sas7bdat")
+
+enf_12$CAT<- recode_categ(enf_12$CAT)
+enf_12$CAT<- recode_categ_chr(enf_12$CAT)
+
+enf_12 %<>% mutate(age = (2017 - as.numeric(ANN)))
+
+enf_12$age_ed <-recode_age(enf_12$age)
+
+
+enf_12$POIDS2 <- enf_12$POIDS/mean(enf_12$POIDS)
+enf_12w <- svydesign(ids = ~1, data = enf_12, weights = ~ enf_12$POIDS2)
+
+enf_12w %>% tbl_svysummary(include = c(CAT,SEX, age_ed, HAND),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no") %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+```
+

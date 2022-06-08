@@ -13,8 +13,7 @@ add_pct <- function(var) {
 add_n <- function(var) {
   require(questionr)
   n <- freq(var)[,c(1)]
-  l <- which.max(n)
-  var_r <- paste0(levels(var),", n =", n[-l])
+  var_r <- paste0(levels(var),", n =", n)
   levels(var) <- var_r
   return(var)
 }

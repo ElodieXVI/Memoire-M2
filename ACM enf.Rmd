@@ -131,4 +131,73 @@ e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec1, ARES_rec, SEQ_rec
   set_number_format(NA) %>% 
   set_caption("Résultats de la classification")
 ```
+```{r}
+plot.HCPC(res.HCPC, choice = "tree")
+
+e_acm$grp <- res.HCPC$data.clust$clust
+e_acm %>% tbl_summary(include = c(MES_rec2),
+                    by = grp,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{n}")) %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**") %>%
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 18 440 enfants présents en MECS au 12/12/2017.") %>%
+  set_number_format(NA) %>% 
+  set_caption("Résultats de la classification")
+```
+
+```{r}
+## Recodage de e_acm$MES_rec2
+e_acm$MES_rec2 <- e_acm$MES_rec2 %>%
+  fct_recode(
+    NULL = "mes_NA",
+    "mes_MO.autre" = "mes_MO",
+    "mes_MO.autre" = "mes_Autre")
+
+e_acm %<>% drop_na() 
+
+require(nnet)
+m1 <- multinom(grp ~ age_ed + SEX + MNA + HAND + MES_rec2, data = e_acm)
+
+m1 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()%>% 
+  as_hux_table() %>% 
+  add_footnote("Source : ES-PE 2017.") %>%
+  add_footnote("Champ : Sur les 10 983 enfants sortis au cours de 2017.") %>%
+  set_number_format(NA)
+```
+ 
+```{r}
+modele <- enf %>% select(SEX, MNA, HAND, age_ed, age_pp, MES_rec2, HEBE_rec2, ARES_rec)
+
+modele %<>% drop_na()
+
+m2 <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND + ARES_rec, data = modele)
+
+m2 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+m3 <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND + ARES_rec + ARES_rec*SEX, data = modele)
+
+m3 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+```
 

@@ -1,0 +1,137 @@
+---
+title: "répartition des MECS"
+author: "Élodie Lemaire"
+date: '2022-06-08'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+setwd("/Users/elodielemaire/Desktop/Mémoire M2")
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+library(pacman)
+p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr, 
+       explor, webshot, gtsummary, gt, survey, factoextra, magrittr,
+       MetBrewer, extrafont, huxtable)
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+
+source("Recodage.R")
+```
+
+```{r}
+act$CATEG_rec <- act$CATEG_rec %>%
+  fct_relevel(
+    "MECS", "Foyers", "Lieux de vie", "Villages", "Pouponnières")
+act$poids2<- act$poids_act/mean(act$poids_act)
+mean(act$poids2)
+actw <- svydesign(ids = ~1, data = act, weights = ~ act$poids2)
+
+actw %>% tbl_svysummary(include = c(REPSEX, REPAGE,REPFRA,REPPED, REPDUR, REPCIV, REPAUC, CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}"),
+                    label = list(REPSEX ~ "par sexe",
+                                 REPAGE ~ "par âge",
+                                 REPFRA~ "par fratries",
+                                 REPPED ~ "par projet pédagogique",
+                                 REPDUR ~"par durée du placement",
+                                 REPCIV ~"par civil ou pénal",
+                                 REPAUC ~"Aucun critère")) %>%   
+  modify_header(label = "**Répartition entre les hébergements...**") %>% 
+  bold_labels()
+```
+
+```{r}
+table(act$EJ_STATUT)
+
+## Recodage de act$EJ_STATUT en act$EJ_STATUT_rec
+act$EJ_STATUT_rec <- act$EJ_STATUT %>%
+  fct_recode(
+    "Collectivité" = "01",
+    "Collectivité" = "02",
+    "Collectivité" = "06",
+    "Collectivité" = "11",
+    "Collectivité" = "17",
+    "Collectivité" = "18",
+    "Collectivité" = "19",
+    "Collectivité" = "21",
+    "Collectivité" = "26",
+    "Autre" = "30",
+    "Autre" = "47",
+    "Autre" = "50",
+    "Associatif" = "60",
+    "Associatif" = "61",
+    "Associatif" = "62",
+    "Fondation" = "63",
+    "Associatif" = "64",
+    "Associatif" = "65",
+    "Autre" = "70",
+    "Autre" = "72",
+    "Autre" = "74",
+    "Autre" = "75",
+    "Autre" = "78",
+    "Autre" = "95")
+freq(act$EJ_STATUT_rec)
+freq(act$EJ_STATUT)
+actw <- svydesign(ids = ~1, data = act, weights = ~ act$poids2)
+actw %>% tbl_svysummary(include = c(EJ_STATUT_rec, CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+freq(svytable(~EJ_STATUT_rec, actw))
+
+## Recodage de enf$SEQ en enf$SEQ_rec
+enf$SEQ_rec <- enf$SEQ %>%
+  as.character() %>%
+  fct_recode(
+    "Complet" = "1",
+    "Séquentiel" = "2",
+    "Diversifié" = "3")
+
+enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
+enfw %>% tbl_svysummary(include = c(SEQ_rec, CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+
+svytable(~CATEG_rec + SEQ_rec, enfw)
+
+svychisq(~CATEG_rec + SEQ_rec, enfw)
+```
+```{r}
+recode_acc <- function(var) {
+  var_recodee <- fct_recode(as.factor(var),
+                            "Spécialisé dans l'accueil de ce public" = "1",
+                            "Accueil possible" = "2",
+                            "Exclusion de ce public"= "3")
+  return(var_recodee)
+}
+
+essai<- act %>% select(ACCSCO,ACCPSY,ACCHAN,ACCDEL,ACCADD,ACCMUL,ACCFRA,ACCMIE,ACCENC,CATEG_rec)
+essai <- map(essai, recode_acc)
+
+act$ACCSCO <- recode_acc(act$ACCSCO)
+act$ACCPSY <- recode_acc(act$ACCPSY)
+act$ACCHAN<- recode_acc(act$ACCHAN)
+
+act$ACCDEL <- recode_acc(act$ACCDEL)
+act$ACCPSY <- recode_acc(act$ACCADD)
+act$ACCMUL <- recode_acc(act$ACCMUL)
+
+act$ACCFRA <- recode_acc(act$ACCFRA)
+act$ACCMIE <- recode_acc(act$ACCMIE)
+act$ACCENC <- recode_acc(act$ACCENC)
+actw <- svydesign(ids = ~1, data = act, weights = ~ act$poids2)
+actw %>% tbl_svysummary(include = c(ACCPSY,ACCHAN,ACCDEL,ACCMUL,ACCFRA,ACCMIE,CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+```
+
