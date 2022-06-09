@@ -99,9 +99,12 @@ enfw %>% tbl_svysummary(include = c(SEQ_rec, CATEG_rec),
   bold_labels()
 
 
+
+
 svytable(~CATEG_rec + SEQ_rec, enfw)
 
 svychisq(~CATEG_rec + SEQ_rec, enfw)
+
 ```
 ```{r}
 recode_acc <- function(var) {
@@ -112,20 +115,16 @@ recode_acc <- function(var) {
   return(var_recodee)
 }
 
-essai<- act %>% select(ACCSCO,ACCPSY,ACCHAN,ACCDEL,ACCADD,ACCMUL,ACCFRA,ACCMIE,ACCENC,CATEG_rec)
-essai <- map(essai, recode_acc)
-
 act$ACCSCO <- recode_acc(act$ACCSCO)
 act$ACCPSY <- recode_acc(act$ACCPSY)
 act$ACCHAN<- recode_acc(act$ACCHAN)
-
 act$ACCDEL <- recode_acc(act$ACCDEL)
 act$ACCPSY <- recode_acc(act$ACCADD)
 act$ACCMUL <- recode_acc(act$ACCMUL)
-
 act$ACCFRA <- recode_acc(act$ACCFRA)
 act$ACCMIE <- recode_acc(act$ACCMIE)
 act$ACCENC <- recode_acc(act$ACCENC)
+
 actw <- svydesign(ids = ~1, data = act, weights = ~ act$poids2)
 actw %>% tbl_svysummary(include = c(ACCPSY,ACCHAN,ACCDEL,ACCMUL,ACCFRA,ACCMIE,CATEG_rec),
                     by = CATEG_rec,

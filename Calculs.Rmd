@@ -1,0 +1,251 @@
+---
+title: "Calculs"
+author: "Élodie Lemaire"
+date: '2022-06-09'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+library(pacman)
+p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr, 
+       explor, webshot, gtsummary, gt, survey, factoextra, magrittr,GGally,wesanderson,
+       MetBrewer, extrafont, huxtable)
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+
+source("Recodage.R")
+source("Fonctions.R")
+```
+
+# Statut de réponse des établissements
+
+```{r}
+f <- function(x) {
+  res <- scales::percent(x, accuracy = 1)
+  res[x < .05] <- scales::percent(x[x < .05], accuracy = 1, suffix = "")
+  res[x < .01] <- ""
+  res
+}
+
+obs$CATEG_rec2 <- add_n(obs$CATEG_rec)
+g1 <- ggplot(na.omit(obs)) +
+  aes(x = CATEG_rec, fill = STATUT_REP, by = CATEG_rec, label = f(after_stat(prop))) +
+  geom_bar(position = "fill") +
+  geom_text(stat = "prop", position = position_fill(.5), colour = "white", size = 3.5) +
+  scale_fill_manual(values = wes_palette("Darjeeling1")) +
+  xlab("Type d'établissement") +
+  ylab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  coord_flip() +
+  theme_bw() +
+  theme(legend.position = "top") +
+  labs(fill = "Statut de réponse :")
+g1 + theme(text = element_text(family = "Times"), plot.caption = element_text(face = "italic"))
+```
+
+# Répartition des enfants accueillis
+
+```{r}
+enf$CATEG_rec <- enf$CATEG_rec %>% fct_relevel("MECS", "Foyers", "Lieux de vie", "Villages", "Pouponnières")
+enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
+
+enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, age_ed, MNA,HAND),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no") %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels()
+```
+
+
+# Répartition par mesures 
+
+```{r}
+recode_mes2 <- function(var) {
+  var <- as.factor(var)
+  var_rec <- fct_recode(var, 
+                        "Mes admin Min" = "02",
+                        "Mes admin Maj" = "03",
+                        "Judi conf" = "04",
+                        "Judi direct" = "09",
+                        "Judi direct" = "10",
+                        "Judi direct" = "11",
+                        "Judi direct" = "12",
+                        "Judi direct" = "13",
+                        "MO" = "14",
+                        "MO" = "15",
+                        "MO" = "16",
+                        "Mes respo par" = "01",
+                        "Mes respo par" = "17",
+                        "Mes respo par" = "05",
+                        "Mes respo par" = "06",
+                        "Mes respo par" = "07",
+                        "Mes respo par" = "08",
+                        "Autre" = "18",
+                        "Autre" = "19",
+                        "NA" = "")
+  var_rec <- var_rec %>% fct_relevel("Mes admin Min", "Mes admin Maj", "Judi conf", "Judi direct","Mes respo par", "MO", "Autre", "NA")
+  return(var_rec)
+}
+
+enf$MES_rec <- recode_mes2(enf$MES)
+enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
+
+enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no") %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels() %>%
+  add_p()
+```
+
+# Ancienneté par mois 
+
+```{r}
+enfw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
+                    by = CATEG_rec,
+                    percent = "col", 
+                    statistic = list(all_continuous() ~ "Q1 : {p25}, Med : {median}, Moy : {mean}, Q3 : {p75}"),
+                    missing = "no") %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels()
+```
+# Répartition critères déclarés par les établissements
+
+```{r}
+act2 <- filter(act, CATEG_rec != "Villages")
+act2 <- filter(act2,CATEG_rec != "Pouponnières")
+
+act2$CATEG_rec <- act2$CATEG_rec %>%
+  fct_relevel("MECS", "Foyers", "Lieux de vie")
+
+act2$poids2<- act2$poids_act/mean(act2$poids_act)
+actw <- svydesign(ids = ~1, data = act2, weights = ~ act2$poids2)
+
+actw %>% tbl_svysummary(include = c(REPSEX, REPAGE,REPFRA,REPPED, REPDUR, REPCIV, REPAUC, CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}"),
+                    label = list(REPSEX ~ "par sexe",
+                                 REPAGE ~ "par âge",
+                                 REPFRA~ "par fratries",
+                                 REPPED ~ "par projet pédagogique",
+                                 REPDUR ~"par durée du placement",
+                                 REPCIV ~"par civil ou pénal",
+                                 REPAUC ~"Aucun critère")) %>%   
+  modify_header(label = "**Répartition entre les hébergements...**") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  modify_column_hide(columns = c(stat_4, stat_5)) %>% 
+  bold_labels()
+```
+
+# Accueil séquentiel
+
+```{r}
+enf$SEQ_rec <- enf$SEQ %>%
+  as.character() %>%
+  fct_recode(
+    "Complet" = "1",
+    "Séquentiel" = "2",
+    "Diversifié" = "3")
+
+enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
+enfw %>% tbl_svysummary(include = c(SEQ_rec, CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  modify_column_hide(columns = c(stat_4, stat_5)) %>% 
+  bold_labels()
+
+t1 <- svytable(~CATEG_rec + SEQ_rec, enfw)
+t1 <-  t1[-4,]
+t1 <-  t1[-4,]
+chisq.test(t1)
+```
+
+# public accueilli projet d'établissement
+
+```{r}
+recode_acc <- function(var) {
+  var_recodee <- fct_recode(as.factor(var),
+                            "Spécialisé dans l'accueil de ce public" = "1",
+                            "Accueil possible" = "2",
+                            "Exclusion de ce public"= "3")
+  return(var_recodee)
+}
+
+act2$ACCSCO <- recode_acc(act2$ACCSCO)
+act2$ACCPSY <- recode_acc(act2$ACCPSY)
+act2$ACCHAN<- recode_acc(act2$ACCHAN)
+act2$ACCDEL <- recode_acc(act2$ACCDEL)
+act2$ACCPSY <- recode_acc(act2$ACCADD)
+act2$ACCMUL <- recode_acc(act2$ACCMUL)
+act2$ACCFRA <- recode_acc(act2$ACCFRA)
+act2$ACCMIE <- recode_acc(act2$ACCMIE)
+act2$ACCENC <- recode_acc(act2$ACCENC)
+
+actw <- svydesign(ids = ~1, data = act2, weights = ~ act2$poids2)
+actw %>% tbl_svysummary(include = c(ACCPSY,ACCHAN,ACCDEL,ACCMUL,ACCFRA,ACCMIE,CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels()
+```
+# Flux 
+
+```{r}
+e_mecs <- subset(enf, CATEG_rec == "MECS")
+
+e_mecs$ARES_rec <- as.factor(e_mecs$ARES_rec)
+
+e_mecs$HEBE_rec1_t <- add_pct(e_mecs$HEBE_rec1)
+e_mecs$HEBE_rec3_t <- add_pct(e_mecs$HEBE_rec3)
+e_mecs$ARES_rec_t <- add_pct(e_mecs$ARES_rec)
+
+require(ggalluvial)
+
+f1 <- ggplot(na.omit(e_mecs)) +
+  aes(axis1 = ARES_rec_t, axis2 = HEBE_rec1_t) +
+  scale_x_discrete(limits = c("Avant entrée (ARES)", "Entrée dans l'établissement (HEBE)"), expand = c(.1, .05)) +
+  scale_y_continuous(labels = NULL) +
+  xlab("") +
+  ylab("") +
+  geom_alluvium(aes(fill = ARES_rec)) +
+  geom_flow() +
+  geom_stratum(alpha = .5) +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_fill_manual(values = met.brewer("Klimt")) +
+  labs(fill = "Type d'hébergement avant MECS:") +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+f1 + theme(text = element_text(family = "Times"))
+```
+
+# Modèle sur orientation à l'entrée en MECS
+
+```{r}
+modele <- enf %>% select(SEX, MNA, HAND, age_ed, age_pp, MES_rec, HEBE_rec2, ARES_rec)
+modele %<>% drop_na()
+
+require(nnet)
+m2 <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND + ARES_rec, data = modele)
+
+m2 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+```
