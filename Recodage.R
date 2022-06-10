@@ -205,10 +205,10 @@ recode_res <- function(var) {
                         "EtabASEPJJ" = "8",
                         "EtabASEPJJ" = "9",
                         "Assfam" = "10",
-                        "Autres" = "11",
-                        "Autres" = "12",
-                        "Autres" = "13",
-                        "Autres" = "14", 
+                        "Logthors" = "11",
+                        "Logthors" = "12",
+                        "Logthors" = "13",
+                        "Logthors" = "14", 
                         NULL = "15")
   print(table(var_rec, useNA = "ifany"))
   return(var_rec)

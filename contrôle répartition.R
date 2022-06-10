@@ -57,9 +57,6 @@ tbl_stack(tbls=list(t1,t2, t3,t4), group_header = list("Oui", "Non","Oui", "Non"
 tbl_stack(tbls=list(t3,t4), group_header = list("Oui", "Non")) %>% 
   bold_labels()
 
-
-
-
 repdur <- subset(act, REPDUR == "1")
 ex1 <- repdur$ID
 repdurO <- enf[enf$ID %in% ex1, ]    

@@ -9,7 +9,7 @@ header-includes:
   - \usepackage[normal,labelfont=bf]{caption}
   - \usepackage[bottom]{footmisc}
   - \usepackage{mdframed}
-bibliography: QESS_M2.bib
+bibliography: essai.bib
 linestretch: 1.25
 fontsize: 11
 mainfont: Times

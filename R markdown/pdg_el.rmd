@@ -1,0 +1,88 @@
+---
+output: pdf_document
+geometry: margin=2.5cm
+fontsize: 12pt
+fontfamily: fourier
+mainfont: Times
+linestretch: 1.5
+---
+```{=tex}
+\begin{titlepage}
+
+\par
+\raisebox{-.5\height}{\includegraphics[width=3cm]{Logo_EHESS_2021.jpg}}
+\hfill
+\raisebox{-.5\height}{\includegraphics[width=5.5cm]{logo_ens.png}}
+\par
+
+\vspace{1cm}
+\begin{center}
+
+\textit{Master Sciences Sociales - Parcours Pratique de l'Interdisciplinarité en Sciences Sociales}
+
+2021-2022
+
+\vspace{5mm}
+
+\textsc{Mémoire de recherche}
+
+\vfill 
+
+{\LARGE\bfseries Capital social de santé, maisonnée et maladie : \par}
+
+{\Large construction de l’attention sanitaire des proches \par}
+
+{\Large dans le cadre du cancer\par}
+
+\vfill
+
+{\large\itshape Soutenu par}
+
+{\large Juliette Bontemps}
+
+\vspace{5mm}
+
+\textit{Session}
+
+Juin 2022
+
+\vspace{5mm}
+
+\textit{Directrice}
+
+Muriel Darmon
+
+\vspace{5mm}
+
+\textit{Relectrice}
+
+Séverine Gojard
+
+\end{center}
+\end{titlepage}
+\newpage
+```
+
+```{=tex}
+\phantomsection
+\addcontentsline{toc}{section}{Remerciements}
+\section*{Remerciements}
+```
+\pagenumbering{gobble}
+\vspace{5mm}
+
+Mes premiers remerciements vont à ma directrice de recherche, Muriel Darmon, pour l'intérêt qu'elle a porté à ce travail, ses conseils précieux, ses recommandations avisées et sa disponibilité. Merci à l'équipe enseignante du master pour vos relectures et conseils.
+
+\vspace{5mm}
+
+Je remercie également les médecins, secrétaires, responsables d'associations qui m'ont partagé leur savoir, ainsi que les (ex) patients et patientes et leurs proches, qui m'ont accordé (parfois dans l'émotion) de leur temps pour revenir sur leur cancer.
+
+\vspace{5mm}
+
+Merci enfin à mes ami·e·s et ma famille, pour leur soutien, leur patience et leur confiance.
+
+\vspace{.5cm}
+
+
+\newpage
+

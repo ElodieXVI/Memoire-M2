@@ -20,13 +20,6 @@ source("Fonctions.R")
 # Statut de réponse des établissements
 
 ```{r}
-f <- function(x) {
-  res <- scales::percent(x, accuracy = 1)
-  res[x < .05] <- scales::percent(x[x < .05], accuracy = 1, suffix = "")
-  res[x < .01] <- ""
-  res
-}
-
 obs$CATEG_rec2 <- add_n(obs$CATEG_rec)
 g1 <- ggplot(na.omit(obs)) +
   aes(x = CATEG_rec, fill = STATUT_REP, by = CATEG_rec, label = f(after_stat(prop))) +
@@ -199,6 +192,7 @@ actw %>% tbl_svysummary(include = c(ACCPSY,ACCHAN,ACCDEL,ACCMUL,ACCFRA,ACCMIE,CA
                     statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = "") %>% 
   modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  modify_column_hide(columns = c(stat_4, stat_5)) %>%
   bold_labels()
 ```
 # Flux 
@@ -206,17 +200,74 @@ actw %>% tbl_svysummary(include = c(ACCPSY,ACCHAN,ACCDEL,ACCMUL,ACCFRA,ACCMIE,CA
 ```{r}
 e_mecs <- subset(enf, CATEG_rec == "MECS")
 
+## Recodage de e_mecs$HEBE_rec3
+e_mecs$HEBE_rec3 <- e_mecs$HEBE_rec3 %>%
+  fct_recode(
+    "Collectif" = "Collect",
+    "Éclaté" = "Autonomautre",
+    "Assistant familial" = "Assfam")
+
+## Recodage de e_mecs$ARES_rec
+e_mecs$ARES_rec <- e_mecs$ARES_rec %>%
+  fct_recode(
+    "Assistant familial" = "Assfam",
+    "Logt accompagné" = "Logtacc",
+    "Logt hors" = "Logthors",
+    "Collectif" = "EtabASEPJJ")
+
+## Réordonnancement de e_mecs$HEBE_rec3
+e_mecs$HEBE_rec3 <- e_mecs$HEBE_rec3 %>%
+  fct_relevel(
+    "Collectif", "Assistant familial", "Domicile", "Éclaté"
+  )
+
+## Réordonnancement de e_mecs$ARES_rec
+e_mecs$ARES_rec <- e_mecs$ARES_rec %>%
+  fct_relevel(
+    "Collectif", "Assistant familial", "Famille", "Logt accompagné",
+    "Logt hors", "Autres"
+  )
+
+e_mecs$poids2 <- e_mecs$poids_enf/mean(e_mecs$poids_enf)
 e_mecs$ARES_rec <- as.factor(e_mecs$ARES_rec)
 
-e_mecs$HEBE_rec1_t <- add_pct(e_mecs$HEBE_rec1)
-e_mecs$HEBE_rec3_t <- add_pct(e_mecs$HEBE_rec3)
-e_mecs$ARES_rec_t <- add_pct(e_mecs$ARES_rec)
+e_mecsw <- svydesign(ids = ~1, data = e_mecs, weights = ~ e_mecs$poids2)
+
+freq(table(e_mecs$HEBE_rec3, useNA = "ifany"))
+freq(wtd.table(e_mecs$HEBE_rec3, weights = e_mecs$poids2, useNA = "ifany"))
+
+freq(table(e_mecs$ARES_rec, useNA = "ifany"))
+freq(wtd.table(e_mecs$ARES_rec, weights = e_mecs$poids2, useNA = "ifany"))
+
+e_mecsw %>% tbl_svysummary(include = c(ARES_rec, HEBE_rec3),
+                    by = HEBE_rec3,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels()
+```
+
+
+```{r}
+pct <- freq(svytable(~HEBE_rec3,e_mecsw))[,c(2)]
+pct2<- paste0(levels(e_mecs$HEBE_rec3),", ", pct, "%")
+e_mecs$HEBE_rec3_e <- e_mecs$HEBE_rec3
+levels(e_mecs$HEBE_rec3_e) <- pct2
+
+pct <- freq(svytable(~ARES_rec,e_mecsw))[,c(2)]
+pct2 <- paste0(levels(e_mecs$ARES_rec),", ", pct, "%")
+e_mecs$ARES_rec_e <- e_mecs$ARES_rec
+levels(e_mecs$ARES_rec_e) <- pct2
+
+table(e_mecs$HEBE_rec3_e)
+table(e_mecs$ARES_rec_e)
 
 require(ggalluvial)
 
 f1 <- ggplot(na.omit(e_mecs)) +
-  aes(axis1 = ARES_rec_t, axis2 = HEBE_rec1_t) +
-  scale_x_discrete(limits = c("Avant entrée (ARES)", "Entrée dans l'établissement (HEBE)"), expand = c(.1, .05)) +
+  aes(axis1 = ARES_rec_e, axis2 = HEBE_rec3_e) +
+  scale_x_discrete(limits = c("Avant l'entrée en MECS (ARES)", "En MECS (HEBE)"), expand = c(.1, .05)) +
   scale_y_continuous(labels = NULL) +
   xlab("") +
   ylab("") +
@@ -227,9 +278,162 @@ f1 <- ggplot(na.omit(e_mecs)) +
   scale_fill_manual(values = met.brewer("Klimt")) +
   labs(fill = "Type d'hébergement avant MECS:") +
   theme_bw() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "top")
 
 f1 + theme(text = element_text(family = "Times"))
+```
+
+
+```{r}
+g1 <- e_mecs %>% subset(age_ed == "0_3") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  theme_bw() +
+  ggtitle("Âge 0 à 3 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g2 <- e_mecs %>% subset(age_ed == "4_6") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  theme_bw() +
+  ggtitle("Âge 4 à 6 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g3 <- e_mecs %>% subset(age_ed == "7_12") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  theme_bw() +
+  ggtitle("Âge 7 à 12 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g4 <-e_mecs %>% subset(age_ed == "13_14") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  theme_bw() +
+  ggtitle("Âge 13 à 14 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g5 <-e_mecs %>% subset(age_ed == "15_17") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  theme_bw() +
+  ggtitle("Âge 15 à 17 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+g6 <-e_mecs %>% subset(age_ed == "18_+") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  theme_bw() +
+  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times"))
+
+require(ggpubr)
+ggarrange(g1, g2,g3,g4,g5,g6)
+```
+```{r}
+g1 <- e_mecs %>% subset(age_ed == "0_3") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Java")) +
+  theme_bw() +
+  ggtitle("Âge 0 à 3 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g2 <- e_mecs %>% subset(age_ed == "4_6") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Java")) +
+  theme_bw() +
+  ggtitle("Âge 4 à 6 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g3 <- e_mecs %>% subset(age_ed == "7_12") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Java")) +
+  theme_bw() +
+  ggtitle("Âge 7 à 12 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g4 <-e_mecs %>% subset(age_ed == "13_14") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Java")) +
+  theme_bw() +
+  ggtitle("Âge 13 à 14 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g5 <-e_mecs %>% subset(age_ed == "15_17") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Java")) +
+  theme_bw() +
+  ggtitle("Âge 15 à 17 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
+
+g6 <-e_mecs %>% subset(age_ed == "18_+") %>% 
+  drop_na() %>% 
+  ggplot() +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Java")) +
+  theme_bw() +
+  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times")) 
+
+require(ggpubr)
+ggarrange(g1, g2,g3,g4,g5,g6)
 ```
 
 # Modèle sur orientation à l'entrée en MECS
