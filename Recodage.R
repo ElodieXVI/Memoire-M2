@@ -208,7 +208,7 @@ recode_res <- function(var) {
                         "Logthors" = "11",
                         "Logthors" = "12",
                         "Logthors" = "13",
-                        "Logthors" = "14", 
+                        "Logtacc" = "14", 
                         NULL = "15")
   print(table(var_rec, useNA = "ifany"))
   return(var_rec)

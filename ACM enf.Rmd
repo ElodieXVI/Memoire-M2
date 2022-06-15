@@ -25,6 +25,7 @@ p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr,
 theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
 
 source("Recodage.R")
+source("Fonctions.R")
 ```
 
 ```{r recodage}
@@ -58,8 +59,8 @@ enf$MES_rec2 <- recode_mes2(enf$MES)
 enf$AMES_rec2 <- recode_mes2(enf$AMES)
 
 e_acm <- enf %>% subset(CATEG_rec == "MECS") %>% 
-  select("SEX","HEBE_rec1", "HEBE_rec3", "HAND", "MNA", "MES_rec2", 
-         "AMES_rec2",  "age_ed","ARES_rec", "SEQ")%>% 
+  select("SEX","HEBE_rec1", "HEBE_rec2","HEBE_rec3", "HAND", "MNA", "MES_rec2", 
+         "AMES_rec2",  "age_ed","ARES_rec", "SEQ", "poids_enf")%>% 
   drop_na() #Sur 18 440 enfants présents
 
 e_acm %<>% mutate(
@@ -92,7 +93,7 @@ e_acm$SEQ_rec <- e_acm$SEQ %>%
     "seq_div" = "3")
 
 
-var_activ  <- e_acm[,c("ARES_rec", "HEBE_rec1","SEQ_rec")]
+var_activ  <- e_acm[,c("ARES_rec", "HEBE_rec3","SEQ_rec")]
 var_illustrativ  <- e_acm[,c("SEX","age_ed","HAND","MNA")]
 
 baseACM <- cbind.data.frame(var_activ, var_illustrativ)
@@ -117,7 +118,7 @@ g1  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 18 44
 plot.HCPC(res.HCPC, choice = "tree")
 
 e_acm$grp <- res.HCPC$data.clust$clust
-e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec1, ARES_rec, SEQ_rec, MNA, HAND),
+e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec3, ARES_rec, SEQ_rec, MNA, HAND),
                     by = grp,
                     percent = "col", 
                     statistic = list(all_categorical() ~ "{p} \n({n})")) %>%   
@@ -132,8 +133,6 @@ e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec1, ARES_rec, SEQ_rec
 ```
 
 ```{r}
-plot.HCPC(res.HCPC, choice = "tree")
-
 e_acm$grp <- res.HCPC$data.clust$clust
 e_acm %>% tbl_summary(include = c(MES_rec2),
                     by = grp,
@@ -157,10 +156,29 @@ e_acm$MES_rec2 <- e_acm$MES_rec2 %>%
     "mes_MO.autre" = "mes_MO",
     "mes_MO.autre" = "mes_Autre")
 
-e_acm %<>% drop_na() 
+modele <- e_acm %>% select(poids_enf, SEX, MNA, HAND, age_ed, MES_rec2, HEBE_rec1,HEBE_rec2,HEBE_rec3, ARES_rec, grp)
 
+modele %<>% drop_na()
+
+modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed, MES_rec2, HEBE_rec3, ARES_rec),
+                    by = grp,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{n}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+## Recodage de modele$grp
+modele$grp <- modele$grp %>%
+  fct_recode(
+    "Collectif" = "2",
+    "Éclaté" = "1",
+    "Domicile" = "3")
+## Réordonnancement de modele$grp
+modele$grp <- modele$grp %>%
+  fct_relevel(
+    "Collectif", "Éclaté", "Domicile")
 require(nnet)
-m1 <- multinom(grp ~ age_ed + SEX + MNA + HAND + MES_rec2, data = e_acm)
+m1 <- multinom(grp ~ age_ed + SEX + MNA + HAND + MES_rec2, data = modele)
 
 m1 %>% tbl_regression(exponentiate = TRUE) %>% 
   add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%

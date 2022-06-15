@@ -1,18 +1,19 @@
 ---
-output: pdf_document
+output: 
+  pdf_document:
+    latex_engine: xelatex
 geometry: margin=2.5cm
 fontsize: 12pt
-fontfamily: fourier
-mainfont: Times
+mainfont: Times New Roman
 linestretch: 1.5
 ---
 ```{=tex}
 \begin{titlepage}
 
 \par
-\raisebox{-.5\height}{\includegraphics[width=3cm]{Logo_EHESS_2021.jpg}}
+\raisebox{-.5\height}{\includegraphics[width=3cm]{logos/Logo_EHESS_2021.jpg}}
 \hfill
-\raisebox{-.5\height}{\includegraphics[width=5.5cm]{logo_ens.png}}
+\raisebox{-.5\height}{\includegraphics[width=5.5cm]{logos/logo_ens.png}}
 \par
 
 \vspace{1cm}

@@ -78,15 +78,15 @@ e_acm$SEQ_rec <- e_acm$SEQ %>%
     "seq_div" = "3")
 
 
-var_activ  <- e_acm[,c("ARES_rec", "HEBE_rec1")]
-var_illustrativ  <- e_acm[,c("SEX","age_ed","HAND","MNA", "SEQ_rec")]
+var_activ  <- e_acm[,c("ARES_rec", "HEBE_rec1", "SEQ_rec")]
+var_illustrativ  <- e_acm[,c("SEX","age_ed","HAND","MNA")]
 
 baseACM <- cbind.data.frame(var_activ, var_illustrativ)
 summary(baseACM)
 
 Factoshiny(baseACM)
-
-res.MCA<-MCA(baseACM,quali.sup=c(3,4,5,6,7),graph=FALSE)
+explor(res.MCA)
+res.MCA<-MCA(baseACM,quali.sup=c(4,5,6,7),graph=FALSE)
 plot.MCA(res.MCA, choix='var',title="Graphe des variables")
 g1 <- plot.MCA(res.MCA,invisible= 'ind',
                title="Espace des types d'hébergements en MECS",
@@ -104,7 +104,7 @@ g2 <- plot.MCA(res.MCA,invisible= c('ind', 'quali.sup'),
 g2  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 18 440 enfants présents en MECS en 2017.")+
   theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), axis.text.x = element_blank())
 
-res.MCA<-MCA(baseACM,ncp=2,quali.sup=c(3,4,5,6,7,8,9),graph=FALSE)
+res.MCA<-MCA(baseACM,ncp=2,quali.sup=c(4,5,6,7),graph=FALSE)
 res.HCPC<-HCPC(res.MCA,nb.clust=3,kk=100,consol=TRUE,graph=FALSE)
 plot.HCPC(res.HCPC, choice = "tree")
 

@@ -12,7 +12,10 @@ p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr,
        explor, webshot, gtsummary, gt, survey, factoextra, magrittr,GGally,wesanderson,
        MetBrewer, extrafont, huxtable)
 theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+```
 
+
+```{r}
 source("Recodage.R")
 source("Fonctions.R")
 ```
@@ -240,12 +243,28 @@ freq(table(e_mecs$ARES_rec, useNA = "ifany"))
 freq(wtd.table(e_mecs$ARES_rec, weights = e_mecs$poids2, useNA = "ifany"))
 
 e_mecsw %>% tbl_svysummary(include = c(ARES_rec, HEBE_rec3),
-                    by = HEBE_rec3,
+                    by = ARES_rec,
                     missing = "no",
                     statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = "") %>% 
   modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
   bold_labels()
+
+
+chisq.test(svytable(~HEBE_rec3 +ARES_rec, e_mecsw)[,-4])
+chisq.residuals(svytable(~HEBE_rec3 +ARES_rec, e_mecsw)[,-4])
+```
+```{r}
+ggsurvey(na.omit(e_mecsw)) +
+  aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  labs(fill = "Hébergement en MECS") +
+  theme_bw()+ 
+  theme(text = element_text(family = "Times"),legend.position="top")
 ```
 
 
@@ -283,172 +302,352 @@ f1 <- ggplot(na.omit(e_mecs)) +
 f1 + theme(text = element_text(family = "Times"))
 ```
 
-
 ```{r}
-g1 <- e_mecs %>% subset(age_ed == "0_3") %>% 
-  drop_na() %>% 
-  ggplot() +
-  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+require(srvyr)
+e_mecsw2 <- e_mecs %>%
+  select(HEBE_rec3, ARES_rec, age_ed, poids2)%>% 
+  as_survey_design(ids = 1, weight  = poids2)
+
+e_mecsw2<- e_mecsw2 %>% 
+  drop_na()
+
+g1 <- e_mecsw2 %>% subset(age_ed == "0_3") %>% 
+  ggsurvey() +
+  aes(x = ARES_rec, fill = HEBE_rec3) +
   geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  theme_bw() +
+  ggtitle("Âge 0 à 3 ans")+ theme(text = element_text(family = "Times", size = 12),legend.position="none")
+
+g2 <- e_mecsw2 %>% subset(age_ed == "4_6") %>% 
+  ggsurvey() +
+  aes(x = ARES_rec, fill = HEBE_rec3) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  theme_bw() +
+  ggtitle("Âge 4 à 6 ans")+ theme(text = element_text(family = "Times", size = 12),legend.position="none")
+
+g3 <- e_mecsw2 %>% subset(age_ed == "7_12") %>% 
+  ggsurvey() +
+  aes(x = ARES_rec, fill = HEBE_rec3) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  theme_bw() +
+  ggtitle("Âge 7 à 12 ans")+ theme(text = element_text(family = "Times", size = 12),legend.position="none")
+
+g4 <-e_mecsw2 %>% subset(age_ed == "13_14") %>% 
+  ggsurvey() +
+  aes(x = ARES_rec, fill = HEBE_rec3) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  theme_bw() +
+  ggtitle("Âge 13 à 14 ans")+ theme(text = element_text(family = "Times", size = 12),legend.position="none")
+
+g5 <-e_mecsw2 %>% subset(age_ed == "15_17") %>% 
+  ggsurvey() +
+  aes(x = ARES_rec, fill = HEBE_rec3) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  theme_bw() +
+  ggtitle("Âge 15 à 17 ans")+ theme(text = element_text(family = "Times", size = 12),legend.position="none")
+
+g6 <-e_mecsw2 %>% subset(age_ed == "18_+") %>% 
+  ggsurvey() +
+  aes(x = ARES_rec, fill = HEBE_rec3) +
+   geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
+  theme_bw() +
+  labs(fill = "Hébergement en MECS") +
+  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times", size = 12), legend.position = "top") 
+
+g6_leg <- get_legend(g6)
+
+require(ggpubr)
+ggarrange(g1,g2,g3,g4,g5,g6, common.legend = T, legend.grob = g6_leg)
+```
+```{r}
+## Recodage de e_mecs$MNA
+e_mecs$MNA <- e_mecs$MNA %>%
+  as.character() %>%
+  fct_recode(
+    "Non" = "0",
+    "Oui" = "1"
+  )
+
+e_mecsw <- e_mecs %>%
+  as_survey_design(ids = 1, weight  = poids2)
+
+e_mecsw %>% tbl_svysummary(include = c(MES_na, HEBE_rec3),
+                    by = MES_na,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels()
+
+```
+
+```{r}
+
+
+g1 <- e_mecsw2 %>% subset(age_ed == "0_3") %>% 
+  drop_na() %>% 
+  ggsurvey() +
+  aes(x = HEBE_rec3, fill = MNA, label = f(after_stat(prop))) +
+  geom_bar(position = "fill", width = 0.3) +
+  ylab("") +
+  xlab("") +
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 0 à 3 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g2 <- e_mecs %>% subset(age_ed == "4_6") %>% 
+g2 <- e_mecsw2 %>% subset(age_ed == "4_6") %>% 
   drop_na() %>% 
-  ggplot() +
-  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  ggsurvey() +
+  aes(x = HEBE_rec3, fill = MNA, label = f(after_stat(prop))) +
   geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 4 à 6 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g3 <- e_mecs %>% subset(age_ed == "7_12") %>% 
+g3 <- e_mecsw2 %>% subset(age_ed == "7_12") %>% 
   drop_na() %>% 
-  ggplot() +
-  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  ggsurvey() +
+  aes(x = HEBE_rec3, fill = MNA, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 7 à 12 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g4 <-e_mecs %>% subset(age_ed == "13_14") %>% 
+g4 <-e_mecsw2 %>% subset(age_ed == "13_14") %>% 
   drop_na() %>% 
-  ggplot() +
-  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  ggsurvey() +
+  aes(x = HEBE_rec3, fill = MNA, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 13 à 14 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g5 <-e_mecs %>% subset(age_ed == "15_17") %>% 
+g5 <-e_mecsw2 %>% subset(age_ed == "15_17") %>% 
   drop_na() %>% 
-  ggplot() +
-  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  ggsurvey() +
+  aes(x = HEBE_rec3, fill = MNA, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 15 à 17 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
-g6 <-e_mecs %>% subset(age_ed == "18_+") %>% 
+
+g6 <-e_mecsw2 %>% subset(age_ed == "18_+") %>% 
   drop_na() %>% 
-  ggplot() +
-  aes(x = HEBE_rec3, fill = ARES_rec, label = f(after_stat(prop))) +
+  ggsurvey() +
+  aes(x = HEBE_rec3, fill = MNA, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Hokusai1")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
-  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times"))
+  labs(fill = "Hébergement en MECS") +
+  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times"), legend.position = "bottom") 
 
 require(ggpubr)
-ggarrange(g1, g2,g3,g4,g5,g6)
+ggarrange(g1,g2,g3,g4,g5,g6, common.legend = T)
 ```
+
+
 ```{r}
-g1 <- e_mecs %>% subset(age_ed == "0_3") %>% 
-  drop_na() %>% 
-  ggplot() +
+require(svyr)
+e_mecsw3 <- e_mecs %>% subset(MNA == "Non") %>% 
+  as_survey_design(ids = 1, weight  = poids2)
+
+g1 <- e_mecsw3 %>% subset(age_ed == "0_3") %>% 
+  drop_na(any_of(vars)) %>% 
+  ggsurvey() +
   aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
   geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Java")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 0 à 3 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g2 <- e_mecs %>% subset(age_ed == "4_6") %>% 
-  drop_na() %>% 
-  ggplot() +
+g2 <- e_mecsw3 %>% subset(age_ed == "4_6") %>% 
+  drop_na(any_of(vars)) %>% 
+  ggsurvey() +
   aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
   geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Java")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 4 à 6 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g3 <- e_mecs %>% subset(age_ed == "7_12") %>% 
-  drop_na() %>% 
-  ggplot() +
+g3 <- e_mecsw3 %>% subset(age_ed == "7_12") %>% 
+  drop_na(any_of(vars)) %>% 
+  ggsurvey() +
   aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Java")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 7 à 12 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g4 <-e_mecs %>% subset(age_ed == "13_14") %>% 
-  drop_na() %>% 
-  ggplot() +
+g4 <-e_mecsw3 %>% subset(age_ed == "13_14") %>% 
+  drop_na(any_of(vars)) %>% 
+  ggsurvey() +
   aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Java")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 13 à 14 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g5 <-e_mecs %>% subset(age_ed == "15_17") %>% 
-  drop_na() %>% 
-  ggplot() +
+g5 <-e_mecsw3 %>% subset(age_ed == "15_17") %>% 
+  drop_na(any_of(vars)) %>% 
+  ggsurvey() +
   aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Java")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
   ggtitle("Âge 15 à 17 ans")+ theme(text = element_text(family = "Times"),legend.position="none")
 
-g6 <-e_mecs %>% subset(age_ed == "18_+") %>% 
-  drop_na() %>% 
-  ggplot() +
+g6 <-e_mecsw3 %>% subset(age_ed == "18_+") %>% 
+  drop_na(any_of(vars)) %>% 
+  ggsurvey() +
   aes(x = ARES_rec, fill = HEBE_rec3, label = f(after_stat(prop))) +
    geom_bar(position = "fill", width = 0.3) +
   ylab("") +
   xlab("") +
   scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
-  scale_fill_manual(values = met.brewer("Java")) +
+  scale_fill_manual(values = met.brewer("Egypt")) +
   theme_bw() +
-  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times")) 
+  labs(fill = "Hébergement en MECS") +
+  ggtitle("Âge 18 ans à plus")+ theme(text = element_text(family = "Times"), legend.position = "bottom") 
+
+g6_leg <- get_legend(g6)
 
 require(ggpubr)
-ggarrange(g1, g2,g3,g4,g5,g6)
+ggarrange(g1,g2,g3,g4,g5,g6, common.legend = T, legend.grob = g6_leg) + theme(text= element_text())
 ```
-
 # Modèle sur orientation à l'entrée en MECS
 
 ```{r}
-modele <- enf %>% select(SEX, MNA, HAND, age_ed, age_pp, MES_rec, HEBE_rec2, ARES_rec)
+## Recodage de e_mecs$ARES_rec en e_mecs$ARES_na
+e_mecs$ARES_na <- e_mecs$ARES_rec %>%
+  fct_explicit_na("NULL")
+## Recodage de e_mecs$ARES_na
+e_mecs$ARES_na <- e_mecs$ARES_na %>%
+  fct_recode(
+    NULL = "NULL")
+
+e_mecs$MES_na <- e_mecs$MES_rec %>%
+  fct_recode(
+    NULL = "NA")
+
+
+e_mecs$ARES_na2 <- recode_res(e_mecs$ARES)
+
+modele <- e_mecs %>% select(poids_enf, SEX, MNA, HAND, age_ed, age_pp, MES_na, HEBE_rec2,HEBE_rec3, ARES_na, ARES_na2)
 modele %<>% drop_na()
 
-require(nnet)
-m2 <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND + ARES_rec, data = modele)
+modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed, MES_na, ARES_na2),
+                    by = HEBE_rec3,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{n}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
 
-m2 %>% tbl_regression(exponentiate = TRUE) %>% 
+modele$poids2 <- modele$poids_enf/mean(modele$poids_enf)
+modelesw <- svydesign(ids = ~1, data = modele, weights = ~ modele$poids2)
+
+
+require(nnet)
+m1 <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND, data = modele)
+mw <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND, data = modele, weights = poids2)
+
+m1 %>% tbl_regression(exponentiate = TRUE) %>% 
   add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
-  modify_header(label = "**Référence : grp1**") %>%
+  modify_header(label = "**Référence : Collectif**") %>%
   modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+
+mw %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : Collectif**") %>%
+  modify_caption("Modèle pondéré")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+m2w <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + HAND + MES_na, data = modele, weights = poids2)
+m2w %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : Collectif**") %>%
+  modify_caption("Modèle pondéré")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+m3w <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA + MES_na + ARES_na, data = modele, weights = poids2)
+step(m3w)
+m3w %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : Collectif**") %>%
+  modify_caption("Modèle pondéré")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+
+m4w <- multinom(HEBE_rec2 ~ age_ed + SEX + MNA  + ARES_na, data = modele, weights = poids2)
+
+m4w %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : Collectif**") %>%
+  modify_caption("Modèle pondéré")  %>% 
   modify_column_hide("ci") %>% 
   bold_labels()%>%
   multinom_pivot_wider()
