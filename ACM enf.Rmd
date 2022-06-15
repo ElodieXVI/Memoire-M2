@@ -101,7 +101,8 @@ baseACM <- cbind.data.frame(var_activ, var_illustrativ)
 
 ```{r pressure}
 res.MCA<-MCA(baseACM,ncp=2,quali.sup=c(4,5,6,7),graph=FALSE)
-res.HCPC<-HCPC(res.MCA,nb.clust=3,kk=100,consol=TRUE,graph=FALSE)
+res.HCPC<-HCPC(res.MCA,nb.clust=3,consol=TRUE,graph=FALSE, method = "ward")
+plot.HCPC(res.HCPC, choice = "tree", title = " ")
 ```
 
 ```{r}
@@ -115,21 +116,25 @@ g1  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 18 44
 ```
 
 ```{r}
-plot.HCPC(res.HCPC, choice = "tree")
-
 e_acm$grp <- res.HCPC$data.clust$clust
+
+## Recodage de e_acm$grp
+e_acm$grp <- e_acm$grp %>%
+  fct_recode(
+    "Autonome" = "1",
+    "Collectif" = "2",
+    "Familial" = "3")
+## Réordonnancement de e_acm$grp
+e_acm$grp <- e_acm$grp %>%
+  fct_relevel(
+    "Collectif", "Autonome", "Familial")
 e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec3, ARES_rec, SEQ_rec, MNA, HAND),
                     by = grp,
                     percent = "col", 
-                    statistic = list(all_categorical() ~ "{p} \n({n})")) %>%   
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = " ") %>% 
   bold_labels() %>% 
-  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**") %>%
-  as_hux_table() %>% 
-  add_footnote("Source : ES-PE 2017.") %>%
-  add_footnote("Champ : Sur les 18 440 enfants présents en MECS au 12/12/2017.") %>%
-  set_number_format(NA) %>% 
-  set_caption("Résultats de la classification")
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
 ```
 
 ```{r}
@@ -149,18 +154,36 @@ e_acm %>% tbl_summary(include = c(MES_rec2),
 ```
 
 ```{r}
+chisq.test(table(e_acm$grp, e_acm$SEX))
+chisq.residuals(table(e_acm$grp, e_acm$SEX))
+
+chisq.test(table(e_acm$grp, e_acm$age_ed))
+chisq.residuals(table(e_acm$grp, e_acm$age_ed))
+
+chisq.test(table(e_acm$grp, e_acm$MNA))
+chisq.residuals(table(e_acm$grp, e_acm$MNA))
+
+chisq.test(table(e_acm$grp, e_acm$HAND))
+chisq.residuals(table(e_acm$grp, e_acm$HAND))
+
+
 ## Recodage de e_acm$MES_rec2
 e_acm$MES_rec2 <- e_acm$MES_rec2 %>%
   fct_recode(
     NULL = "mes_NA",
     "mes_MO.autre" = "mes_MO",
     "mes_MO.autre" = "mes_Autre")
+chisq.test(table(e_acm$MES_rec2,e_acm$grp))
+chisq.residuals(table(e_acm$MES_rec2,e_acm$gr))
+```
 
+
+```{r}
 modele <- e_acm %>% select(poids_enf, SEX, MNA, HAND, age_ed, MES_rec2, HEBE_rec1,HEBE_rec2,HEBE_rec3, ARES_rec, grp)
 
 modele %<>% drop_na()
 
-modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed, MES_rec2, HEBE_rec3, ARES_rec),
+modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed, MES_rec2),
                     by = grp,
                     missing = "no",
                     statistic = list(all_categorical() ~ "{n}")) %>%   
@@ -186,9 +209,5 @@ m1 %>% tbl_regression(exponentiate = TRUE) %>%
   modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
   modify_column_hide("ci") %>% 
   bold_labels()%>%
-  multinom_pivot_wider()%>% 
-  as_hux_table() %>% 
-  add_footnote("Source : ES-PE 2017.") %>%
-  add_footnote("Champ : Sur les 10 983 enfants sortis au cours de 2017.") %>%
-  set_number_format(NA)
+  multinom_pivot_wider()
 ```
