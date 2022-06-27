@@ -29,38 +29,9 @@ source("Fonctions.R")
 ```
 
 ```{r recodage}
-recode_mes2 <- function(var) {
-  var <- as.factor(var)
-  var_rec <- fct_recode(var, 
-                        "Mes admin Min" = "02",
-                        "Mes admin Maj" = "03",
-                        "Judi conf" = "04",
-                        "Judi direct" = "09",
-                        "Judi direct" = "10",
-                        "Judi direct" = "11",
-                        "Judi direct" = "12",
-                        "Judi direct" = "13",
-                        "MO" = "14",
-                        "MO" = "15",
-                        "MO" = "16",
-                        "Mes respo par" = "01",
-                        "Mes respo par" = "17",
-                        "Mes respo par" = "05",
-                        "Mes respo par" = "06",
-                        "Mes respo par" = "07",
-                        "Mes respo par" = "08",
-                        "Autre" = "18",
-                        "Autre" = "19",
-                        "NA" = "")
-  return(var_rec)
-}
-
-enf$MES_rec2 <- recode_mes2(enf$MES)
-enf$AMES_rec2 <- recode_mes2(enf$AMES)
-
 e_acm <- enf %>% subset(CATEG_rec == "MECS") %>% 
-  select("SEX","HEBE_rec1", "HEBE_rec2","HEBE_rec3", "HAND", "MNA", "MES_rec2", 
-         "AMES_rec2",  "age_ed","ARES_rec", "SEQ", "poids_enf")%>% 
+  select("SEX","HEBE_rec3", "HAND", "MNA", "MES_rec", 
+         "AMES_rec",  "age_ed","ARES_rec", "SEQ", "poids_enf")%>% 
   drop_na() #Sur 18 440 enfants présents
 
 e_acm %<>% mutate(
@@ -75,15 +46,10 @@ e_acm %<>% mutate(
     MNA == 0 ~ "mna_N"))
 e_acm$MNA <- as.factor(e_acm$MNA)
 
-levels(e_acm$HEBE_rec1) <- paste0("hebe_",levels(e_acm$HEBE_rec1))
 levels(e_acm$HEBE_rec3) <- paste0("hebe_",levels(e_acm$HEBE_rec3))
-
-levels(e_acm$MES_rec2) <- paste0("mes_",levels(e_acm$MES_rec2))
-
-levels(e_acm$AMES_rec2) <- paste0("ames_",levels(e_acm$AMES_rec2))
-
+levels(e_acm$MES_rec) <- paste0("mes_",levels(e_acm$MES_rec))
+levels(e_acm$AMES_rec) <- paste0("ames_",levels(e_acm$AMES_rec))
 levels(e_acm$ARES_rec) <- paste0("ares_",levels(e_acm$ARES_rec))
-
 
 e_acm$SEQ_rec <- e_acm$SEQ %>%
   as.character() %>%
@@ -91,7 +57,6 @@ e_acm$SEQ_rec <- e_acm$SEQ %>%
     "seq_comp" = "1",
     "seq_séquen" = "2",
     "seq_div" = "3")
-
 
 var_activ  <- e_acm[,c("ARES_rec", "HEBE_rec3","SEQ_rec")]
 var_illustrativ  <- e_acm[,c("SEX","age_ed","HAND","MNA")]
@@ -113,6 +78,8 @@ g1 <- plot.MCA(res.MCA,invisible= c('ind', 'quali.sup'),
                col.var = "#4c3b7f", col.quali.sup = "#88a0dc")
 g1  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 18 440 enfants présents en MECS en 2017.")+
   theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"), axis.text.x = element_blank())
+fviz_screeplot(res.MCA, addlabels = TRUE, ylim =c(0, 50), main="", ylab = "Pourcentages d'inertie") + theme_bw() +
+  theme(text = element_text(family = "Times"))
 ```
 
 ```{r}

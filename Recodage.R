@@ -293,6 +293,42 @@ recode_mes1 <- function(var) {
 return(var_rec)
 }
 
+recode_mes2 <- function(var) {
+  var <- as.factor(var)
+  var_rec <- fct_recode(var, 
+                        "Mes admin Min" = "02",
+                        "Mes admin Maj" = "03",
+                        "Judi conf" = "04",
+                        "Judi direct" = "09",
+                        "Judi direct" = "10",
+                        "Judi direct" = "11",
+                        "Judi direct" = "12",
+                        "Judi direct" = "13",
+                        "MO" = "14",
+                        "MO" = "15",
+                        "MO" = "16",
+                        "Mes respo par" = "01",
+                        "Mes respo par" = "17",
+                        "Mes respo par" = "05",
+                        "Mes respo par" = "06",
+                        "Mes respo par" = "07",
+                        "Mes respo par" = "08",
+                        "Autre" = "18",
+                        "Autre" = "19",
+                        "NA" = "")
+  return(var_rec)
+}
+
+sor$MES_rec1 <- recode_mes1(sor$MES)
+enf$MES_rec1 <- recode_mes1(enf$MES)
+ens$MES_rec <- recode_mes1(ens$MES)
+
+sor$AMES_rec1 <- recode_mes1(sor$AMES)
+enf$AMES_rec1 <- recode_mes1(enf$AMES)
+ens$AMES_rec1 <- recode_mes1(ens$AMES)
+
+sor$SMES_rec1 <- recode_mes1(sor$SMES)
+
 sor$MES_rec <- recode_mes1(sor$MES)
 enf$MES_rec <- recode_mes1(enf$MES)
 ens$MES_rec <- recode_mes1(ens$MES)
@@ -302,8 +338,6 @@ enf$AMES_rec <- recode_mes1(enf$AMES)
 ens$AMES_rec <- recode_mes1(ens$AMES)
 
 sor$SMES_rec <- recode_mes1(sor$SMES)
-
-
 
 ## Age par classe ####
 
@@ -327,6 +361,12 @@ sor$age_ed <- recode_age(sor$age_e)
 
 enf$age_e <- enf$ANE - enf$ANN
 enf$age_ed <- recode_age(enf$age_e)
+
+
+# âge sortie 
+sor$ANS <- 2017
+sor$age_s <- sor$ANS - sor$ANN
+sor$age_sd <- recode_age(sor$age_s)
 
 # âge 1er placement
 sor$age_pp <- sor$ANPP - sor$ANN

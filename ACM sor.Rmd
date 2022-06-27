@@ -1,0 +1,172 @@
+---
+title: ACM enf
+author: "Élodie Lemaire"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+    pdf_document:
+header-includes:
+  - \usepackage[normal,labelfont=bf]{caption}
+  - \usepackage[bottom]{footmisc}
+  - \usepackage{mdframed}
+linestretch: 1.5
+fontsize: 12
+mainfont: Times
+urlcolor: blue
+lang: fr
+---
+
+```{r setup, include=FALSE}
+setwd("/Users/elodielemaire/Desktop/Mémoire M2")
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+library(pacman)
+p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr, 
+       explor, webshot, gtsummary, gt, survey, factoextra, magrittr,
+       MetBrewer, extrafont, huxtable)
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+```
+
+
+```{r setup, include=FALSE}
+source("Recodage.R")
+source("Fonctions.R")
+```
+
+```{r recodage}
+s_mecs <- sor %>% subset(CATEG_rec == "MECS")
+s_mecs$id <- rownames(s_mecs)
+
+s_acm <- s_mecs %>% 
+  select("SEX","HEBE_rec3", "HAND", "MNA", "MES_rec", 
+         "AMES_rec", "SMES_rec", "age_ed","age_sd","ARES_rec", "SRES_rec", "poids_sor", "age_s", "age_e", "id")%>% 
+  drop_na()
+
+levels(s_acm$HEBE_rec3) <- paste0("hebe_",levels(s_acm$HEBE_rec3))
+
+levels(s_acm$ARES_rec) <- paste0("ares_",levels(s_acm$ARES_rec))
+
+levels(s_acm$SRES_rec) <- paste0("sres_",levels(s_acm$SRES_rec))
+
+var_activ  <- s_acm[,c("ARES_rec", "HEBE_rec3", "SRES_rec")]
+var_illustrativ  <- s_acm[,c("SEX","age_ed","HAND","MNA")]
+```
+
+```{r}
+res.MCA<-MCA(var_activ,graph=FALSE)
+plot.MCA(res.MCA,invisible= 'ind',title="Graphe de l'ACM",label =c('var','quali.sup'))
+
+g2 <- plot.MCA(res.MCA,invisible= c( 'quali.sup'),
+               title="Espace des types d'hébergements en MECS",
+               autoLab = "yes",
+               graph.type = "ggplot", col.ind = "skyblue",
+               col.var = "#4c3b7f", col.quali.sup = "#88a0dc")
+g2  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 10 522 enfants sortis de MECS au cours de 2017.")+
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+
+fviz_screeplot(res.MCA, addlabels = TRUE, ylim =c(0, 50), main="", ylab = "Pourcentages d'inertie") + theme_bw() +
+  theme(text = element_text(family = "Times"))
+```
+
+
+```{r}
+res.MCA2<-MCA(var_activ,ncp=2,graph=FALSE)
+res.HCPC2<-HCPC(res.MCA2,nb.clust=3, consol = TRUE, graph=FALSE)
+plot.HCPC(res.HCPC2, choice = "tree", title = "")
+
+s_acm$grp2 <- res.HCPC2$data.clust$clust
+```
+
+```{r}
+s_acm %>% tbl_summary(include = c(grp2, ARES_rec, HEBE_rec3,SRES_rec),
+                    by = grp2,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+```
+
+
+```{r}
+## Recodage de e_acm$MES_rec2
+s_acm$MES_rec <- s_acm$MES_rec %>%
+  fct_recode(
+    NULL = "NA",
+    "MO.autre" = "Milieu ouvert",
+    "MO.autre" = "Autre")
+s_acm %>% tbl_summary(include = c(grp2, age_ed,age_sd,SEX,HAND, MNA, MES_rec),
+                    by = grp2,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no",) %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+
+s_acm$dur <- s_acm$age_s - s_acm$age_e
+
+essai <-  merge(s_acm, s_mecs, by = "id")
+
+essai%>% tbl_summary(include = c(grp2, dur_dpla, dur_pla),
+                    by = grp2,
+                    percent = "col", 
+                    statistic = list(all_continuous() ~ "{mean}"),
+                    missing = "no",) %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+```
+
+```{r}
+modele <- s_acm %>% select(poids_sor, SEX, MNA, HAND, age_ed, age_sd, MES_rec, grp2)
+
+modele %<>% drop_na()
+
+
+modele$age_ed <- modele$age_ed %>%
+  fct_recode(
+    "0_6" = "0_3",
+    "0_6" = "4_6"
+  )
+
+modele$age_sd <- modele$age_sd %>%
+  fct_recode(
+    "0_6" = "0_3",
+    "0_6" = "4_6"
+  )
+modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed,age_sd, MES_rec),
+                    by = grp2,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{n}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+require(nnet)
+m1 <- multinom(grp2 ~ SEX + age_ed + age_sd  + MNA + HAND, data = modele)
+
+m1 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+
+## Réordonnancement de modele$MES_rec
+modele$MES_rec <- modele$MES_rec %>%
+  fct_relevel(
+    "MO.autre", "Mesure touchant la responsabilité parentale",
+    "Mesure administrative Mineur", "Mesure administrative Jeune Majeur",
+    "Judiciaire confié", "Judiciaire direct juge"
+  )
+m2 <- multinom(grp2 ~ SEX + age_ed + age_sd  + MES_rec +MNA + HAND, data = modele)
+
+m2 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 2 : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+```
+

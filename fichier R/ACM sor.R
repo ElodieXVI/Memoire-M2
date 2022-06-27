@@ -109,7 +109,7 @@ g2  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 10 52
 
 
 res.MCA<-MCA(baseACM,ncp=2,quali.sup=c(4,5,6,7,8,9,10),graph=FALSE)
-res.HCPC<-HCPC(res.MCA,nb.clust=3,kk=100,consol=TRUE,graph=FALSE)
+res.HCPC<-HCPC(res.MCA,nb.clust=3,consol=TRUE,graph=FALSE)
 plot.HCPC(res.HCPC, choice = "tree")
 
 s_acm$grp <- res.HCPC$data.clust$clust
