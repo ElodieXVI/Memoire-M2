@@ -34,7 +34,11 @@ csl: le-tapuscrit-note.csl
 \setlength{\parskip}{1em}
 
 \newpage
-```{r child="Partie1.Rmd"}
+```{r child="Chapitre1.Rmd"}
+```
+
+\newpage
+```{r child="Chapitre2.Rmd"}
 ```
 
 \newpage

@@ -1,0 +1,253 @@
+---
+title: "Analyse de trajectoires"
+author: "Élodie Lemaire"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+    pdf_document:
+    latex_engine: lualatex
+header-includes:
+  - \usepackage[normal,labelfont=bf]{caption}
+  - \usepackage[bottom]{footmisc}
+  - \usepackage{mdframed}
+linestretch: 1.25
+fontsize: 11
+mainfont: Times New Roman
+urlcolor: blue
+lang: fr
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+library(pacman)
+p_load(DiagrammeR, extrafont,MetBrewer,RColorBrewer,ggplot2,#visualisation
+       huxtable, gtsummary, #tableaux
+       TraMineR,TraMineRextras,cluster,WeightedCluster,FactoMineR,seqhandbook, #OM et classification
+       ade4,questionr,GDAtools,purrr, nnet, magrittr, tidyverse, lubridate,rstatix) #manipulation et calcul
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+source("Recodage.R")
+```
+
+|              On propose ici de réaliser une analyse de trajectoires qui permettra de dresser une classification des différents types de parcours à l'Aide sociale à l'enfance des enfants sortis de placement au cours de l'année 2017. On utilisera en ce sens la méthode de l'*Optimal Matching* qui permet de comparer les différences et ressemblances de chaque trajectoires afin de construire par la suite une typologie. Nous pourrons ainsi essayer de voir s'il existe des différences significatives entre garçons et filles dans les parcours de placements à l'ASE.
+
+## Limites de nos données
+
+L'enquête ES-PE 2017 ne dispose pas de beaucoup d'informations concernant le parcours de placement des enfants. En effet, on dispose de trois données : le lieu de résidence juste avant l'entrée dans l'établissement (ARES), le type d'hébergement occupé à l'entrée dans l'établissement (HEBE) et enfin le lieu de résidence juste après la sortie de l'établissement (SRES). On dispose aussi de deux dates : la date du premier placement et la date d'entrée dans l'établissement. La faille majeure de ces données est qu'entre la date du premier placement et celle d'entrée dans l'établissement on a pas d'autres information sur le type de résidence qu'a pu occuper l'enfant. En effet, entre temps il ou elle a pu faire l'objet de nombreux placements/déplacements/replacements.
+
+|     **Graphique 1 - Parcours à l'ASE reconstituable à partir de l'enquête ES-PE 2017 :**
+```{r diagramme2, out.width="70%", include=FALSE}
+mermaid("sequenceDiagram
+  Année de naissance-->Premier placement: Hors système
+  loop Parcours à l'ASE
+  Premier placement->>1 ans avant entrée: Pas d'informations
+  1 ans avant entrée->> Entrée dans l'établissement: ARES
+  Entrée dans l'établissement->>Sortie 2017: HEBE
+  Sortie 2017->>Nouvelle situation: SRES
+  end
+  1 ans avant entrée--> Entrée dans l'établissement: ARES
+  Sortie 2017-->Nouvelle situation: SRES")
+```
+```{r diag2, out.width="70%"}
+#knitr::include_graphics("Diagramme.png")
+```
+
+```{r recodage,include=FALSE}
+s_mecs <- subset(sor, CATEG_rec == "MECS")
+s_mecs$ppla <- case_when(s_mecs$d_anpp == s_mecs$d_ane ~ "Oui",
+                         T ~"Non")
+
+s_mecs$id <- rownames(s_mecs)
+#Recodages pour créer la bdd 
+class <- s_mecs %>% 
+  subset(ppla == "Oui") %>% 
+  select("id","SEX", "age","ANN", "ANPP", "AMES", "ARES_rec","ANE", "MES", "HEBE_rec3", "CATEG_rec","SMES","SRES_rec","MNA", "MOPP", "MOE", "MOS", "d_ann", "d_ans", "d_anpp", "d_ane") %>%
+  mutate(ageANS = (2017 - ANN))%>% 
+  subset(ageANS <= 18)
+
+class %<>% mutate(mois_s = as.numeric(as.period(interval(start = d_ann, end = d_ans)), "months"),
+                 mois_pp = as.numeric(as.period(interval(d_ann, d_anpp)), "months"),
+                 mois_e = as.numeric(as.period(interval(d_ann, d_ane)), "months"))
+
+class %<>% mutate(mois = paste(0:216, collapse = ", ")) %>% 
+  separate_rows(mois, sep = ",")
+class$mois <- as.numeric(class$mois)
+
+# Création de la variable de statut
+class %<>% mutate(statut = case_when(mois >= mois_pp & mois < mois_e ~ "Placé·e",
+                            mois >= mois_e & mois < mois_s & HEBE_rec3 == "Collect" ~ "ase",
+                            mois >= mois_e & mois < mois_s & HEBE_rec3 == "Autonomautre" ~ "Logtacc",
+                            mois >= mois_e & mois < mois_s & HEBE_rec3 == "Assfam" ~ "Assfam",
+                            mois >= mois_e & mois < mois_s & HEBE_rec3 == "Domicile" ~ "fam",
+                            mois == mois_s & SRES_rec == "Famille" ~ "fam",
+                            mois == mois_s & SRES_rec == "Assfam" ~ "Assfam",
+                            mois == mois_s & SRES_rec == "Autres" ~ "Logtacc",
+                            mois == mois_s & SRES_rec == "Logtacc" ~ "Logtacc",
+                            mois == mois_s & SRES_rec == "Logthors" ~ "Logt",
+                            mois == mois_s & SRES_rec == "EtabASEPJJ" ~ "ase",
+                            T ~ "NA")) 
+
+class %<>% subset(statut != "NA") 
+#On prend la décision d'enlever les MNA pour la suite de l'analyse
+
+## tests de NA avant suppression ####
+require(rstatix)
+#On test les NA : pas de NA dans mois_s
+chisq.test(table(class$mois_s, class$SEX, useNA = "always"))
+chisq.test(table(class$mois_s, class$SEX))
+chisq.residuals(table(class$mois_s, class$SEX, useNA = "always"))
+#ça ne change pas la significativité
+
+#On test les NA : pas de NA dans mois_pp
+chisq.test(table(class$mois_pp, class$SEX, useNA = "always"))
+chisq.test(table(class$mois_pp, class$SEX))
+chisq.residuals(table(class$mois_pp, class$SEX, useNA = "always"))
+#ne change pas la significativité
+
+#On test les NA : pas de NA dans mois_e
+chisq.test(table(class$mois_e, class$SEX, useNA = "always"))
+chisq.test(table(class$mois_e, class$SEX))
+chisq.residuals(table(class$mois_e, class$SEX, useNA = "always"))
+#ne change pas la significativité
+
+#On les supprime
+vars <- c("mois_s", "mois_pp", "mois_e")
+class %<>% 
+  drop_na(any_of(vars))
+```
+
+Pour mener cette analyse, nous avons construit 6 catégories de placement :
+
+|                                                   **Table des catégories**
+**Etiquettes** | **HEBE** | **SRES**
+ --- | --- | ---
+ase | EtabASEPJJ | Collect
+Assfam | Assfam | Assfam
+fam | Famille | domicile
+Logt | - | Logthors
+Logtacc | Logtacc | Autonom
+
+
+```{r graphique, out.width= "70%"}
+n <- class %>%
+  filter(mois %in% (0:217*12)) %>%
+  group_by(mois) %>%
+  count() %>%
+  pluck("n")
+etiquettes <- paste0("M", 0:217*12, "\n(n=", n, ")")
+
+g1 <- ggplot(class) +
+  aes(x = mois, fill = statut) +
+  theme(legend.position = "bottom") + 
+  scale_y_continuous(labels = function(x) paste0(x * 100, '%')) +
+  scale_fill_manual(values=met.brewer("Hokusai1", 6, direction = 1)) +
+  geom_bar(position = "fill")+
+  ggtitle("Graphique 2 - Chronogramme des différents parcours de placements \nà l'ASE") +
+  ylab("") +
+  xlab("Âge") +
+  scale_x_continuous(breaks = 0:217*12, labels = etiquettes) +
+  labs(caption = "Source : ES-PE 2017. \n
+Champ : Sur les 11 109 enfants sortis en cours de l'année 2017, sans les MNA. \n
+Lecture : ", fill = "Catégorie :") +
+  theme_bw() +
+  theme(legend.position = "top")
+g1 + theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+```
+
+## Description des classes
+\mdfsetup{%
+middlelinewidth=2pt,
+backgroundcolor=red!10,
+roundcorner=10pt}
+\begin{mdframed}[frametitle=Paramètres de l'OM :]
+
+Coût substitution = 2, coût indel = 1.1. Repris de l'article de I. Frechon et N. Robette sur les trajectoires des enfants placés.
+
+\end{mdframed}
+
+Le choix a été de retenir quatre classes de la classification qui permettent de distinguer quatre groupe de trajectoires de placement à l'Aide sociale à l'enfance. 
+
+```{r OM1, echo=FALSE, message=FALSE, warning=FALSE}
+seq <- class %>% select("id","mois", "statut") %>% 
+  pivot_wider(id_cols = id, names_from = mois, values_from = statut) %>% 
+  select(order(as.numeric(colnames(.))))
+seq$id <- rownames(seq)
+
+seq_all <- seqdef(
+  seq %>% dplyr::select(0:217),
+  id = seq$id,
+  alphabet = c("ase","Assfam","fam", "Logt", "Logtacc", "Placé·e"),
+  cpal = met.brewer("Hokusai1", 6, direction = 1))
+
+#Optimal matching ----
+couts <- seqsubm(seq_all, method = "CONSTANT", with.missing = T, cval = 2)
+seq.om <- seqdist(seq_all, method = "OM", indel = 1.1, sm = couts, with.missing = T)
+
+# Classification ----
+seq.dist <- hclust(as.dist(seq.om), method = "ward.D2")
+```
+
+|       **Graphique 3 - Chronogrammes des différentes classe de l'analyse des trajectoires**
+```{r OM2, out.width="20%", include = FALSE}
+par(mfrow = c(1, 2))
+plot(as.dendrogram(seq.dist), leaflab = "none")
+plot(sort(seq.dist$height, decreasing = TRUE)[1:20], type = "s", ylab = "inertie")
+```
+```{r render1, out.width="20%"}
+#knitr::include_graphics("png_traj/nvel_om2.png")
+```
+
+```{r OM3, out.width="80%"}
+nbcl <- 4
+seq.part <- cutree(seq.dist, nbcl)
+seq.part <- factor(seq.part, labels = paste("classe", 1:nbcl, sep = "."))
+seqdplot(seq_all, group = seq.part, xtlab = 0:217, border = NA)
+```
+
+```{r plus}
+seqrplot(seq_all, group = seq.part, dist.matrix = seq.om, criterion = "dist")
+seqHtplot(seq_all, group = seq.part, xtlab = 0:217)
+```
+
+```{r rec}
+doublons <- which(duplicated(class$id))
+class2 <- class[-doublons,] %>% data.frame
+
+essai<- as.data.frame(seq.part)
+class2$grp <- essai$seq.part
+
+class2$age2 <- (2017 - class2$ANN)
+```
+
+```{r, tab1}
+class2 %>% tbl_summary(include = c("grp", "SEX", "HEBE_rec3",  "ARES_rec", "SRES_rec", "age2"), 
+              by = grp, 
+              missing = "no",
+              statistic = list(all_categorical() ~ "{p}% ({n})",
+                               all_continuous() ~ "{mean}"))
+```
+
+```{r stat, eval=FALSE}
+chisq_test(class2$grp, class2$SEX)
+chisq.residuals(table(class2$grp, class2$SEX))
+
+chisq_test(class2$grp, class2$ARES)
+chisq.residuals(table(class2$grp, class2$ARES))
+
+chisq_test(class2$grp, class2$HEBE)
+chisq.residuals(table(class2$grp, class2$HEBE))
+
+chisq_test(class2$grp, class2$SRES)
+chisq.residuals(table(class2$grp, class2$SRES))
+```
+
+
+
+
+```{r tapis, out.width="80%"}
+seqIplot(seq_all, group = seq.part, xtlab = 0:18, space = 0, border = NA, yaxis = FALSE, sortv = "from.start")
+```
+```{r render3, out.width="80%", include=FALSE}
+#knitr::include_graphics("png_traj/Rplot02.png")
+```
+
+
+

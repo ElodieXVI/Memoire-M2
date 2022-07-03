@@ -88,7 +88,7 @@ sorw <- svydesign(ids = ~1, data = sor, weights = ~ sor$poids2)
 
 sorw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
                     by = CATEG_rec,
-                    percent = "col", 
+                    percent = "row", 
                     statistic = list(all_categorical() ~ "{p}"),
                     missing = "no") %>%   
   modify_header(label = "") %>% 
@@ -137,6 +137,7 @@ actw <- svydesign(ids = ~1, data = act2, weights = ~ act2$poids2)
 actw %>% tbl_svysummary(include = c(REPSEX, REPAGE,REPFRA,REPPED, REPDUR, REPCIV, REPAUC, CATEG_rec),
                     by = CATEG_rec,
                     missing = "no",
+                    percent = "col",
                     statistic = list(all_categorical() ~ "{p}"),
                     label = list(REPSEX ~ "par sexe",
                                  REPAGE ~ "par âge",
@@ -175,6 +176,29 @@ t1 <- svytable(~CATEG_rec + SEQ_rec, enfw)
 t1 <-  t1[-4,]
 t1 <-  t1[-4,]
 chisq.test(t1)
+
+enfw %>% tbl_svysummary(include = c(hebe_capa2, CATEG_rec),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  modify_column_hide(columns = c(stat_4, stat_5)) %>% 
+  bold_labels()
+
+
+enfw %>% tbl_svysummary(include = c(hebe_capa2),
+                    by = HEBE_rec3,
+                    missing = "no",
+                    percent = "row", 
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels()  %>% 
+  add_p()
+
+chisq.test(svytable(~hebe_capa2+HEBE_rec3, enfw))
+chisq.residuals(svytable(~hebe_capa2+HEBE_rec3, enfw))
 ```
 
 # public accueilli projet d'établissement
@@ -252,16 +276,19 @@ freq(wtd.table(e_mecs$HEBE_rec3, weights = e_mecs$poids2, useNA = "ifany"))
 freq(table(e_mecs$ARES_rec, useNA = "ifany"))
 freq(wtd.table(e_mecs$ARES_rec, weights = e_mecs$poids2, useNA = "ifany"))
 
+
+# Le type d’hébergement en MECS en fonction du type d’hébergement avant l’entrée en MECS pour les enfants présents en 2017
 e_mecsw %>% tbl_svysummary(include = c(ARES_rec, HEBE_rec3),
-                    by = ARES_rec,
+                    by = HEBE_rec3,
                     missing = "no",
+                    percent = "row",
                     statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = "") %>% 
   modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
   bold_labels()
 
-chisq.test(svytable(~HEBE_rec3 +ARES_rec, e_mecsw)[,-4])
-chisq.residuals(svytable(~HEBE_rec3 +ARES_rec, e_mecsw)[,-4])
+chisq.test(svytable(~ARES_rec +HEBE_rec3, e_mecsw)[,-4])
+chisq.residuals(svytable(~ARES_rec +HEBE_rec3, e_mecsw)[,-4])
 ```
 
 ```{r}
@@ -303,9 +330,10 @@ freq(wtd.table(s_mecs$HEBE_rec3, weights = s_mecs$poids2, useNA = "ifany"))
 
 freq(table(s_mecs$SRES_rec, useNA = "ifany"))
 freq(wtd.table(s_mecs$SRES_rec, weights = s_mecs$poids2, useNA = "ifany"))
-
+#Le type d’hébergement juste à la sortie de MECS en fonction du type d’hébergement en MECS pour les enfants sortis en 2017
 s_mecsw %>% tbl_svysummary(include = c(SRES_rec, HEBE_rec3),
-                    by = HEBE_rec3,
+                    by = SRES_rec,
+                    percent = "row",
                     missing = "no",
                     statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = "") %>% 
@@ -532,11 +560,6 @@ ggarrange(g1,g2,g3,g4,g5,g6, common.legend = T, legend.grob = g6_leg)
 ```
 
 ```{r}
-
-```
-
-
-```{r}
 ## Recodage de e_mecs$MNA
 e_mecs$MNA <- e_mecs$MNA %>%
   as.character() %>%
@@ -545,11 +568,18 @@ e_mecs$MNA <- e_mecs$MNA %>%
     "Oui" = "1"
   )
 
+## Recodage de e_mecs$MES_rec
+e_mecs$MES_rec <- e_mecs$MES_rec %>%
+  fct_recode(
+    "NULL" = "NA"
+  )
+
 e_mecsw <- e_mecs %>%
   as_survey_design(ids = 1, weight  = poids2)
 
-e_mecsw %>% tbl_svysummary(include = c(MES_na, HEBE_rec3),
-                    by = MES_na,
+e_mecsw %>% tbl_svysummary(include = c(MES_rec, HEBE_rec3),
+                    by = HEBE_rec3,
+                    percent = "row",
                     missing = "no",
                     statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = "") %>% 

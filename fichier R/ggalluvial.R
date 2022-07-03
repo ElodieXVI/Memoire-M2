@@ -775,7 +775,7 @@ mecs %>%
 
 
 essor <- read_sas("Data/Données intactes/ES-DS 2012/SAS/enf_esd.sas7bdat")
-esact <- read_sas("Data/Données intactes/ES-DS 2012/SAS/enf_ace.sas7bdat")
+esact <- read_sas("/Users/elodielemaire/Dropbox/QESS2/M2 - Mémoire/Data/Données intactes/ES-DS 2012/SAS/enf_ace.sas7bdat")
 
 ## Recodage de essor$HEBE
 essor$HEBE <- essor$HEBE %>% fct_recode(

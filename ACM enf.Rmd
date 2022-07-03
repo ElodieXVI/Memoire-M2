@@ -31,7 +31,7 @@ source("Fonctions.R")
 ```{r recodage}
 e_acm <- enf %>% subset(CATEG_rec == "MECS") %>% 
   select("SEX","HEBE_rec3", "HAND", "MNA", "MES_rec", 
-         "AMES_rec",  "age_ed","ARES_rec", "SEQ", "poids_enf")%>% 
+         "AMES_rec",  "age_ed","ARES_rec", "SEQ", "poids_enf", "hebe_capa")%>% 
   drop_na() #Sur 18 440 enfants présents
 
 e_acm %<>% mutate(
@@ -106,7 +106,7 @@ e_acm %>% tbl_summary(include = c(grp, SEX, age_ed, HEBE_rec3, ARES_rec, SEQ_rec
 
 ```{r}
 e_acm$grp <- res.HCPC$data.clust$clust
-e_acm %>% tbl_summary(include = c(MES_rec2),
+e_acm %>% tbl_summary(include = c(MES_rec),
                     by = grp,
                     percent = "col", 
                     statistic = list(all_categorical() ~ "{n}")) %>%   
@@ -118,6 +118,30 @@ e_acm %>% tbl_summary(include = c(MES_rec2),
   add_footnote("Champ : Sur les 18 440 enfants présents en MECS au 12/12/2017.") %>%
   set_number_format(NA) %>% 
   set_caption("Résultats de la classification")
+```
+```{r}
+e_acm$grp <- res.HCPC$data.clust$clust
+e_acm %>% tbl_summary(include = c(hebe_capa, hebe_capa2),
+                    by = grp,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+
+## Recodage de e_acm$hebe_capa en e_acm$hebe_capa2
+e_acm$hebe_capa2 <- e_acm$hebe_capa %>%
+  fct_recode(
+    "un" = "assfam",
+    "deux" = "assfam et collectif",
+    "trois" = "assfam, domicile et collectif",
+    "un" = "autonom",
+    "deux" = "autonom et assfam",
+    "un" = "collectif",
+    "deux" = "collectif et autonome",
+    "trois" = "collectif, autonom et assfam",
+    "un" = "domicile"
+  )
 ```
 
 ```{r}
@@ -135,7 +159,7 @@ chisq.residuals(table(e_acm$grp, e_acm$HAND))
 
 
 ## Recodage de e_acm$MES_rec2
-e_acm$MES_rec2 <- e_acm$MES_rec2 %>%
+e_acm$MES_rec2 <- e_acm$MES_rec %>%
   fct_recode(
     NULL = "mes_NA",
     "mes_MO.autre" = "mes_MO",
@@ -146,11 +170,18 @@ chisq.residuals(table(e_acm$MES_rec2,e_acm$gr))
 
 
 ```{r}
-modele <- e_acm %>% select(poids_enf, SEX, MNA, HAND, age_ed, MES_rec2, HEBE_rec1,HEBE_rec2,HEBE_rec3, ARES_rec, grp)
+modele <- e_acm %>% select(poids_enf, SEX, MNA, HAND, age_ed, MES_rec2, HEBE_rec3, hebe_capa, hebe_capa2, ARES_rec, grp)
 
 modele %<>% drop_na()
 
 modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed, MES_rec2),
+                    by = grp,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{n}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+modele %>% tbl_summary(include = c(hebe_capa, hebe_capa2),
                     by = grp,
                     missing = "no",
                     statistic = list(all_categorical() ~ "{n}")) %>%   
@@ -171,6 +202,21 @@ require(nnet)
 m1 <- multinom(grp ~ age_ed + SEX + MNA + HAND + MES_rec2, data = modele)
 
 m1 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+## Réordonnancement de modele$hebe_capa2
+modele$hebe_capa2 <- modele$hebe_capa2 %>%
+  fct_relevel(
+    "tout", "un", "deux", "trois")
+
+m2 <- multinom(grp ~ age_ed + SEX + MNA + HAND + MES_rec2 + hebe_capa2, data = modele)
+
+m2 %>% tbl_regression(exponentiate = TRUE) %>% 
   add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
   modify_header(label = "**Référence : grp1**") %>%
   modify_caption("Modèle 1 réduit : type d'hébergement à la sortie de MECS")  %>% 
