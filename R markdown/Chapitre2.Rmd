@@ -59,7 +59,7 @@ président du Conseil général voit ses missions en la matière spécifiées
 : il définit la politique départementale de l'aide sociale à l'enfance,
 crée et autorise les établissements sociaux et arrête leur tarification,
 et enfin, il prononce l'admission à toute mesure d'aide sociale à
-l'enfance .
+l'enfance[@verdierAideSocialeEnfance2013].
 
 Cette décentralisation a eu des effets concrets sur la production de
 statistiques sur le sujet. En effet, historiquement, les statistiques
@@ -92,9 +92,13 @@ nationale sur le sujet. Ceci malgré l'existence de données produites par
 la DREES qui ne s'intéresse elle depuis 1982 qu'aux établissements
 sociaux. Cette enquête de la DREES n'était pas dédiée à la Protection de
 l'enfance puisqu'elle portait alors sur des établissements dédiés à
-l'accueil de trois types de public : les établissements et services pour
-personnes handicapées ● les établissements pour personnes en difficulté
-sociale, ● et les établissements de la Protection de l'enfance.
+l'accueil de trois types de public : 
+
+- les établissements et services pour
+personnes handicapées,
+- les établissements pour personnes en difficulté
+sociale,
+- et les établissements de la Protection de l'enfance.
 
 > *La création de l'ONPE*
 
@@ -122,7 +126,9 @@ la recherche, des études, de l'évaluation et des statistiques (DREES) et
 de la Direction de la protection judiciaire de la jeunesse (DPJJ).
 Ainsi, en 2015, le nombre de mineurs bénéficiant d'au moins une mesure
 de protection de l'enfance est estimé à 295 357 sur la France entière,
-soit 20,1 ‰ des moins de 18 ans , .
+soit 20,1 ‰ des moins de 18 ans[^1],.
+
+[^1]: ‰ : sur mille individus.
 
 > *Les observatoires départementaux*
 
@@ -167,12 +173,14 @@ roundcorner=10pt}
 
 Cette rencontre a mis en lumière les difficultés concrètes rencontrées par les départements dans la production de données sur leur politique d’aide sociale à l’enfance. Le chargé d’études et directeur de l’ODPE de l’Hérault a ainsi témoigné de leur besoin de visibilité sur leurs disponibilités d’accueil, les contours de leur accueil familial et sur les usages des dispositifs. En particulier, ils ont besoin qu’un travail soit mené sur les mesures administratives et judiciaires et leurs différentes déclinaisons. Mais aussi sur les mesures de prévention, puisqu’actuellement, ils peinent à avoir des données qui leur permettent de justifier de l’intérêt des politiques de prévention sur celles d’accueil. Ce sont des questions certes techniques, mais qui cachent aussi des enjeux financiers importants pour le département.
 
-Au niveau de leurs données, comme de nombreux autres départements, ils disposent de peu d’informations sur le profil socio-économique de l’enfant accueilli et de sa famille. Ce point rend l’analyse sociologique difficile et les rend ignorant sur la portée réelle de leurs actions. Le département chercherait ainsi à améliorer leur base de données, afin de la rendre plus effective pour qu’elle réponde aux questions de politiques publics qu’ils se posent. Cette recherche se serait faite avec les données regroupées suite à une compilation manuelle de l’ODPE de l’Hérault . Cette remontée des données prend appui sur des assistantes administratives qui remplissent les bases. Ceci peut donner lieu à des erreurs, puisque le personnel n’est pas formé pour accomplir cette tâche. 
+Au niveau de leurs données, comme de nombreux autres départements, ils disposent de peu d’informations sur le profil socio-économique de l’enfant accueilli et de sa famille. Ce point rend l’analyse sociologique difficile et les rend ignorant sur la portée réelle de leurs actions. Le département chercherait ainsi à améliorer leur base de données, afin de la rendre plus effective pour qu’elle réponde aux questions de politiques publics qu’ils se posent. Cette recherche se serait faite avec les données regroupées suite à une compilation manuelle de l’ODPE de l’Hérault \footnote{Cette dernière est une instance partenariale regroupant le Département de l’Hérault, des MECS (maisons d’enfant à caractère social) et lieux de vie, des assistants familiaux, l’éducation nationale, l’école des travailleurs sociaux et des associations œuvrant pour la protection de l’enfance. Elle a été créée récemment puisque leur première séance plénière s’est tenue en 2019.
+}. Cette remontée des données prend appui sur des assistantes administratives qui remplissent les bases. Ceci peut donner lieu à des erreurs, puisque le personnel n’est pas formé pour accomplir cette tâche. 
 
 Ce point allié à d’autres difficultés techniques fait qu’à l’heure actuelle le département lui-même a du mal à dire où il y a des places disponibles dans les lieux d’accueil et d’hébergement. Le chargé de mission et directeur de l’ODPE de l’Hérault suppose ainsi que l’orientation des enfants dans tel ou tel type d’hébergement dépend essentiellement de l’offre et de la demande.
 
 \end{mdframed}
 ```
+
 Ainsi, la mise en place de structures adaptées semble difficile au
 niveau départemental pour ces raisons, mais aussi parce qu'ils
 rencontrent des obstacles au niveau local, celui des structures
@@ -208,7 +216,9 @@ OLINPE - et de la DREES qui permettent des analyses plus poussées. Il
 existe aussi une autre catégorie de sources de données, celles des
 enquêtes menées par la statistique publique. À part l'enquête ELAP, ces
 dernières correspondent plutôt à des enquêtes de victimation et sont
-souvent rétrospectives, nous ne les inclurons donc pas à ce panorama .
+souvent rétrospectives, nous ne les inclurons donc pas à ce panorama[^3].
+
+[^3]: Nous faisons référence ici particulièrement aux enquêtes : Contexte de la sexualité en France (CSF), Évènements de vie et santé (EVS), Enveff et Virage. Mais aussi à l’enquête Étude longitudinale française depuis l’enfance (Elfe) suivant des enfants de la naissance à l’âge adulte, qui ne contient pas à proprement parler de variables sur les violences et la négligence, mais contient certaines variables sur les dispositifs de la PE. Ces enquêtes sont présentées en lien avec les connaissances qu’elles apportent sur les enfants placés dans le rapport de 2016 de l’ONEP : https://www.onpe.gouv.fr/system/files/publication/ragp_2016_-_version_finale_2_leger.pdf
 
 > *Les données produites par les ministères de la Justice et de
 > l'Intérieur*
@@ -252,7 +262,9 @@ réalisées en 2011 et reconduite en 2016-2017. Elle analyse aussi les
 données produites par le Service national d'accueil téléphonique de
 l'enfance en danger (SNATED) qui fait partie du même groupe d'intérêt
 public Enfance en danger. Enfin, l'observatoire produit aussi une
-enquête annuelle sur les pupilles d'État .
+enquête annuelle sur les pupilles d'État[^4].
+
+[^4]: On peut retrouver l’ensemble de leurs productions à cette page : https://www.onpe.gouv.fr/production-donnees-chiffrees , consulté le 30/05/2022
 
 Néanmoins, la mission actuellement la plus importante de l'ONPE en tant
 que producteur de données, reste la mise en place d'un système de
@@ -342,13 +354,15 @@ données sur les enfants placés en Protection de l'enfance : l'enquête
 ES-PE et l'enquête sur les bénéficiaires de l'aide sociale
 départementale issues de l'enquête Aide sociale. Cette dernière est
 réalisée annuellement auprès des conseils départementaux et a une visée
-gestionnaire . Elle collecte ainsi des données agrégées sur les
+gestionnaire[^5]. Elle collecte ainsi des données agrégées sur les
 bénéficiaires et les dépenses des prestations d'aide sociale relevant de
 la compétence des départements. Cette seconde enquête permet de mieux
 saisir le champ de l'enquête ES-PE, en témoigne ce tableau pour les
 données 2017.
 
-```{r, out.width="60%", fig.cap="Les champs de l'enquête sur les bénéficiaires de l'Aide sociale à l'enfance et de l'enquête ES-PE"}
+[^5]: https://www.data.gouv.fr/fr/datasets/les-beneficiaires-de-laide-sociale-departementale/ , consulté le 30/05/2022
+
+```{r, out.width="80%", fig.cap="Les champs de l'enquête sur les bénéficiaires de l'Aide sociale à l'enfance et de l'enquête ES-PE"}
 knitr::include_graphics("Figure/Tabrep.png")
 ```
 
@@ -411,9 +425,11 @@ d'accueil de l'Aide sociale à l'enfance, donc les pouponnières, les
 lieux de vie et d'accueil, les foyers de l'enfance, les MECS ou encore
 les villages pour enfants. Le répertoire FINESS a permis à la DREES de
 contacter l'ensemble de ces établissements afin qu'ils répondent à leur
-enquête. En tout, 62 % des établissements répertoriés ont répondu .
+enquête. En tout, 62 % des établissements répertoriés ont répondu[^6].
 
-```{r, out.width="60%",fig.cap="Taux de réponse des différents types d'établissements de l'Aide sociale à l'enfance à l'enquête ES-PE 2017"}
+[^6]: Un taux de réponse totale en baisse par rapport à 2012 où ils affichaient alors un taux de réponse totale de 74% pour les établissements de l’aide sociale à l’enfance.
+
+```{r, out.width="80%",fig.cap="Taux de réponse des différents types d'établissements de l'Aide sociale à l'enfance à l'enquête ES-PE 2017"}
 obs$CATEG_rec2 <- add_n(obs$CATEG_rec)
 g1 <- ggplot(na.omit(obs)) +
   aes(x = CATEG_rec, fill = STATUT_REP, by = CATEG_rec, label = f(after_stat(prop))) +
@@ -436,10 +452,12 @@ g1 + theme(text = element_text(family = "Times"), plot.caption = element_text(fa
 Tous les types d'établissements ne présentent pas le même taux de
 réponse à l'enquête. Ainsi, les lieux de vie et d'accueil sont les
 structures qui ont le moins répondu à l'enquête ES-PE 2017, avec 57%
-d'établissements répondants . Ainsi, le type d'établissement ayant le
+d'établissements répondants[^7]. Ainsi, le type d'établissement ayant le
 plus haut taux de réponses est les foyers de l'enfance à 82%. Dans cet
 ensemble, les MECS affichent comparativement un bon taux de réponse avec
 71%, ce qui permet leur bonne représentativité dans l'enquête.
+
+[^7]: Étant donné leur faible nombre, nous ne commentons pas le taux de réponses des villages pour enfants et des pouponnières à caractère social.
 
 La non-réponse totale a en effet été un enjeu particulier pour la DREES
 avec seulement 62% des établissements qui ont répondu. Il est en ce sens
@@ -455,7 +473,7 @@ backgroundcolor=gray!10,
 roundcorner=10pt}
 \begin{mdframed}[frametitle=La pondération dans l’enquête ES-PE 2017]
 
-La pondération de l’enquête ES-PE 2017 a été calculée pour répondre à deux objectifs  : augmenter la représentativité de l’échantillon et réduire le biais de non-réponse. En ce sens, ils ont construit deux pondérations en utilisant la méthode du calage sur marge. Le calage sur marge vise à redresser un échantillon en utilisant une information auxiliaire de référence. C’est-à-dire qu’on donne un poids à chaque individu pour que dans les variables catégorielles choisies, leurs effectifs soient égaux à un effectif de référence qui correspond généralement à ce qu’on observe en population totale  . Avant de réaliser un calage sur marge prenant appui sur le répertoire FINESS, on peut choisir une des deux méthodes de gestion de la non-réponse par repondération soit avec le calage dit « direct » qui postule à partir d’un modèle de régression linéaire que le fait d’être répondant dépend des variables de calage utilisées  , soit un calage après correction de la non-réponse qui vise à repondérer en première étape et se servir des poids de cette repondération pour effectuer un calage classique par la suite. Dans cette seconde méthode, on estime un modèle de régression portant sur la non-réponse et c’est à partir des probabilités de réponse estimées qu’on réalise une première pondération. C’est cette seconde méthode qui a été employée par la DREES.
+La pondération de l’enquête ES-PE 2017 a été calculée pour répondre à deux objectifs\footnote{À noter que la pondération a été calculée avec la macro Calmar sur SAS.}: augmenter la représentativité de l’échantillon et réduire le biais de non-réponse. En ce sens, ils ont construit deux pondérations en utilisant la méthode du calage sur marge. Le calage sur marge vise à redresser un échantillon en utilisant une information auxiliaire de référence. C’est-à-dire qu’on donne un poids à chaque individu pour que dans les variables catégorielles choisies, leurs effectifs soient égaux à un effectif de référence qui correspond généralement à ce qu’on observe en population totale  . Avant de réaliser un calage sur marge prenant appui sur le répertoire FINESS, on peut choisir une des deux méthodes de gestion de la non-réponse par repondération soit avec le calage dit « direct » qui postule à partir d’un modèle de régression linéaire que le fait d’être répondant dépend des variables de calage utilisées  , soit un calage après correction de la non-réponse qui vise à repondérer en première étape et se servir des poids de cette repondération pour effectuer un calage classique par la suite. Dans cette seconde méthode, on estime un modèle de régression portant sur la non-réponse et c’est à partir des probabilités de réponse estimées qu’on réalise une première pondération. C’est cette seconde méthode qui a été employée par la DREES.
 
 À partir de ces méthodes, plusieurs pondérations ont été construites correspondant aux différentes tables de données. Comme nous travaillons sur les tables ACT, ENF et SOR, nous présentons ici leur pondération : une pour la table ACT et une autre pour les tables ENF et SOR. La première étape de gestion de la non-réponse est la même pour toutes les tables : deux régressions logistiques modélisent la non-réponse totale le premier portant sur les établissements de l’ASE avec les variables suivantes : la région, la catégorie d'établissements et la présence d'un mail dans le fichier de gestion, le second sur les établissements de la PJJ avec les variables suivantes : la catégorie d'établissements et la présence d'un mail dans le fichier de gestion.
 
@@ -464,6 +482,7 @@ Pour la pondération de la table ACT, le calage sur marge a été réalisé à l
 Pour la pondération des tables ENF et SOR, les marges sont les effectifs d'enfants présents dans l'établissement (déclarés dans ACT), par région, et par catégorie d'établissements pour les Foyers de l’enfance et les MECS. Pour les autres types d’établissements, le calage est le même, mais à l’échelle nationale.
 \end{mdframed}
 ```
+
 Chaque fiche du questionnaire a donné lieu à une base de données, il y
 en a en tout 7, mais nous ne retenons ici que celles employées dans
 notre étude : soit celle pour l'activité des établissements (ACT), celle
@@ -528,9 +547,11 @@ département. Ils constatent une importante variation de ce taux entre
 les départements qui s'accentue depuis 2009. Ainsi, au 31 décembre 2018,
 les taux de prise en charge varient selon les départements de 10,9 ‰ à
 44,8 ‰ concernant les mineurs et de 0,1 ‰ à 21 ‰ en ce qui concerne les
-jeunes majeurs , . Le fait que cette variable soit non comprise dans nos
+jeunes majeurs[^9], . Le fait que cette variable soit non comprise dans nos
 données produit une ignorance sur un phénomène qui gagnerait à être pris
 en compte dans notre étude.
+
+[^9]: ‰ : sur mille individus.
 
 La deuxième limite majeure de ces données est qu'elles sont incomplètes
 soit parce que des questions n'ont pas été posées aux structures, soit
@@ -569,7 +590,7 @@ dont deux seulement sont datés, sachant que la fin du troisième
 : Les trois événements du parcours de placement présents dans l'enquête
 ES-PE 2017
 
-~Source\ :\ Enquête\ ES-PE\ 2017,\ DREES.~
+\rightline{\small{~Source : Enquête ES-PE 2017, DREES.}}
 
 À ceci s'ajoute, le fait que nous avons bien la date du premier
 placement de l'enfant qui peut donc correspondre ou non au type
@@ -581,7 +602,9 @@ même date de premier placement et d'entrée dans l'établissement, cela
 réduit fortement l'intérêt d'une analyse de trajectoire, puisque seuls
 deux événements seront alors utilisés dont le dernier qui est le type
 d'hébergement à la sortie de l'établissement d'observation (temps + 1)
-qui n'a pas de date de fin .
+qui n'a pas de date de fin[^10].
+
+[^10]: À noter qu’à titre d’essai, une tentative d’analyse de trajectoire a tout de même été réalisée et qu’elle est présente dans les annexes. Elle permet ainsi de mettre en lumière les difficultés relatées ici.
 
 Tout ceci est renforcé par le flou des modalités des variables ARES et
 SRES qui invitent à la prudence quant à l'utilisation de ces variables
@@ -621,7 +644,7 @@ dans une analyse.
 : Les modalités des variables sur le type d'hébergement avant et après
 le placement dans l'établissement observé (ARES et SRES)
 
-~[Source\ :\ Enquête\ ES-PE\ 2017,\ DREES.]{.smallcaps}~
+\rightline{\small{~Source : Enquête ES-PE 2017, DREES.}}
 
 Par exemple, les modalités « chez les parents » ou « chez de la famille,
 des amis, un tiers digne de confiance judiciaire ou un tiers
@@ -657,13 +680,15 @@ particulièrement la population présente en MECS.
 > *Une présence importante d'adolescents et jeunes majeurs en MECS*
 
 Ainsi, la principale caractéristique des enfants présents en MECS en
-2017 est l'âge. Ce type d'établissement semble particulièrement tourné
+2017 est l'âge[^11]. Ce type d'établissement semble particulièrement tourné
 vers l'accueil d'un public à partir de 7 ans et adolescent ou jeune
 majeurs à partir de 15 à 17 ans et 18 ans à plus. Cette caractéristique
 de l'âge les distingue d'autres types d'établissement tels que les
 villages pour enfants ou les Pouponnières. À ceci, s'ajoute un public
 plus masculin en MECS (à 61%) que dans ces deux autres types
 d'établissement (respectivement à 49% et 54% de garçons).
+
+[^11]: L’âge à l’entrée dans l’établissement a été recodé en tranche d’âge pour permettre des analyses. Les tranches d’âge choisies sont celles déjà employées dans la littérature sur ces données et surtout sur l’étude menée par Élisa Abassi : « 61 000 enfants, adolescents et jeunes majeurs hébergés fin 2017 dans les établissements de l’aide sociale à l’enfance », art cit.
 
 ````{=tex}
 \begin{singlespace}
@@ -704,7 +729,9 @@ enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, age_ed, MNA,HAND),
 \end{singlespace}
 ````
 
-Le fait que le public soit plus âgé en MECS est aussi à mettre en perspective avec la présence assez importante de mineurs non accompagnés à 18% qui ont tendance à demander systématiquement l’accès à un contrat jeune majeur afin de poursuivre leur protection . Ces derniers ont en moyenne en âge d’entrée en MECS 16 ans . Leur présence explique aussi le déséquilibre en termes de répartition des sexes en MECS, puisque les MNA sont à 90% des garçons. Ainsi, on retire les mineurs non accompagnés, la part de filles en MECS augmente à 46%, contre 39% avec les mineurs non accompagnés.
+Le fait que le public soit plus âgé en MECS est aussi à mettre en perspective avec la présence assez importante de mineurs non accompagnés à 18% qui ont tendance à demander systématiquement l’accès à un contrat jeune majeur afin de poursuivre leur protection . Ces derniers ont en moyenne en âge d’entrée en MECS 16 ans[^12]. Leur présence explique aussi le déséquilibre en termes de répartition des sexes en MECS, puisque les MNA sont à 90% des garçons. Ainsi, on retire les mineurs non accompagnés, la part de filles en MECS augmente à 46%, contre 39% avec les mineurs non accompagnés.
+
+[^12]: Avec un écart-type de 1.4, ce qui confirme bien qu’ils sont surtout adolescents à l’entrée en MECS.
 
 Les enfants protégés ayant un handicap reconnu représentent enfin 13% des enfants présents en MECS. Un chiffre similaire avec d’autres types d’établissements tels que les Foyers de l’enfance (12%) et les villages pour enfants (11%). Du fait du type d’accueil très personnalisé proposé par les lieux de vie et d’accueil, il est ainsi cohérent de retrouver particulièrement plus d’enfants en situation de handicap dans ce type d’accueil (28%). La population présente en MECS est ainsi plutôt hétérogène et se caractérise surtout par l’âge avec une présence particulière d’adolescent et de jeunes majeurs, à expliquer en partie par la présence de mineurs non accompagnés.
 
@@ -765,7 +792,9 @@ enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
 \end{singlespace}
 ````
 
-En effet, confirmant l’âge plus avancé des enfants présents en MECS du fait de la présence notamment de mineurs non accompagnés, on retrouve un fort taux par rapport aux autres types d’établissement de mesures principales administratives dédiées aux jeunes majeurs (8.9%). Les MECS accueillent aussi fortement les mesures administratives dédiées aux mineurs (ou accueils provisoires de mineurs) à 8%. La mesure concernant le plus d’enfants présents en MECS reste le judiciaire confié à 67% qui correspond à la décision d’un juge de placer un enfant au titre de l’enfance en danger.  Il ne s’agit pas du taux le plus haut en comparaison avec les autres types d’établissement, mais il reste néanmoins conséquent. Ceci est de plus à mettre en lien avec le nombre de mesures touchant la responsabilité familiale qui délègue la tutelle partielle ou non de l’enfant à l’ASE ou à un tuteur légal, et comprend aussi les pupilles d’État .
+En effet, confirmant l’âge plus avancé des enfants présents en MECS du fait de la présence notamment de mineurs non accompagnés, on retrouve un fort taux par rapport aux autres types d’établissement de mesures principales administratives dédiées aux jeunes majeurs (8.9%). Les MECS accueillent aussi fortement les mesures administratives dédiées aux mineurs (ou accueils provisoires de mineurs) à 8%. La mesure concernant le plus d’enfants présents en MECS reste le judiciaire confié à 67% qui correspond à la décision d’un juge de placer un enfant au titre de l’enfance en danger.  Il ne s’agit pas du taux le plus haut en comparaison avec les autres types d’établissement, mais il reste néanmoins conséquent. Ceci est de plus à mettre en lien avec le nombre de mesures touchant la responsabilité familiale qui délègue la tutelle partielle ou non de l’enfant à l’ASE ou à un tuteur légal, et comprend aussi les pupilles d’État[^13].
+
+[^13]: Les pupilles de l’État représentent 12.7% des mesures touchant la responsabilité familiale.
 
 Connaître le type de mesures les plus présentes en MECS nous renseignent néanmoins assez peu sur la population qui y est présente , mais permet de mettre en perspective les enjeux autour du maintien du lien avec la famille. En effet, les mesures judiciaires sont imposées à la famille et arrivent même parfois en dernier recours lorsque cette dernière a refusé la mesure administrative. Parfois même, le juge décide du retrait partiel ou non de l’autorité parentale ce qui constitue une étape supplémentaire dans la protection de l’enfant. Dans ce cadre-là, la question du maintien du lien avec la famille prend une teneur particulière à la vue du nombre d’enfants présents en MECS concernés par ce type de mesures. Il s’agit pourtant d’une préoccupation pour les professionnels en MECS. Leur rôle devient dès lors incontournable pour tenter de réinvestir le parent dans la vie de l’enfant ou de maintenir les liens avec la famille tout en étant eux-mêmes les appliquant d’une mesure imposée.
 
@@ -912,6 +941,6 @@ sorw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
 \end{singlespace}
 ```
 
-*Conclusion de chapitre*
+**Conclusion de chapitre**
 
 Les lois de départementalisation ont ainsi eu pour conséquence la fragmentation de la production de données sur l’enfance protégée en France. Aujourd’hui, bien que l’ONPE produise un travail essentiel, le dispositif de collecte souffre encore de nombreuses limites à différentes échelle (locale, départementale et nationale) expliquant la longueur du processus de mise en place qui dure depuis maintenant 18 ans, si on prend pour référence l’année de création de l’ONPE. Dans ce paysage, l’enquête auprès des établissements sociaux de la Protection de l’enfance (ES-PE) menée par la DREES s’intéresse à une population particulière que sont les enfants placés en établissement relevant de l’Aide sociale à l’enfance. Son questionnaire permet ainsi de répondre autant à des questions gestionnaires qu’à des questions scientifiques. L’horizon des possibles en termes d’analyses statistiques a été considérablement réduit par les limites de ces données alliées à l’hétérogénéité de la population observée, largement évoquée précédemment. Malgré ces difficultés, nous proposons dans les deux chapitres qui vont suivre de présenter les résultats de notre analyse qui cherche à éclairer sur les logiques de répartition entre hébergement des professionnels de l’aide sociale à l’enfance.

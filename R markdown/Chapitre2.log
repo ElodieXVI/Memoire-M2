@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.3)  3 JUL 2022 20:58
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.3)  3 JUL 2022 22:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -488,22 +488,26 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 )
 \Gin@req@height=\dimen182
 \Gin@req@width=\dimen183
-) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+)
+\cslhangindent=\skip62
+\csllabelwidth=\skip63
+\cslentryspacingunit=\skip64
+(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/ragged2e/ragged2e.sty
 Package: ragged2e 2021/12/15 v3.1 ragged2e Package
-\CenteringLeftskip=\skip62
-\RaggedLeftLeftskip=\skip63
-\RaggedRightLeftskip=\skip64
-\CenteringRightskip=\skip65
-\RaggedLeftRightskip=\skip66
-\RaggedRightRightskip=\skip67
-\CenteringParfillskip=\skip68
-\RaggedLeftParfillskip=\skip69
-\RaggedRightParfillskip=\skip70
-\JustifyingParfillskip=\skip71
-\CenteringParindent=\skip72
-\RaggedLeftParindent=\skip73
-\RaggedRightParindent=\skip74
-\JustifyingParindent=\skip75
+\CenteringLeftskip=\skip65
+\RaggedLeftLeftskip=\skip66
+\RaggedRightLeftskip=\skip67
+\CenteringRightskip=\skip68
+\RaggedLeftRightskip=\skip69
+\RaggedRightRightskip=\skip70
+\CenteringParfillskip=\skip71
+\RaggedLeftParfillskip=\skip72
+\RaggedRightParfillskip=\skip73
+\JustifyingParfillskip=\skip74
+\CenteringParindent=\skip75
+\RaggedLeftParindent=\skip76
+\RaggedRightParindent=\skip77
+\JustifyingParindent=\skip78
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/xelatex/xunicode/xunicode.sty
 File: xunicode.sty 2011/09/09 v0.981 provides access to latin accents and many other characters in Unicode lower plane
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/tipa/t3enc.def
@@ -611,47 +615,47 @@ Package zref Info: New property: abspage on input line 65.
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
-\mdf@templength=\skip76
+\mdf@templength=\skip79
 \c@mdf@globalstyle@cnt=\count330
-\mdf@skipabove@length=\skip77
-\mdf@skipbelow@length=\skip78
-\mdf@leftmargin@length=\skip79
-\mdf@rightmargin@length=\skip80
-\mdf@innerleftmargin@length=\skip81
-\mdf@innerrightmargin@length=\skip82
-\mdf@innertopmargin@length=\skip83
-\mdf@innerbottommargin@length=\skip84
-\mdf@splittopskip@length=\skip85
-\mdf@splitbottomskip@length=\skip86
-\mdf@outermargin@length=\skip87
-\mdf@innermargin@length=\skip88
-\mdf@linewidth@length=\skip89
-\mdf@innerlinewidth@length=\skip90
-\mdf@middlelinewidth@length=\skip91
-\mdf@outerlinewidth@length=\skip92
-\mdf@roundcorner@length=\skip93
-\mdf@footenotedistance@length=\skip94
-\mdf@userdefinedwidth@length=\skip95
-\mdf@needspace@length=\skip96
-\mdf@frametitleaboveskip@length=\skip97
-\mdf@frametitlebelowskip@length=\skip98
-\mdf@frametitlerulewidth@length=\skip99
-\mdf@frametitleleftmargin@length=\skip100
-\mdf@frametitlerightmargin@length=\skip101
-\mdf@shadowsize@length=\skip102
-\mdf@extratopheight@length=\skip103
-\mdf@subtitleabovelinewidth@length=\skip104
-\mdf@subtitlebelowlinewidth@length=\skip105
-\mdf@subtitleaboveskip@length=\skip106
-\mdf@subtitlebelowskip@length=\skip107
-\mdf@subtitleinneraboveskip@length=\skip108
-\mdf@subtitleinnerbelowskip@length=\skip109
-\mdf@subsubtitleabovelinewidth@length=\skip110
-\mdf@subsubtitlebelowlinewidth@length=\skip111
-\mdf@subsubtitleaboveskip@length=\skip112
-\mdf@subsubtitlebelowskip@length=\skip113
-\mdf@subsubtitleinneraboveskip@length=\skip114
-\mdf@subsubtitleinnerbelowskip@length=\skip115
+\mdf@skipabove@length=\skip80
+\mdf@skipbelow@length=\skip81
+\mdf@leftmargin@length=\skip82
+\mdf@rightmargin@length=\skip83
+\mdf@innerleftmargin@length=\skip84
+\mdf@innerrightmargin@length=\skip85
+\mdf@innertopmargin@length=\skip86
+\mdf@innerbottommargin@length=\skip87
+\mdf@splittopskip@length=\skip88
+\mdf@splitbottomskip@length=\skip89
+\mdf@outermargin@length=\skip90
+\mdf@innermargin@length=\skip91
+\mdf@linewidth@length=\skip92
+\mdf@innerlinewidth@length=\skip93
+\mdf@middlelinewidth@length=\skip94
+\mdf@outerlinewidth@length=\skip95
+\mdf@roundcorner@length=\skip96
+\mdf@footenotedistance@length=\skip97
+\mdf@userdefinedwidth@length=\skip98
+\mdf@needspace@length=\skip99
+\mdf@frametitleaboveskip@length=\skip100
+\mdf@frametitlebelowskip@length=\skip101
+\mdf@frametitlerulewidth@length=\skip102
+\mdf@frametitleleftmargin@length=\skip103
+\mdf@frametitlerightmargin@length=\skip104
+\mdf@shadowsize@length=\skip105
+\mdf@extratopheight@length=\skip106
+\mdf@subtitleabovelinewidth@length=\skip107
+\mdf@subtitlebelowlinewidth@length=\skip108
+\mdf@subtitleaboveskip@length=\skip109
+\mdf@subtitlebelowskip@length=\skip110
+\mdf@subtitleinneraboveskip@length=\skip111
+\mdf@subtitleinnerbelowskip@length=\skip112
+\mdf@subsubtitleabovelinewidth@length=\skip113
+\mdf@subsubtitlebelowlinewidth@length=\skip114
+\mdf@subsubtitleaboveskip@length=\skip115
+\mdf@subsubtitlebelowskip@length=\skip116
+\mdf@subsubtitleinneraboveskip@length=\skip117
+\mdf@subsubtitleinnerbelowskip@length=\skip118
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/mdframed/md-frame-0.mdf
 File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 )
@@ -660,33 +664,33 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@splitbox@one=\box65
 \mdf@splitbox@two=\box66
 \mdf@splitbox@save=\box67
-\mdfsplitboxwidth=\skip116
-\mdfsplitboxtotalwidth=\skip117
-\mdfsplitboxheight=\skip118
-\mdfsplitboxdepth=\skip119
-\mdfsplitboxtotalheight=\skip120
-\mdfframetitleboxwidth=\skip121
-\mdfframetitleboxtotalwidth=\skip122
-\mdfframetitleboxheight=\skip123
-\mdfframetitleboxdepth=\skip124
-\mdfframetitleboxtotalheight=\skip125
-\mdffootnoteboxwidth=\skip126
-\mdffootnoteboxtotalwidth=\skip127
-\mdffootnoteboxheight=\skip128
-\mdffootnoteboxdepth=\skip129
-\mdffootnoteboxtotalheight=\skip130
-\mdftotallinewidth=\skip131
-\mdfboundingboxwidth=\skip132
-\mdfboundingboxtotalwidth=\skip133
-\mdfboundingboxheight=\skip134
-\mdfboundingboxdepth=\skip135
-\mdfboundingboxtotalheight=\skip136
-\mdf@freevspace@length=\skip137
-\mdf@horizontalwidthofbox@length=\skip138
-\mdf@verticalmarginwhole@length=\skip139
-\mdf@horizontalspaceofbox=\skip140
-\mdfsubtitleheight=\skip141
-\mdfsubsubtitleheight=\skip142
+\mdfsplitboxwidth=\skip119
+\mdfsplitboxtotalwidth=\skip120
+\mdfsplitboxheight=\skip121
+\mdfsplitboxdepth=\skip122
+\mdfsplitboxtotalheight=\skip123
+\mdfframetitleboxwidth=\skip124
+\mdfframetitleboxtotalwidth=\skip125
+\mdfframetitleboxheight=\skip126
+\mdfframetitleboxdepth=\skip127
+\mdfframetitleboxtotalheight=\skip128
+\mdffootnoteboxwidth=\skip129
+\mdffootnoteboxtotalwidth=\skip130
+\mdffootnoteboxheight=\skip131
+\mdffootnoteboxdepth=\skip132
+\mdffootnoteboxtotalheight=\skip133
+\mdftotallinewidth=\skip134
+\mdfboundingboxwidth=\skip135
+\mdfboundingboxtotalwidth=\skip136
+\mdfboundingboxheight=\skip137
+\mdfboundingboxdepth=\skip138
+\mdfboundingboxtotalheight=\skip139
+\mdf@freevspace@length=\skip140
+\mdf@horizontalwidthofbox@length=\skip141
+\mdf@verticalmarginwhole@length=\skip142
+\mdf@horizontalspaceofbox=\skip143
+\mdfsubtitleheight=\skip144
+\mdfsubsubtitleheight=\skip145
 \c@mdfcountframes=\count331
 
 ****** mdframed patching \endmdf@trivlist
@@ -716,18 +720,18 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@ppsaveapp=\count338
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/05/18 v4.0.3 Extensive control of page headers and footers
-\f@nch@headwidth=\skip143
-\f@nch@O@elh=\skip144
-\f@nch@O@erh=\skip145
-\f@nch@O@olh=\skip146
-\f@nch@O@orh=\skip147
-\f@nch@O@elf=\skip148
-\f@nch@O@erf=\skip149
-\f@nch@O@olf=\skip150
-\f@nch@O@orf=\skip151
+\f@nch@headwidth=\skip146
+\f@nch@O@elh=\skip147
+\f@nch@O@erh=\skip148
+\f@nch@O@olh=\skip149
+\f@nch@O@orh=\skip150
+\f@nch@O@elf=\skip151
+\f@nch@O@erf=\skip152
+\f@nch@O@olf=\skip153
+\f@nch@O@orf=\skip154
 )
 
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 108.
+Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 131.
 
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
@@ -736,23 +740,23 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headfont=\toks33
 \thm@notefont=\toks34
 \thm@headpunct=\toks35
-\thm@preskip=\skip152
-\thm@postskip=\skip153
-\thm@headsep=\skip154
+\thm@preskip=\skip155
+\thm@postskip=\skip156
+\thm@headsep=\skip157
 \dth@everypar=\toks36
 )
 \c@hyp=\count339
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip155
-\bibsep=\skip156
+\bibhang=\skip158
+\bibsep=\skip159
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count340
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip157
+\multirow@colwidth=\skip160
 \multirow@cntb=\count341
-\multirow@dima=\skip158
+\multirow@dima=\skip161
 \bigstrutjot=\dimen259
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
@@ -768,8 +772,8 @@ Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 \page@free=\dimen262
 \premulticols=\dimen263
 \postmulticols=\dimen264
-\multicolsep=\skip159
-\multicolbaselineskip=\skip160
+\multicolsep=\skip162
+\multicolbaselineskip=\skip163
 \partial@page=\box69
 \last@line=\box70
 \maxbalancingoverflow=\dimen265
@@ -825,46 +829,46 @@ Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \everycr=\toks37
-\minrowclearance=\skip161
+\minrowclearance=\skip164
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
 ) (./Chapitre2.aux)
 \openout1 = `Chapitre2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 129.
-LaTeX Font Info:    Trying to load font information for T3+cmr on input line 129.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 152.
+LaTeX Font Info:    Trying to load font information for T3+cmr on input line 152.
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    ... okay on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 129.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/b/n on input line 129.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/b/n on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 129.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/b/n on input line 129.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/b/n on input line 152.
 
 Package fontspec Info: latinmodern-math scale = 1.037736795366909.
 
@@ -890,7 +894,7 @@ Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 12.45282pt on input line 129.
+(Font)              scaled to size 12.45282pt on input line 152.
 
 Package fontspec Info: latinmodern-math scale = 1.037736795366909.
 
@@ -922,15 +926,15 @@ Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.45282pt on input line 129.
+(Font)              scaled to size 12.45282pt on input line 152.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 129.
+(Font)              `operators' in the math version `normal' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 129.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 152.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 129.
+(Font)              `operators' in the math version `bold' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 129.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 152.
 
 Package fontspec Info: latinmodern-math scale = 1.037736795366909.
 
@@ -1009,13 +1013,13 @@ Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
 (fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 129.
+(Font)              `symbols' in the math version `normal' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 129.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 152.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 129.
+(Font)              `symbols' in the math version `bold' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 129.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 152.
 
 Package fontspec Info: latinmodern-math scale = 1.037736795366909.
 
@@ -1076,14 +1080,14 @@ Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
 (fontspec)             =7.4717pt\relax \fontdimen 13\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 129.
+(Font)              `largesymbols' in the math version `normal' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 129.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 152.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 129.
+(Font)              `largesymbols' in the math version `bold' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 129.
-Package hyperref Info: Link coloring OFF on input line 129.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 152.
+Package hyperref Info: Link coloring OFF on input line 152.
 (./Chapitre2.out) (./Chapitre2.out)
 \@outlinefile=\write3
 \openout3 = `Chapitre2.out'.
@@ -1125,26 +1129,60 @@ Package hyperref Info: Link coloring OFF on input line 129.
 *** you should *not* be loading the inputenc package
 *** XeTeX expects the source to be in UTF8 encoding
 *** some features of other encodings may conflict, resulting in poor output.
-LaTeX Info: Redefining \up on input line 129.
+LaTeX Info: Redefining \up on input line 152.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 Chapitre 1.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 135.
+(Font)              scaled to size 24.88pt on input line 158.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 24.88pt on input line 135.
+(Font)              scaled to size 24.88pt on input line 158.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 162.
+(Font)              scaled to size 17.28pt on input line 185.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 17.28pt on input line 162.
+(Font)              scaled to size 17.28pt on input line 185.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 166.
+(Font)              scaled to size 14.4pt on input line 189.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 166.
+(Font)              scaled to size 14.4pt on input line 189.
 [1
 
 
 ]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 8.71696pt on input line 213.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.22641pt on input line 213.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 213.
+(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 12.4541pt on input line 213.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 8.71785pt on input line 213.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.22705pt on input line 213.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 12.45154pt on input line 213.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 8.71606pt on input line 213.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.22577pt on input line 213.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 213.
+(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 213.
+(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
+(Font)              scaled to size 8.4pt on input line 213.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 214.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
+(Font)              scaled to size 10.0pt on input line 214.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1163,10 +1201,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 295.
+(mdframed)              on input line 327.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
+(Font)              scaled to size 8.4pt on input line 333.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 305.
+(mdframed)              on input line 338.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1183,6 +1223,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [5]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 10.37735pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.26414pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.18867pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.37842pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.2649pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.18921pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.37628pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.2634pt on input line 387.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.18814pt on input line 387.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1207,24 +1265,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [8]
+Underfull \hbox (badness 10000) in paragraph at lines 534--534
+[][][]\TU/TimesNewRoman(0)/m/n/10 .[][][]$[][][][][] [] [] [] [][][] [] [][][][] [] [][][][] [] [][] [] [][] [] [][][][][][][][] [] [][][] [][] [][][][][][][][][][][][][] [][] [][] [][] [][][][][] [][] [][][][][][][] [][] [][][][][][][][][][][][][][][]$[] , consulté le
+ []
+
 File: Figure/Tabrep.png Graphic file (type bmp)
 <Figure/Tabrep.png>
 
 LaTeX Font Warning: Font shape `TU/TimesNewRoman(0)/m/sc' undefined
-(Font)              using `TU/TimesNewRoman(0)/m/n' instead on input line 499.
+(Font)              using `TU/TimesNewRoman(0)/m/n' instead on input line 546.
 
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 499.
+(Font)              scaled to size 10.95pt on input line 546.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 499.
+(Font)              scaled to size 10.95pt on input line 546.
 
 LaTeX Font Warning: Font shape `TU/TimesNewRoman(0)/b/sc' undefined
-(Font)              using `TU/TimesNewRoman(0)/b/n' instead on input line 499.
+(Font)              using `TU/TimesNewRoman(0)/b/n' instead on input line 546.
 
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 499.
+(Font)              scaled to size 12.0pt on input line 546.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/sc' will be
-(Font)              scaled to size 10.95pt on input line 499.
+(Font)              scaled to size 10.95pt on input line 546.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1233,12 +1295,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [9]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 550.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 554.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1247,6 +1303,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [10]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 597.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 601.
 File: Chapitre2_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Chapitre2_files/figure-latex/unnamed-chunk-2-1.pdf>
 
@@ -1259,10 +1321,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [11]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 594.
+(mdframed)              on input line 647.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 603.
+(mdframed)              on input line 656.
+Package mdframed Info: Not enough space on this page on input line 656.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1271,6 +1334,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [12]
+Package mdframed Info: Not enough space on this page on input line 656.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1279,11 +1343,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [13]
-File: Figure/Quest1.png Graphic file (type bmp)
-<Figure/Quest1.png>
-
-LaTeX Warning: Float too large for page by 23.6164pt on input line 626.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1292,6 +1351,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [14]
+File: Figure/Quest1.png Graphic file (type bmp)
+<Figure/Quest1.png>
+
+LaTeX Warning: Float too large for page by 23.6164pt on input line 679.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1300,36 +1364,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [15]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.71696pt on input line 742.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.22641pt on input line 742.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 742.
-(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.4541pt on input line 742.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.71785pt on input line 742.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.22705pt on input line 742.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.45154pt on input line 742.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.71606pt on input line 742.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.22577pt on input line 742.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 742.
-(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 742.
-(/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 8.4pt on input line 742.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1338,8 +1372,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [16]
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/sc' will be
-(Font)              scaled to size 8.4pt on input line 801.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 29.40863pt, for example:
@@ -1348,8 +1380,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
 
 [17]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 29.40863pt, for example:
+(fancyhdr)                \setlength{\headheight}{29.40863pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-17.40863pt}.
+
+[18]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 11.0pt on input line 865.
+(Font)              scaled to size 11.0pt on input line 928.
 
 Package fontspec Info: Times scale = 0.9897018604180031.
 
@@ -1386,7 +1426,7 @@ Package fontspec Info: Font family 'Times(0)' created for font 'Times' with
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/Times(0)/m/n' will be
-(Font)              scaled to size 11.0pt on input line 865.
+(Font)              scaled to size 11.0pt on input line 928.
 
 Package fontspec Info: Times scale = 0.9897018604180031.
 
@@ -1403,7 +1443,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 858--869
+Overfull \hbox (7.37589pt too wide) in alignment at lines 921--932
  [] [] [] [] [] [] 
  []
 
@@ -1426,29 +1466,27 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 869--875
+Overfull \hbox (7.37589pt too wide) in alignment at lines 932--938
  [] [] [] [] [] [] 
  []
 
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 879.
+(Font)              scaled to size 9.0pt on input line 942.
 
 Package fontspec Info: Times scale = 0.9897018604180033.
 
 LaTeX Font Info:    Font shape `TU/Times(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 879.
+(Font)              scaled to size 9.0pt on input line 942.
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 875--881
+Overfull \hbox (7.37589pt too wide) in alignment at lines 938--944
  [] [] [] [] [] [] 
  []
 
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 885.
 
 Package fontspec Info: Times scale = 0.9897018604180032.
 
 LaTeX Font Info:    Font shape `TU/Times(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 885.
+(Font)              scaled to size 10.0pt on input line 948.
 
 Package fontspec Info: Times scale = 0.9897018604180032.
 
@@ -1663,18 +1701,10 @@ Package fontspec Info: Times scale = 0.9897018604180032.
 Package fontspec Info: Times scale = 0.9897018604180032.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 881--957
+Overfull \hbox (7.37589pt too wide) in alignment at lines 944--1020
  [] [] [] [] [] [] 
  []
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[18]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1683,217 +1713,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [19]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 993.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 1004.
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1013--1024
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1024--1030
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180033.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1030--1036
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-LaTeX Font Info:    Font shape `TU/Times(0)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 1040.
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1036--1088
- [] [] [] [] [] [] 
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1902,6 +1721,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [20]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1057.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1068.
 
 Package fontspec Info: Times scale = 0.9897018604180031.
 
@@ -1921,7 +1746,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1141--1152
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1077--1088
  [] [] [] [] [] [] 
  []
 
@@ -1944,7 +1769,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1152--1158
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1088--1094
  [] [] [] [] [] [] 
  []
 
@@ -1952,13 +1777,15 @@ Overfull \hbox (7.37589pt too wide) in alignment at lines 1152--1158
 Package fontspec Info: Times scale = 0.9897018604180033.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1158--1164
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1094--1100
  [] [] [] [] [] [] 
  []
 
 
 Package fontspec Info: Times scale = 0.9897018604180032.
 
+LaTeX Font Info:    Font shape `TU/Times(0)/b/n' will be
+(Font)              scaled to size 10.0pt on input line 1104.
 
 Package fontspec Info: Times scale = 0.9897018604180032.
 
@@ -1975,7 +1802,133 @@ Package fontspec Info: Times scale = 0.9897018604180032.
 Package fontspec Info: Times scale = 0.9897018604180032.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1164--1174
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1100--1152
  [] [] [] [] [] [] 
  []
 
@@ -2014,7 +1967,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1227--1238
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1206--1217
  [] [] [] [] [] [] 
  []
 
@@ -2037,7 +1990,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1238--1244
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1217--1223
  [] [] [] [] [] [] 
  []
 
@@ -2045,7 +1998,7 @@ Overfull \hbox (7.37589pt too wide) in alignment at lines 1238--1244
 Package fontspec Info: Times scale = 0.9897018604180033.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1244--1250
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1223--1229
  [] [] [] [] [] [] 
  []
 
@@ -2068,205 +2021,7 @@ Package fontspec Info: Times scale = 0.9897018604180032.
 Package fontspec Info: Times scale = 0.9897018604180032.
 
 
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1250--1326
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1229--1239
  [] [] [] [] [] [] 
  []
 
@@ -2297,7 +2052,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1348--1359
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1292--1303
  [] [] [] [] [] [] 
  []
 
@@ -2320,210 +2075,7 @@ Package fontspec Info: Times scale = 0.9897018604180031.
 Package fontspec Info: Times scale = 0.9897018604180031.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1359--1365
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180033.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1365--1371
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Package fontspec Info: Times scale = 0.9897018604180032.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1371--1423
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1445--1456
- [] [] [] [] [] [] 
- []
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Package fontspec Info: Times scale = 0.9897018604180031.
-
-
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1456--1462
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1303--1309
  [] [] [] [] [] [] 
  []
 
@@ -2531,7 +2083,7 @@ Overfull \hbox (7.37589pt too wide) in alignment at lines 1456--1462
 Package fontspec Info: Times scale = 0.9897018604180033.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1462--1468
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1309--1315
  [] [] [] [] [] [] 
  []
 
@@ -2554,7 +2106,205 @@ Package fontspec Info: Times scale = 0.9897018604180032.
 Package fontspec Info: Times scale = 0.9897018604180032.
 
 
-Overfull \hbox (7.37589pt too wide) in alignment at lines 1468--1478
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1315--1391
  [] [] [] [] [] [] 
  []
 
@@ -2567,13 +2317,309 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [24]
 
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1413--1424
+ [] [] [] [] [] [] 
+ []
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1424--1430
+ [] [] [] [] [] [] 
+ []
+
+
+Package fontspec Info: Times scale = 0.9897018604180033.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1430--1436
+ [] [] [] [] [] [] 
+ []
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1436--1488
+ [] [] [] [] [] [] 
+ []
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[25] (./Chapitre2.aux)
+[25]
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1510--1521
+ [] [] [] [] [] [] 
+ []
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Package fontspec Info: Times scale = 0.9897018604180031.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1521--1527
+ [] [] [] [] [] [] 
+ []
+
+
+Package fontspec Info: Times scale = 0.9897018604180033.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1527--1533
+ [] [] [] [] [] [] 
+ []
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Package fontspec Info: Times scale = 0.9897018604180032.
+
+
+Overfull \hbox (7.37589pt too wide) in alignment at lines 1533--1543
+ [] [] [] [] [] [] 
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[26]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[27] (./Chapitre2.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2581,12 +2627,12 @@ Package rerunfilecheck Info: File `Chapitre2.out' has not changed.
 (rerunfilecheck)             Checksum: 2999778E7EBB88255F4A666EBFE7E8CE;3020.
  ) 
 Here is how much of TeX's memory you used:
- 25436 strings out of 477857
- 461666 string characters out of 5844972
- 946731 words of memory out of 5000000
- 45992 multiletter control sequences out of 15000+600000
- 473064 words of font info for 95 fonts, out of 8000000 for 9000
+ 25483 strings out of 477857
+ 462958 string characters out of 5844972
+ 947819 words of memory out of 5000000
+ 46023 multiletter control sequences out of 15000+600000
+ 475982 words of font info for 115 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,11n,128p,1779b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapitre2.pdf (25 pages).
+Output written on Chapitre2.pdf (27 pages).

@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.6.10)  3 JUL 2022 15:10
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.3)  3 JUL 2022 21:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Chapitre1.tex
 (./Chapitre1.tex
-LaTeX2e <2022-06-01> pre-release-0 (develop 2022-6-10 branch)
-L3 programming layer <2022-06-02> (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/base/report.cls
+LaTeX2e <2022-06-01> patch level 4
+L3 programming layer <2022-07-01> (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -133,9 +133,9 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2022-06-02 L3 programming layer (loader) 
+Package: expl3 2022-07-01 L3 programming layer (loader) 
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2022-04-20 L3 backend support: XeTeX
+File: l3backend-xetex.def 2022-07-01 L3 backend support: XeTeX
 \g__graphics_track_int=\count268
 \l__pdf_internal_box=\box53
 \g__pdf_backend_object_int=\count269
@@ -146,9 +146,9 @@ Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty
 Package: unicode-math-xetex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2022-06-07 L3 Experimental document command parser
+Package: xparse 2022-06-22 L3 Experimental document command parser
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2022-06-07 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2022-06-22 LaTeX2e option processing using LaTeX3 keys
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
@@ -282,7 +282,7 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2022-05-17 v7.00q Hypertext links for LaTeX
+Package: hyperref 2022-06-20 v7.00s Hypertext links for LaTeX
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -315,7 +315,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count286
 )
@@ -323,7 +323,7 @@ Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 \Hy@linkcounter=\count287
 \Hy@pagecounter=\count288
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2022-05-17 v7.00q Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2022-06-20 v7.00s Hyperref: PDFDocEncoding definition (HO)
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
@@ -331,22 +331,22 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count289
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2022-05-17 v7.00q Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2022-06-20 v7.00s Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4020.
-Package hyperref Info: Hyper figures OFF on input line 4139.
-Package hyperref Info: Link nesting OFF on input line 4144.
-Package hyperref Info: Hyper index ON on input line 4147.
-Package hyperref Info: Plain pages OFF on input line 4154.
-Package hyperref Info: Backreferencing OFF on input line 4159.
+Package hyperref Info: Option `unicode' set `true' on input line 4045.
+Package hyperref Info: Hyper figures OFF on input line 4162.
+Package hyperref Info: Link nesting OFF on input line 4167.
+Package hyperref Info: Hyper index ON on input line 4170.
+Package hyperref Info: Plain pages OFF on input line 4177.
+Package hyperref Info: Backreferencing OFF on input line 4182.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4385.
+Package hyperref Info: Bookmarks ON on input line 4408.
 \c@Hy@tempcnt=\count290
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4723.
+LaTeX Info: Redefining \url on input line 4746.
 \XeTeXLinkMargin=\dimen152
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -356,13 +356,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count291
 \Field@Width=\dimen153
 \Fld@charsize=\dimen154
-Package hyperref Info: Hyper figures OFF on input line 6001.
-Package hyperref Info: Link nesting OFF on input line 6006.
-Package hyperref Info: Hyper index ON on input line 6009.
-Package hyperref Info: backreferencing OFF on input line 6016.
-Package hyperref Info: Link coloring OFF on input line 6021.
-Package hyperref Info: Link coloring with OCG OFF on input line 6026.
-Package hyperref Info: PDF/A mode OFF on input line 6031.
+Package hyperref Info: Hyper figures OFF on input line 6024.
+Package hyperref Info: Link nesting OFF on input line 6029.
+Package hyperref Info: Hyper index ON on input line 6032.
+Package hyperref Info: backreferencing OFF on input line 6039.
+Package hyperref Info: Link coloring OFF on input line 6044.
+Package hyperref Info: Link coloring with OCG OFF on input line 6049.
+Package hyperref Info: PDF/A mode OFF on input line 6054.
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -373,7 +373,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2022-05-17 v7.00q Hyperref driver for XeTeX
+File: hxetex.def 2022-06-20 v7.00s Hyperref driver for XeTeX
 (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
@@ -523,7 +523,7 @@ LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
 \tipasavetokens=\toks25
 \tipachecktokens=\toks26
 ) (/Users/elodielemaire/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2022/06/06 3.76 The Babel package
+Package: babel 2022/06/26 3.77 The Babel package
 \babel@savecnt=\count316
 \U@D=\dimen184
 \l@unhyphenated=\language4
@@ -1122,28 +1122,26 @@ LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
 
 
 ]
-File: Figure/SCleg.png Graphic file (type bmp)
-<Figure/SCleg.png>
-
-LaTeX Font Warning: Font shape `TU/TimesNewRoman(0)/m/sc' undefined
-(Font)              using `TU/TimesNewRoman(0)/m/n' instead on input line 215.
-
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 215.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 215.
-
-LaTeX Font Warning: Font shape `TU/TimesNewRoman(0)/b/sc' undefined
-(Font)              using `TU/TimesNewRoman(0)/b/n' instead on input line 215.
-
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 215.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/sc' will be
-(Font)              scaled to size 9.0pt on input line 215.
 File: Figure/SC1.png Graphic file (type bmp)
 <Figure/SC1.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--243
+LaTeX Font Warning: Font shape `TU/TimesNewRoman(0)/m/sc' undefined
+(Font)              using `TU/TimesNewRoman(0)/m/n' instead on input line 212.
+
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 212.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
+(Font)              scaled to size 9.0pt on input line 212.
+
+LaTeX Font Warning: Font shape `TU/TimesNewRoman(0)/b/sc' undefined
+(Font)              using `TU/TimesNewRoman(0)/b/n' instead on input line 212.
+
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 212.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/sc' will be
+(Font)              scaled to size 9.0pt on input line 212.
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--238
 [][][]\TU/TimesNewRoman(0)/m/n/8 .[][][]$[][][][] [] [] [] [][][] [] [][][][][][] [] [][][][][][][] [] [][][][] [] [][] [] [][][][][][] [][] [][][][][][][][][][][][] [][] [][][][][] [] [][][][][][][] [][] [][][] [][] [][][][][][][] [][] [][][][][] [] [][][][][][][][][][][] [][] [][] [][] [][] [][] [][][][][][][][] [][] [][][][] [][]
  []
 
@@ -1173,6 +1171,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.39886pt}.
 
 [4]
+Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 12.39886pt, for example:
@@ -1183,7 +1182,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [5]
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
-Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 12.39886pt, for example:
@@ -1192,8 +1190,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.39886pt}.
 
 [6]
-File: Figure/SC2.png Graphic file (type bmp)
-<Figure/SC2.png>
+File: Figure/SC1.png Graphic file (type bmp)
+<Figure/SC1.png>
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 12.39886pt, for example:
@@ -1220,12 +1218,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [9]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 12.39886pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.39886pt}.
+(fancyhdr)                Make it at least 24.39886pt, for example:
+(fancyhdr)                \setlength{\headheight}{24.39886pt}.
 (fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-0.39886pt}.
+(fancyhdr)                \addtolength{\topmargin}{-12.39886pt}.
 
 [10]
+Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 24.39886pt, for example:
@@ -1235,7 +1234,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [11]
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
-Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 24.39886pt, for example:
@@ -1244,13 +1242,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.39886pt}.
 
 [12]
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 8.0pt on input line 937.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
-(Font)              scaled to size 8.0pt on input line 937.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 6.0pt on input line 937.
-Missing character: There is no ‑ (U+2011) in font Times New Roman Bold/OT:script=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 
@@ -1269,6 +1261,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.39886pt}.
 
 [14]
+Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
+Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 24.39886pt, for example:
@@ -1284,7 +1279,10 @@ Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=la
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
 Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
-Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
+
+Package caption Warning: Unused \captionsetup[table] on input line 106.
+See the caption package documentation for explanation.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 24.39886pt, for example:
@@ -1293,11 +1291,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.39886pt}.
 
 [16]
-Missing character: There is no ‑ (U+2011) in font Times New Roman/OT:script=latn;language=dflt;mapping=tex-text;!
-
-Package caption Warning: Unused \captionsetup[table] on input line 106.
-See the caption package documentation for explanation.
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 24.39886pt, for example:
@@ -1313,11 +1306,11 @@ Package rerunfilecheck Info: File `Chapitre1.out' has not changed.
 (rerunfilecheck)             Checksum: DB923C05112B5F3EF1B373ED421EB08A;3022.
  ) 
 Here is how much of TeX's memory you used:
- 25113 strings out of 477864
- 455379 string characters out of 5845114
- 930420 words of memory out of 5000000
- 45687 multiletter control sequences out of 15000+600000
- 474893 words of font info for 93 fonts, out of 8000000 for 9000
+ 25086 strings out of 477857
+ 454677 string characters out of 5844972
+ 931223 words of memory out of 5000000
+ 45672 multiletter control sequences out of 15000+600000
+ 474869 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,12n,122p,651b,519s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
