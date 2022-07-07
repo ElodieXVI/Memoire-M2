@@ -1,0 +1,260 @@
+---
+output: 
+  pdf_document:
+    includes:
+      in_header: MEP.tex
+    number_sections: true
+    latex_engine: xelatex
+documentclass: report
+linestretch: 1.5
+fontsize: 12
+mainfont: Times New Roman
+geometry: margin=2.5cm
+papersize: a4
+bibliography: Biblio.bib
+csl: le-tapuscrit-note.csl
+---
+```{=tex}
+\phantomsection
+\addcontentsline{toc}{section}{Annexes}
+\section*{\large Annexes}
+```
+\vspace{.5cm}
+
+
+```{r annexes setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", message = FALSE, warning = FALSE)
+library(pacman)
+p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr, 
+       explor, webshot, gtsummary, gt, survey, factoextra, magrittr,
+       MetBrewer, extrafont, flextable)
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+
+set_flextable_defaults(font.size = 10, font.family = "Times", font.color = "black", line_spacing = 1)
+
+source("R/Recodage.R")
+source("R/Fonctions.R")
+```
+\mdfsetup{%
+middlelinewidth=2pt,
+backgroundcolor=gray!10,
+roundcorner=10pt}
+\begin{mdframed}[frametitle=Liste de sigles]
+
+AED : Action Éducative à Domicile.
+
+AEMO :  Action Éducative en Milieu Ouvert.
+
+ANMECS : Association Nationale des Maisons d’Enfants à Caractère Social.
+
+ASE : Aide Sociale à l’Enfance.
+
+DPJJ : Direction de la protection judiciaire de la jeunesse.
+
+DREES : Direction de la Recherche, des Études, de l’Évaluation et des Statistiques.
+
+ES : Enquête auprès des Établissements Sociaux.
+
+ES-PE : Enquête auprès des Établissements Sociaux de la Protection de l’Enfance.
+
+FINESS : Fichier National des Établissements Sanitaires et Sociaux.
+
+MECS : Maison d’Enfant à Caractère Social.
+
+MNA : Mineur Non Accompagné.
+
+MIE : Mineur Isolé Étranger.
+
+ODAS : Observatoire de l’action sociale décentralisée.
+
+ODEP : Observatoire départemental de la Protection de l’enfance.
+
+ONPE : Observatoire national de la Protection de l’enfance.
+
+PE : Protection de l’enfance.
+
+PJJ : Protection Judiciaire de la Jeunesse.
+
+\end{mdframed}
+
+```{=tex}
+\begin{singlespace}
+```{r}
+repsex <- subset(act, REPSEX == "1")
+ex1 <- repsex$ID
+repsexO <- enf[enf$ID %in% ex1, ]    
+repsexO$poids2 <- repsexO$poids_enf/mean(repsexO$poids_enf)
+repsexOw <- svydesign(ids = ~1, data = repsexO, weights = ~ repsexO$poids2)
+
+
+repsexn <- subset(act, REPSEX == "0")
+ex2 <- repsexn$ID
+repsexN <- enf[enf$ID %in% ex2, ] 
+repsexN$poids2 <- repsexN$poids_enf/mean(repsexN$poids_enf)
+repsexNw <- svydesign(ids = ~1, data = repsexN, weights = ~ repsexN$poids2)
+
+
+t1 <-  repsexOw %>% tbl_svysummary(include = c(HEBE_rec3, SEX),
+                        by = HEBE_rec3,
+                        missing = "no",
+                        statistic = list(all_categorical() ~ "{p}"), 
+                        label = list(SEX ~ " ")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+t2 <-  repsexNw %>% tbl_svysummary(include = c(HEBE_rec3, SEX),
+                                by = HEBE_rec3,
+                                missing = "no",
+                                statistic = list(all_categorical() ~ "{p}"), 
+                               label = list(SEX ~ " ")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+tbl_stack(tbls=list(t1,t2), group_header = list("Oui", "Non")) %>% 
+  as_flex_table() %>% 
+   add_footer_lines("Source : ES-PE 2017, DREES.
+                   Champ : France entière, hors Mayotte, enfants présents au 15/12/2017 en MECS (hors sections d'accueil mère-enfant).
+                   Lecture : ") %>% 
+ fontsize(size = 9, part = "footer") %>% 
+   set_caption(caption = "La répartition en MECS par sexe entre les types d’hébergement (% pondérés)") %>% 
+  color(color = "black", part = "all") %>% 
+  width(width = 1) %>% 
+  height_all(height = 0.5) %>%
+   align(part = "all", align = "center")%>%
+   align(part = "footer", align = "right")
+```
+
+
+```{r}
+repage <- subset(act, REPAGE == "1")
+ex1 <- repage$ID
+repageO <- enf[enf$ID %in% ex1, ]    
+repageO$poids2 <- repageO$poids_enf/mean(repageO$poids_enf)
+repageOw <- svydesign(ids = ~1, data = repageO, weights = ~ repageO$poids2)
+
+repagen <- subset(act, REPAGE == "0")
+ex2 <- repagen$ID
+repageN <- enf[enf$ID %in% ex2, ] 
+repageN$poids2 <- repageN$poids_enf/mean(repageN$poids_enf)
+repageNw <- svydesign(ids = ~1, data = repageN, weights = ~ repageN$poids2)
+
+t1 <-  repageOw %>% tbl_svysummary(include = c(HEBE_rec3, age_ed),
+                               by = HEBE_rec3,
+                               missing = "no",
+                               statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+t2 <-  repageNw %>% tbl_svysummary(include = c(HEBE_rec3, age_ed),
+                               by = HEBE_rec3,
+                               missing = "no",
+                               statistic = list(all_categorical() ~ "{p}")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels()
+
+tbl_stack(tbls=list(t1,t2), group_header= list("Oui", "Non")) %>% 
+    as_flex_table() %>% 
+   add_footer_lines("Source : ES-PE 2017, DREES.
+                   Champ : France entière, hors Mayotte, enfants présents au 15/12/2017 en MECS (hors sections d'accueil mère-enfant).
+                   Lecture : ") %>% 
+ fontsize(size = 9, part = "footer") %>% 
+   set_caption(caption = "La répartition en MECS par âge entre les types d’hébergement (% pondérés)") %>% 
+  color(color = "black", part = "all") %>% 
+  width(width = 1) %>% 
+  height_all(height = 0.5) %>%
+   align(part = "all", align = "center")%>%
+   align(part = "footer", align = "right")
+```
+
+
+```{r}
+act2 <- filter(act, CATEG_rec != "Villages")
+act2 <- filter(act2,CATEG_rec != "Pouponnières")
+
+act2$CATEG_rec <- act2$CATEG_rec %>%
+  fct_relevel("MECS", "Foyers", "Lieux de vie")
+
+recode_acc <- function(var) {
+  var_recodee <- fct_recode(as.factor(var),
+                            "Spécialisé dans l'accueil de ce public" = "1",
+                            "Accueil possible" = "2",
+                            "Exclusion de ce public"= "3")
+  return(var_recodee)
+}
+
+act2$ACCSCO <- recode_acc(act2$ACCSCO)
+act2$ACCPSY <- recode_acc(act2$ACCPSY)
+act2$ACCHAN<- recode_acc(act2$ACCHAN)
+act2$ACCDEL <- recode_acc(act2$ACCDEL)
+act2$ACCPSY <- recode_acc(act2$ACCADD)
+act2$ACCMUL <- recode_acc(act2$ACCMUL)
+act2$ACCFRA <- recode_acc(act2$ACCFRA)
+act2$ACCMIE <- recode_acc(act2$ACCMIE)
+act2$ACCENC <- recode_acc(act2$ACCENC)
+
+act2$poids2<- act2$poids_act/mean(act2$poids_act)
+act2w <- svydesign(ids = ~1, data = act2, weights = ~ act2$poids2)
+
+act2w %>% tbl_svysummary(include = c(ACCHAN,ACCDEL,ACCMUL,ACCMIE),
+                    by = CATEG_rec,
+                    missing = "no",
+                    statistic = list(all_categorical() ~ "{p}"),
+                    label = list(ACCHAN ~ "Situation d’handicap",
+                    ACCDEL ~ "Délinquant",
+                    ACCMUL ~ "Difficultés multiples",
+                    ACCMIE ~ "Mineurs non accompagnés (MNA)")) %>%   
+  modify_header(label = "") %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  modify_column_hide(columns = c(stat_4, stat_5)) %>%
+  bold_labels() %>% 
+  as_flex_table() %>% 
+  add_footer_lines("Source : ES-PE 2017, DREES.
+                   Champ : France entière, hors Mayotte, établissements inscrits au fichier FINESS en 2017.
+                   Lecture : ") %>% 
+  fontsize(size = 9, part = "footer") %>% 
+  set_caption(caption = "Type de public mentionné dans le projet d’établissement par type d’établissement (% pondérés)") %>% 
+  color(color = "black", part = "all") %>% 
+  width(width = 1) %>% 
+  height_all(height = 0.5) %>%
+  align(part = "all", align = "center")%>%
+  align(part = "footer", align = "right")
+```
+
+```{r, fig.cap = "Espace des types d'hébergements en MECS", out.width = "80%"}
+s_mecs <- sor %>% subset(CATEG_rec == "MECS")
+s_mecs$id <- rownames(s_mecs)
+
+s_acm <- s_mecs %>% 
+  select("HEBE_rec3","ARES_rec", "SRES_rec", "id")%>% 
+  drop_na()
+
+levels(s_acm$HEBE_rec3) <- paste0("hebe_",levels(s_acm$HEBE_rec3))
+
+levels(s_acm$ARES_rec) <- paste0("ares_",levels(s_acm$ARES_rec))
+
+levels(s_acm$SRES_rec) <- paste0("sres_",levels(s_acm$SRES_rec))
+
+var_activ  <- s_acm[,c("ARES_rec", "HEBE_rec3", "SRES_rec")]
+
+res.MCA<-MCA(var_activ,graph=FALSE)
+
+g2 <- plot.MCA(res.MCA,invisible= c( 'quali.sup'),
+               title="",
+               autoLab = "yes",
+               graph.type = "ggplot", col.ind = "#808080",
+               col.var = "#4c3b7f", col.quali.sup = "#88a0dc") + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : France entière, hors Mayotte, enfants sortis de l’établissement \n d’observation au cours de 2017 (hors sections d’accueil mères-enfants).")+
+  theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
+  
+g2
+```
+```{r, out.width = "60%"}
+fviz_screeplot(res.MCA, addlabels = TRUE, ylim =c(0, 50), main="", ylab = "Pourcentages d'inertie") + theme_bw() +
+  theme(text = element_text(family = "Times"))
+```
+
+
+\end{singlespace}
+```
+
+```{r, child="Trajectoires.Rmd"}
+```

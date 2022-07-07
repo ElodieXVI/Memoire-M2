@@ -22,18 +22,19 @@ freq(wtd.table(e_acm$HEBE_rec3, weights = e_acm$poids2))
 
 ## ACM sor
 freq(s_mecs$SEX, exclude = NA)
-freq(s_acm$SEX)
+freq(s_acm2$SEX)
 
 freq(s_mecs$age_ed, exclude = NA)
-freq(s_acm$age_ed)
+freq(s_acm2$age_ed)
 
 freq(s_mecs$HEBE_rec3, exclude = NA)
-freq(s_acm$HEBE_rec3)
+freq(s_acm2$HEBE_rec3.x)
 
 freq(s_mecs$ARES_rec, exclude = NA)
-freq(s_acm$ARES_rec)
+freq(s_acm2$ARES_rec.x)
 
-
+freq(s_mecs$SRES_rec, exclude = NA)
+freq(s_acm2$SRES_rec.x)
 
 freq(wtd.table(s_mecs$HEBE_rec3, weights = s_mecs$poids2), exclude = NA)
 

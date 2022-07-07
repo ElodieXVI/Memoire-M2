@@ -214,7 +214,7 @@ recode_acc <- function(var) {
 
 act2$ACCSCO <- recode_acc(act2$ACCSCO)
 act2$ACCPSY <- recode_acc(act2$ACCPSY)
-act2$ACCHAN<- recode_acc(act2$ACCHAN)
+act2$ACCHAN <- recode_acc(act2$ACCHAN)
 act2$ACCDEL <- recode_acc(act2$ACCDEL)
 act2$ACCPSY <- recode_acc(act2$ACCADD)
 act2$ACCMUL <- recode_acc(act2$ACCMUL)

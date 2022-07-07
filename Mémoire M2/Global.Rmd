@@ -1,0 +1,63 @@
+---
+output: 
+  pdf_document:
+    includes:
+      in_header: MEP.tex
+    number_sections: true
+    latex_engine: xelatex
+documentclass: report
+linestretch: 1.5
+mainfont: Times New Roman
+fontsize: 12
+geometry: margin=2.5cm
+papersize: a4
+bibliography: Biblio.bib
+csl: le-tapuscrit-note.csl
+---
+
+```{r child="pdg.Rmd"}
+```
+
+\newpage
+\begin{spacing}{1}
+\phantomsection
+\addcontentsline{toc}{section}{Table des matières}
+
+\tableofcontents
+
+\end{spacing}
+
+\newpage
+\pagenumbering{arabic}
+\setlength{\parskip}{1em}
+
+\newpage
+```{r child="Chapitre1.Rmd"}
+```
+
+\newpage
+```{r child="Chapitre2.Rmd"}
+```
+
+
+\newpage
+```{r child="Chapitre4.Rmd"}
+```
+
+
+\newpage
+\singlespacing
+\setlength{\parskip}{0.5em}
+
+
+\phantomsection
+\addcontentsline{toc}{section}{Bibliographie}
+\section*{Bibliographie}
+
+<div id="refs"></div>
+
+\listoftables
+\listoffigures
+
+```{r child="Annexes.Rmd"}
+```

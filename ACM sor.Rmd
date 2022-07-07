@@ -17,7 +17,12 @@ lang: fr
 
 ```{r setup, include=FALSE}
 setwd("/Users/elodielemaire/Desktop/Mémoire M2")
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+knitr::opts_chunk$set(
+	echo = FALSE,
+	fig.align = "center",
+	message = FALSE,
+	warning = FALSE
+)
 library(pacman)
 p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr, 
        explor, webshot, gtsummary, gt, survey, factoextra, magrittr,
@@ -25,10 +30,9 @@ p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr,
 theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
 ```
 
-
-```{r setup, include=FALSE}
+```{r source}
 source("Recodage.R")
-source("Fonctions.R")
+source("R markdown/R/Fonctions.R")
 ```
 
 ```{r recodage}
@@ -57,11 +61,12 @@ g2 <- plot.MCA(res.MCA,invisible= c( 'quali.sup'),
                autoLab = "yes",
                graph.type = "ggplot", col.ind = "skyblue",
                col.var = "#4c3b7f", col.quali.sup = "#88a0dc")
-g2  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : Sur les 10 522 enfants sortis de MECS au cours de 2017.")+
+g2  + labs(caption="Source : Enquête ES-PE 2017, DREES \n Champ : France entière, hors Mayotte, enfants sortis de l’établissement \n d’observation au cours de 2017 (hors sections d’accueil mères-enfants).")+
   theme(text = element_text(family = "Times"), plot.title = element_text(face = "bold"))
 
 fviz_screeplot(res.MCA, addlabels = TRUE, ylim =c(0, 50), main="", ylab = "Pourcentages d'inertie") + theme_bw() +
   theme(text = element_text(family = "Times"))
+
 ```
 
 
@@ -75,41 +80,60 @@ s_acm$grp2 <- res.HCPC2$data.clust$clust
 
 ```{r}
 s_acm2 <- merge(s_acm, s_mecs, by = "id")
-s_acm2 %>% tbl_summary(include = c(grp2, ARES_rec, HEBE_rec3,SRES_rec),
+
+## Réordonnancement de s_acm2$ARES_rec.x
+s_acm2$ARES_rec.x <- s_acm2$ARES_rec.x %>%
+  fct_relevel(
+    "ares_EtabASEPJJ", "ares_Logtacc", "ares_Logthors", "ares_Assfam",
+    "ares_Famille")
+
+s_acm2$SRES_rec.x <- s_acm2$SRES_rec.x %>%
+  fct_relevel(
+    "sres_EtabASEPJJ", "sres_Logtacc", "sres_Logthors", "sres_Assfam",
+    "sres_Famille")
+
+s_acm2 %>% tbl_summary(include = c(grp2, ARES_rec.x, HEBE_rec3.x,SRES_rec.x),
                     by = grp2,
                     percent = "col", 
                     statistic = list(all_categorical() ~ "{p}")) %>%   
   modify_header(label = " ") %>% 
   bold_labels() %>% 
-  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**") %>% 
+  add_overall()
 ```
 
 
 ```{r}
 s_acm2$MES_rec <-
   fct_recode(as.character(s_acm2$MES_rec),
-    NULL = "NA",
-    "MO.autre" = "Milieu ouvert",
-    "MO.autre" = "Autre")
+    NULL = "NA")
 
-s_acm2 %>% tbl_summary(include = c(grp2, age_ed,age_sd,SEX,HAND, MNA),
+s_acm2 %>% tbl_summary(include = c(grp2, age_ed,age_sd,SEX,MNA, HAND),
                     by = grp2,
                     percent = "col", 
                     statistic = list(all_categorical() ~ "{p}"),
                     missing = "no",) %>%   
   modify_header(label = " ") %>% 
   bold_labels() %>% 
-  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**") %>% 
+  add_overall()
 
+
+## Réordonnancement de s_acm2$MES_rec
+s_acm2$MES_rec <- s_acm2$MES_rec %>%
+  fct_relevel(
+    "Mesure touchant la responsabilité parentale", "Mesure administrative Mineur",
+    "Mesure administrative Jeune Majeur", "Judiciaire confié", "Judiciaire direct juge",
+    "MO.autre"
+  )
 s_acm2 %>% tbl_summary(include = c(grp2, MES_rec),
                     by = grp2,
                     percent = "row", 
                     statistic = list(all_categorical() ~ "{p}"),
-                    missing = "no",) %>%   
+                    missing = "no") %>%   
   modify_header(label = " ") %>% 
   bold_labels() %>% 
   modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
-
 
 s_acm2%>% tbl_summary(include = c(grp2, dur_dpla, dur_pla),
                     by = grp2,
@@ -135,26 +159,41 @@ s_acm2%>% tbl_summary(include = c(hebe_capa2),
   modify_header(label = " ") %>% 
   bold_labels() %>% 
   modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
+
+
+s_acm2%>% tbl_summary(include = c(ppla),
+                    by = grp2,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no",) %>%   
+  modify_header(label = " ") %>% 
+  bold_labels() %>% 
+  modify_spanning_header(c("stat_1", "stat_2","stat_3") ~ "**Groupe de la classification**")
 ```
 
 ```{r}
-modele <- s_acm2 %>% select(poids_sor, ID, SEX, MNA, HAND, age_ed, age_sd, MES_rec,hebe_capa2, grp2)
+modele <- s_acm2 %>% select(poids_sor, ID, SEX, MNA, HAND, age_ed, age_sd, MES_rec,hebe_capa2, grp2, ppla, age_s, age_e)
 
 modele %<>% drop_na()
 
-
-modele$age_ed <- modele$age_ed %>%
-  fct_recode(
-    "0_6" = "0_3",
-    "0_6" = "4_6"
+recode_age2 <- function(var) {
+  print(table(var, useNA = "ifany"))
+  var_rec <- cut(var,
+                 include.lowest = TRUE,
+                 right = FALSE,
+                 dig.lab = 4,
+                 breaks = c(0, 11, 13, 15, 18, 27)
   )
+  var_rec <- var_rec %>%
+    fct_recode("0 à 10 ans" = "[0,11)", "11 à 12 ans" = "[11,13)", "13 à 14 ans" = "[13,15)", "15 à 17 ans" = "[15,18)", "18 ans à plus" = "[18,27]")
+  print(table(var_rec, useNA = "ifany"))
+  return(var_rec)
+}
 
-modele$age_sd <- modele$age_sd %>%
-  fct_recode(
-    "0_6" = "0_3",
-    "0_6" = "4_6"
-  )
-modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed,age_sd, MES_rec, hebe_capa2),
+modele$age_sd2 <- recode_age2(modele$age_s)
+modele$age_ed2 <- recode_age2(modele$age_e)
+
+modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed, age_sd2, MES_rec, hebe_capa2, ppla),
                     by = grp2,
                     missing = "no",
                     statistic = list(all_categorical() ~ "{n}")) %>%   
@@ -162,7 +201,7 @@ modele %>% tbl_summary(include = c(SEX, MNA, HAND, age_ed,age_sd, MES_rec, hebe_
   bold_labels()
 
 require(nnet)
-m1 <- multinom(grp2 ~ SEX + age_ed + age_sd  + MNA + HAND, data = modele)
+m1 <- multinom(grp2 ~ SEX + age_ed2 + age_sd2  + MNA + HAND, data = modele)
 
 m1 %>% tbl_regression(exponentiate = TRUE) %>% 
   add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
@@ -176,11 +215,11 @@ m1 %>% tbl_regression(exponentiate = TRUE) %>%
 ## Réordonnancement de modele$MES_rec
 modele$MES_rec <- modele$MES_rec %>%
   fct_relevel(
-    "MO.autre", "Mesure touchant la responsabilité parentale",
+   "Autre", "Mileu ouvert", "Mesure touchant la responsabilité parentale",
     "Mesure administrative Mineur", "Mesure administrative Jeune Majeur",
     "Judiciaire confié", "Judiciaire direct juge"
   )
-m2 <- multinom(grp2 ~ SEX + age_ed + age_sd  + MES_rec +MNA + HAND, data = modele)
+m2 <- multinom(grp2 ~ SEX + age_ed2 + age_sd2  + MES_rec +MNA + HAND, data = modele)
 
 m2 %>% tbl_regression(exponentiate = TRUE) %>% 
   add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
@@ -191,9 +230,40 @@ m2 %>% tbl_regression(exponentiate = TRUE) %>%
   multinom_pivot_wider()
 
 
-m3 <- multinom(grp2 ~ SEX + age_ed + age_sd  + MES_rec +MNA + HAND + hebe_capa2, data = modele)
+m3 <- multinom(grp2 ~ SEX + age_ed2 + age_sd2  + MES_rec +MNA + HAND + ppla, data = modele)
 
 m3 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 2 : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+
+modele$ppla <- as.numeric(modele$ppla)
+
+m4 <- multinom(grp2 ~ SEX + age_ed2 + age_sd2  + MES_rec +MNA + HAND  + ppla+ hebe_capa2, data = modele)
+step(m4)
+
+m4 %>% tbl_regression(exponentiate = TRUE) %>% 
+  add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
+  modify_header(label = "**Référence : grp1**") %>%
+  modify_caption("Modèle 2 : type d'hébergement à la sortie de MECS")  %>% 
+  modify_column_hide("ci") %>% 
+  bold_labels()%>%
+  multinom_pivot_wider()
+
+## Réordonnancement de modele$grp2
+modele$grp2 <- modele$grp2 %>%
+  fct_relevel(
+    "2", "1", "3"
+  )
+
+m4 <- multinom(grp2 ~ SEX + age_ed2 + age_sd2  + MES_rec +MNA + HAND  + ppla+ hebe_capa2, data = modele)
+step(m4)
+
+m4 %>% tbl_regression(exponentiate = TRUE) %>% 
   add_significance_stars(hide_se = TRUE, hide_ci = TRUE) %>%
   modify_header(label = "**Référence : grp1**") %>%
   modify_caption("Modèle 2 : type d'hébergement à la sortie de MECS")  %>% 
