@@ -68,8 +68,8 @@ Laure Hadj
 
 ```{=tex}
 \phantomsection
-\addcontentsline{toc}{section}{Remerciements}
-\section*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+\chapter*{Remerciements}
 ```
 \vspace{.5cm}
 
@@ -81,8 +81,8 @@ Laure Hadj
 
 ```{=tex}
 \phantomsection
-\addcontentsline{toc}{section}{Avant-propos}
-\section*{Avant-propos}
+\addcontentsline{toc}{chapter}{Avant-propos}
+\chapter*{Avant-propos}
 ```
 \vspace{.5cm}
 

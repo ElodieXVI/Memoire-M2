@@ -246,7 +246,8 @@ s_acm2 %>% tbl_summary(include = c(grp2, ARES_rec.x, HEBE_rec3.x,SRES_rec.x),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -348,7 +349,8 @@ s_acm2 %>% tbl_summary(include = c(grp2, SEX, age_ed,age_sd,MNA, HAND),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -402,7 +404,8 @@ s_acm2 %>% tbl_summary(include = c(grp2, MES_rec),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -610,7 +613,8 @@ m4 %>% tbl_regression(exponentiate = TRUE,
   width(width = 2) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````

@@ -248,8 +248,7 @@ que les faits qui ont été portés à l'attention de la police et de la
 gendarmerie en France métropolitaine. De plus, elles ne permettent pas
 de réels croisements et d'études avancées.
 
-> *Les données produites par l'ONPE et particulièrement le dispositif
-> OLINPE*
+> *Les données produites par l'ONPE et particulièrement le dispositif OLINPE*
 
 Nous l'avons vu une des missions de l'ONPE est le recueil et l'analyse
 des données produites par les départements concernant l'Aide sociale à
@@ -711,7 +710,8 @@ enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, age_ed, MNA,HAND),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -791,7 +791,8 @@ enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -861,7 +862,8 @@ enfw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -933,7 +935,8 @@ sorw %>% tbl_svysummary(include = c(CATEG_rec,SEX, age_ed, MNA,HAND),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -980,7 +983,8 @@ sorw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````
@@ -1020,7 +1024,8 @@ sorw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
   align(part = "all", align = "center")%>%
-  align(part = "footer", align = "right")
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
 ````

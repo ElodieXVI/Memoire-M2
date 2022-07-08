@@ -32,6 +32,10 @@ csl: le-tapuscrit-note.csl
 \setlength{\parskip}{1em}
 
 \newpage
+```{r child="Introduction.Rmd"}
+```
+
+\newpage
 ```{r child="Chapitre1.Rmd"}
 ```
 
@@ -39,6 +43,9 @@ csl: le-tapuscrit-note.csl
 ```{r child="Chapitre2.Rmd"}
 ```
 
+\newpage
+```{r child="Chapitre3.Rmd"}
+```
 
 \newpage
 ```{r child="Chapitre4.Rmd"}
@@ -56,8 +63,12 @@ csl: le-tapuscrit-note.csl
 
 <div id="refs"></div>
 
+\newpage
 \listoftables
+
+\newpage
 \listoffigures
 
+\newpage
 ```{r child="Annexes.Rmd"}
 ```
