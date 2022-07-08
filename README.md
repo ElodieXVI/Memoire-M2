@@ -1,4 +1,4 @@
-# Memoire-M2
+# Mémoire-M2
 Mémoire de M2 Quantifier en sciences sociales
 
 Ce mémoire a été réalisé sur R Markdown, l'intégralité des analyses sont disponibles dans le dossier "Texte" de ce git repository.
