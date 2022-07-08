@@ -1,0 +1,33 @@
+---
+output: 
+  pdf_document:
+    includes:
+      in_header: MEP.tex
+    number_sections: true
+    latex_engine: xelatex
+documentclass: report
+linestretch: 1.5
+fontsize: 12pt
+mainfont: Times New Roman
+geometry: margin=2.5cm
+papersize: a4
+bibliography: Biblio.bib
+csl: le-tapuscrit-note.csl
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup c3, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,fig.align = 'center')
+options(kableExtra.latex.load_packages = FALSE)
+library(pacman)
+p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr, 
+      survey, magrittr,GGally,wesanderson,
+       MetBrewer, extrafont, 
+      flextable, gtsummary)
+theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
+source("R/Recodage.R")
+source("R/Fonctions.R")
+```
+
