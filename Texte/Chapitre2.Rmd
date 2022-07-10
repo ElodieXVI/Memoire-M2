@@ -33,7 +33,7 @@ source("R/Fonctions.R")
 
 # Des sources données fragmentées héritées de l'organisation de la Protection de l'enfance
 
-|           Cette organisation de la Protection de l'enfance a eu des effets concrets sur la production de données sur le sujet, et ainsi sur l'état des connaissances scientifiques sur la population des enfants protégés. C'est l'objet de ce nouveau chapitre. L'objectif est de rendre compte des difficultés qu'ont les différents services de la Protection de l'enfance à différentes échelles (locale, départementale et nationale) à organiser un dispositif de collecte de données efficaces qui permettrait de remplir des objectifs autant gestionnaires que scientifiques de connaissance de la population des enfants protégés. L'enjeu est donc de présenter un champ de production de données fragmenté en fonction des producteurs de ces données et des enfants concernés par ces enquêtes. Aujourd'hui, à part l'enquête auprès des établissements sociaux de la Protection de l'enfance (ES-PE) de 2017, peu de source de données permettent d'étudier scientifiquement les enfants protégés, particulièrement les enfants placés en établissement et surtout pas à l'échelle nationale. Néanmoins, cette source souffre des limites de sa double visée : à la fois gestionnaire et scientifique, induisant des informations collectées parfois imprécises ou incomplètes. Elle souligne aussi la difficulté de construire des enquêtes sur une population aussi hétérogène, qui sera présentée à la fin de ce raisonnement.
+|               Cette organisation de la Protection de l'enfance a eu des effets concrets sur la production de données sur le sujet, et ainsi sur l'état des connaissances scientifiques sur la population des enfants protégés. C'est l'objet de ce nouveau chapitre. L'objectif est de rendre compte des difficultés qu'ont les différents services de la Protection de l'enfance à différentes échelles (locale, départementale et nationale) à organiser un dispositif de collecte de données efficaces qui permettrait de remplir des objectifs autant gestionnaires que scientifiques de connaissance de la population des enfants protégés. L'enjeu est donc de présenter un champ de production de données fragmenté en fonction des producteurs de ces données et des enfants concernés par ces enquêtes. Aujourd'hui, à part l'enquête auprès des établissements sociaux de la Protection de l'enfance (ES-PE) de 2017, peu de source de données permettent d'étudier scientifiquement les enfants protégés, particulièrement les enfants placés en établissement et surtout pas à l'échelle nationale. Néanmoins, cette source souffre des limites de sa double visée : à la fois gestionnaire et scientifique, induisant des informations collectées parfois imprécises ou incomplètes. Elle souligne aussi la difficulté de construire des enquêtes sur une population aussi hétérogène, qui sera présentée à la fin de ce raisonnement.
 
 ## L'impossible comptabilisation des enfants placés ? Un enjeu de gestion et de recherche
 
@@ -125,7 +125,7 @@ la recherche, des études, de l'évaluation et des statistiques (DREES) et
 de la Direction de la protection judiciaire de la jeunesse (DPJJ).
 Ainsi, en 2015, le nombre de mineurs bénéficiant d'au moins une mesure
 de protection de l'enfance est estimé à 295 357 sur la France entière,
-soit 20,1 ‰[^1] des moins de 18
+soit 20,1 ‰ \footnote{= sur mille individus.} des moins de 18
 ans[@onpeEstimationPopulationEnfants2017].
 
 > *Les observatoires départementaux*
@@ -217,8 +217,7 @@ dernières correspondent plutôt à des enquêtes de victimation et sont
 souvent rétrospectives, nous ne les inclurons donc pas à ce
 panorama[^2].
 
-> *Les données produites par les ministères de la Justice et de
-> l'Intérieur*
+> *Les données produites par les ministères de la Justice et de l'Intérieur*
 
 Les ministères de la Justice et de l'Intérieur produisent des
 statistiques sur les enfants placés. Ces dernières ont néanmoins la
@@ -353,9 +352,9 @@ gestionnaire[^4]. Elle collecte ainsi des données agrégées sur les
 bénéficiaires et les dépenses des prestations d'aide sociale relevant de
 la compétence des départements. Cette seconde enquête permet de mieux
 saisir le champ de l'enquête ES-PE, en témoigne ce tableau pour les
-données 2017.
+données 2017 (Voir Table \ref{fig:champs}).
 
-```{r, out.width="80%", fig.cap="Les champs de l'enquête sur les bénéficiaires de l'Aide sociale à l'enfance et de l'enquête ES-PE"}
+```{r champs, out.width="80%", fig.cap="Les champs de l'enquête sur les bénéficiaires de l'Aide sociale à l'enfance et de l'enquête ES-PE"}
 knitr::include_graphics("Figure/Tabrep.png")
 ```
 
@@ -420,7 +419,7 @@ les villages pour enfants. Le répertoire FINESS a permis à la DREES de
 contacter l'ensemble de ces établissements afin qu'ils répondent à leur
 enquête. En tout, 62 % des établissements répertoriés ont répondu[^5].
 
-```{r, out.width="80%",fig.cap="Taux de réponse des différents types d'établissements de l'Aide sociale à l'enfance à l'enquête ES-PE 2017"}
+```{r rep, out.width="80%",fig.cap="Taux de réponse des différents types d'établissements de l'Aide sociale à l'enfance à l'enquête ES-PE 2017"}
 obs$CATEG_rec2 <- add_n(obs$CATEG_rec)
 g1 <- ggplot(na.omit(obs)) +
   aes(x = CATEG_rec, fill = STATUT_REP, by = CATEG_rec, label = f(after_stat(prop))) +
@@ -441,7 +440,7 @@ g1 + theme(text = element_text(family = "Times"), plot.caption = element_text(fa
 ```
 
 Tous les types d'établissements ne présentent pas le même taux de
-réponse à l'enquête. Ainsi, les lieux de vie et d'accueil sont les
+réponse à l'enquête (voir Figure \ref{fig:rep}). Ainsi, les lieux de vie et d'accueil sont les
 structures qui ont le moins répondu à l'enquête ES-PE 2017, avec 57%
 d'établissements répondants[^6]. Ainsi, le type d'établissement ayant le
 plus haut taux de réponses est les foyers de l'enfance à 82%. Dans cet
@@ -476,7 +475,7 @@ en a en tout 7, mais nous ne retenons ici que celles employées dans
 notre étude : soit celle pour l'activité des établissements (ACT), celle
 pour les enfants présents au 15/12/2017 (ENF) et enfin, celle pour les
 enfants sortis en 2017 (SOR). Leur mise en page est dense et rappelle
-les formulaires de l'administration publique. Il est à noter que les
+les formulaires de l'administration publique (voir Figure \ref{fig:formu}). Il est à noter que les
 professionnels chargés de les renseigner sont de professions variées et
 sont non formés à leur remplissage. Ceci implique de probables
 inégalités dans la qualité des réponses envoyées, quand bien même le
@@ -485,7 +484,7 @@ d'accompagner à son remplissage.
 
 \newpage
 
-```{r, out.width="100%", fig.cap="Exemple d’une fiche du questionnaire de l'enquête ES-PE 2017"}
+```{r formu, out.width="100%", fig.cap="Exemple d’une fiche du questionnaire de l'enquête ES-PE 2017"}
 knitr::include_graphics("Figure/Quest1.png")
 ```
 
@@ -546,7 +545,7 @@ soit parce que des questions n'ont pas été posées aux structures, soit
 parce que les modalités de réponses sont floues. En témoigne le cas
 concret qui est au cœur de notre étude des questions posées sur les
 types d'hébergements avant et après avoir été placé dans l'établissement
-observé en 2017 dans le cas des enfants sortis au cours de l'année 2017.
+observé en 2017 dans le cas des enfants sortis au cours de l'année 2017 (voir Table 2.1.1).
 Ces variables auraient pu permettre de reconstruire des trajectoires de
 placement en s'intéressant particulièrement au type d'hébergement.
 Néanmoins, une telle analyse est rendue impossible par l'absence de
@@ -596,7 +595,7 @@ qui n'a pas de date de fin[^8].
 
 Tout ceci est renforcé par le flou des modalités des variables ARES et
 SRES qui invitent à la prudence quant à l'utilisation de ces variables
-dans une analyse.
+dans une analyse (Voir Table 2.1.2).
 
 +--------+-------------------------------------------------------------+
 |        | **Modalités des variables ARES et SRES**                    |
@@ -668,7 +667,7 @@ particulièrement la population présente en MECS.
 > *Une présence importante d'adolescents et jeunes majeurs en MECS*
 
 Ainsi, la principale caractéristique des enfants présents en MECS en
-2017 est l'âge[^9]. Ce type d'établissement semble particulièrement
+2017 est l'âge[^9] (voir Table 2.2.1). Ce type d'établissement semble particulièrement
 tourné vers l'accueil d'un public à partir de 7 ans et adolescent ou
 jeune majeurs à partir de 15 à 17 ans et 18 ans à plus. Cette
 caractéristique de l'âge les distingue d'autres types d'établissement
@@ -676,9 +675,8 @@ tels que les villages pour enfants ou les Pouponnières. À ceci, s'ajoute
 un public plus masculin en MECS (à 61%) que dans ces deux autres types
 d'établissement (respectivement à 49% et 54% de garçons).
 
-````{=tex}
 \begin{singlespace}
-```{r, results='asis'}
+```{r ind, results='asis'}
 enf$CATEG_rec <- enf$CATEG_rec %>% fct_relevel("MECS", "Foyers", "Lieux de vie", "Villages", "Pouponnières")
 
 enfw <- svydesign(ids = ~1, data = enf, weights = ~ enf$poids2)
@@ -714,7 +712,6 @@ enfw %>% tbl_svysummary(include = c(CATEG_rec,SEX, age_ed, MNA,HAND),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-````
 
 Le fait que le public soit plus âgé en MECS est aussi à mettre en
 perspective avec la présence assez importante de mineurs non accompagnés
@@ -742,7 +739,7 @@ par la présence de mineurs non accompagnés.
 
 Concernant les types de mesures, on observe des différences
 significatives entre les différents types d'établissements qui
-confirment l'hétérogénéité du public protégé en MECS.
+confirment l'hétérogénéité du public protégé en MECS (voir Table 2.2.2}).
 
 ```{=tex}
 \mdfsetup{%
@@ -762,9 +759,9 @@ La variable MES proposait à l’origine 19 modalités qui ont été regroupées
 
 \end{mdframed}
 ```
-````{=tex}
+
 \begin{singlespace}
-```{r, results='asis'}
+```{r mes, results='asis'}
 ## Recodage de enf$MES_rec1
 enf$MES_rec <- enf$MES_rec %>%
   fct_recode(
@@ -786,7 +783,7 @@ enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
                    Champ : France entière, hors Mayotte, enfants présents dans l’établissement d’observation au 15/12/2017 (hors sections d'accueil mère-enfant).
                    Lecture : Parmi les enfants présents au 15/12/2017 en MECS, on observe que 8,9% d’entre eux sont concernés par une mesure administrative jeune majeur.") %>% 
   fontsize(size = 9, part = "footer") %>% 
-  set_caption(caption = "Les types de mesures principales de placement en fonction des types d'établissements") %>% 
+  set_caption(caption = "Les types de mesures principales de placement en fonction des types d'établissements (% pondérés)") %>% 
   color(color = "black", part = "all") %>% 
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
@@ -795,7 +792,6 @@ enfw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-````
 
 En effet, confirmant l'âge plus avancé des enfants présents en MECS du
 fait de la présence notamment de mineurs non accompagnés, on retrouve un
@@ -833,15 +829,14 @@ mesure imposée.
 
 Concernant l'ancienneté des enfants présents au 15/12/2017 dans
 l'établissement d'observation, on observe des différences importantes
-entre les différents types d'établissements. L'ancienneté moyenne en
+entre les différents types d'établissements (voir Table 2.2.3). L'ancienneté moyenne en
 MECS est de 20 mois, sachant que 25% des enfants présents y sont depuis
 5 mois ou moins et 25% depuis 26 mois ou plus. Ces durées se comprennent
 en lien avec le type d'accueil proposé par les différents
 établissements.
 
-````{=tex}
 \begin{singlespace}
-```{r}
+```{r anc}
 enfw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
                     by = CATEG_rec,
                     percent = "col", 
@@ -866,7 +861,6 @@ enfw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-````
 
 En effet, les foyers de l'enfance sont plus destinés à un accueil
 d'urgence ou avant réorientation vers un placement plus pérenne dans un
@@ -893,8 +887,7 @@ veut pas dire qu'ils ne sont plus protégés par la protection de
 l'enfance, mais seulement qu'ils ont quitté l'établissement
 d'observation de l'enquête ES-PE au cours de 2017.
 
-> *Un effet de l'âge qui joue dans les différences entre enfants
-> présents et enfants sortis de MECS*
+> *Un effet de l'âge qui joue dans les différences entre enfants présents et enfants sortis de MECS*
 
 Les principales différences entre ces deux populations découlent de
 l'effet de l'âge : les enfants sortis correspondent à une population
@@ -905,11 +898,10 @@ l'établissement une fois leur majorité acquise. Cet effet se retrouve
 ainsi si on regarde par tranche d'âge d'entrée dans l'établissement
 d'observation en MECS où par rapport aux enfants présents, les enfants
 sortis sont plus nombreux dans les tranches d'âges les plus âgées (voir
-tableau 8).
+Table 2.2.4).
 
-````{=tex}
 \begin{singlespace}
-```{r}
+```{r indsor}
 sor$CATEG_rec <- sor$CATEG_rec %>% fct_relevel("MECS", "Foyers", "Lieux de vie", "Villages", "Pouponnières")
 sorw <- svydesign(ids = ~1, data = sor, weights = ~ sor$poids2)
 
@@ -939,7 +931,6 @@ sorw %>% tbl_svysummary(include = c(CATEG_rec,SEX, age_ed, MNA,HAND),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-````
 
 La différence majeure par rapport aux enfants présents est la part de
 mineurs non accompagnés, qui est légèrement plus importante chez les
@@ -951,11 +942,10 @@ Logiquement, lorsque l'on porte notre regard sur les mesures de
 placement des enfants sortis, on observe peu de différences avec celles
 des enfants présents, si ce n'est une plus grande part de mesure
 administrative concernant les jeunes majeurs en MECS. Un résultat qui
-fait écho à l'âge plus avancé de cette population (voir tableau 9).
+fait écho à l'âge plus avancé de cette population (voir Table 2.2.5).
 
-````{=tex}
 \begin{singlespace}
-```{r, results='asis'}
+```{r mes2, results='asis'}
 ## Recodage de sor$MES_rec
 sor$MES_rec <- sor$MES_rec %>%
   fct_recode(
@@ -987,11 +977,10 @@ sorw %>% tbl_svysummary(include = c(MES_rec, CATEG_rec),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-````
 
 Enfin, la durée de placement est paradoxalement plus courte chez les
 enfants sortis que l'ancienneté moyenne des enfants présents en MECS :
-17 mois contre 20 mois. Ainsi, les enfants sortis correspondraient à un
+17 mois contre 20 mois (voir Table 2.2.6). Ainsi, les enfants sortis correspondraient à un
 placement de courte durée, tandis que les enfants présents
 présenteraient une durée de placement plus longue consécutive peut-être
 de plus de difficultés familiales ou individuelles rendant difficile la
@@ -1001,9 +990,8 @@ enfants sortis soient restés plus longtemps en moyenne dans
 l'établissement, ils arriveraient ainsi à la fin de leur parcours de
 placement et quitteraient donc logiquement l'établissement.
 
-````{=tex}
 \begin{singlespace}
-```{r}
+```{r dur}
 sorw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
                     by = CATEG_rec,
                     percent = "col", 
@@ -1028,9 +1016,12 @@ sorw %>% tbl_svysummary(include = c(dur_dpla, CATEG_rec),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-````
 
-**Conclusion de chapitre**
+\vspace{.5cm}
+
+\begin{large}
+\textbf{Conclusion de chapitre}
+\end{large}
 
 Les lois de départementalisation ont ainsi eu pour conséquence la
 fragmentation de la production de données sur l'enfance protégée en
@@ -1052,47 +1043,45 @@ chapitres qui vont suivre de présenter les résultats de notre analyse
 qui cherche à éclairer sur les logiques de répartition entre hébergement
 des professionnels de l'aide sociale à l'enfance.
 
-[^1]: ‰ : sur mille individus.
-
 [^2]: Nous faisons référence ici particulièrement aux enquêtes :
-    Contexte de la sexualité en France (CSF), Évènements de vie et santé
-    (EVS), Enveff et Virage. Mais aussi à l'enquête Étude longitudinale
+  Contexte de la sexualité en France (CSF), Évènements de vie et santé
+(EVS), Enveff et Virage. Mais aussi à l'enquête Étude longitudinale
     française depuis l'enfance (Elfe) suivant des enfants de la
-    naissance à l'âge adulte, qui ne contient pas à proprement parler de
+naissance à l'âge adulte, qui ne contient pas à proprement parler de
     variables sur les violences et la négligence, mais contient
     certaines variables sur les dispositifs de la PE. Ces enquêtes sont
     présentées en lien avec les connaissances qu'elles apportent sur les
-    enfants placés dans le rapport de 2016 de l'ONEP :
+enfants placés dans le rapport de 2016 de l'ONEP :
     <https://www.onpe.gouv.fr/system/files/publication/ragp_2016_-_version_finale_2_leger.pdf>
 
 [^3]: On peut retrouver l'ensemble de leurs productions à cette page :
-    <https://www.onpe.gouv.fr/production-donnees-chiffrees> , consulté
-    le 30/05/2022
+  <https://www.onpe.gouv.fr/production-donnees-chiffrees> , consulté
+le 30/05/2022
 
 [^4]: <https://www.data.gouv.fr/fr/datasets/les-beneficiaires-de-laide-sociale-departementale/>
-    , consulté le 30/05/2022
+  , consulté le 30/05/2022
 
 [^5]: Un taux de réponse totale en baisse par rapport à 2012 où ils
-    affichaient alors un taux de réponse totale de 74% pour les
-    établissements de l'aide sociale à l'enfance.
+affichaient alors un taux de réponse totale de 74% pour les
+établissements de l'aide sociale à l'enfance.
 
 [^6]: Étant donné leur faible nombre, nous ne commentons pas le taux de
-    réponses des villages pour enfants et des pouponnières à caractère
-    social.
+réponses des villages pour enfants et des pouponnières à caractère
+social.
 
 [^7]: ‰ : sur mille individus.
 
 [^8]: À noter qu'à titre d'essai, une tentative d'analyse de trajectoire
     a tout de même été réalisée et qu'elle est présente dans les
-    annexes. Elle permet ainsi de mettre en lumière les difficultés
-    relatées ici.
+annexes. Elle permet ainsi de mettre en lumière les difficultés
+relatées ici.
 
 [^9]: L'âge à l'entrée dans l'établissement a été recodé en tranche
     d'âge pour permettre des analyses. Les tranches d'âge choisies sont
     celles déjà employées dans la littérature sur ces données et surtout
     sur l'étude menée par Élisa Abassi : « 61 000 enfants, adolescents
-    et jeunes majeurs hébergés fin 2017 dans les établissements de
-    l'aide sociale à l'enfance », art cit.
+et jeunes majeurs hébergés fin 2017 dans les établissements de
+l'aide sociale à l'enfance », art cit.
 
 [^10]: Avec un écart-type de 1.4, ce qui confirme bien qu'ils sont
     surtout adolescents à l'entrée en MECS.

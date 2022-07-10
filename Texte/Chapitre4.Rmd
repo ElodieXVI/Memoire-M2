@@ -32,9 +32,9 @@ source("R/Recodage.R")
 source("R/Fonctions.R")
 ```
 
-# L'orientation en MECS au sein du parcours en Protection de l'enfance : trois types de placement aux objectifs différents
+# L'hébergement en MECS dans le cadre du parcours en Protection de l'enfance : trois types de placement aux objectifs différents
 
-|           Dans ce chapitre, nous allons tenter de replacer l'orientation en MECS dans le contexte plus large du parcours de placement en Protection de l'enfance. Du fait de nos données, cette analyse va être considérablement contrainte. En effet, il va plus s'agir de replacer l'orientation en MECS entre hébergement dans un enchaînement très réduit de : où était l'enfant juste avant l'entrée en MECS et où il était juste après. Tout en sachant que ne nous connaissons pas la durée qu'ont ou vont passer ces enfants dans ces hébergements avant ou après le passage en MECS et que les modalités précisant le type d'hébergement sont imparfaites dans les informations qu'elles transmettent. Nous avons choisi en ce sens de réaliser d'abord une classification des différents parcours avant de mesurer toutes choses égales par ailleurs, les effets de chaque variable sur l'orientation vers tel ou tel parcours. Ici, nous reprendrons l'ensemble des critères vus dans le chapitre précédent comme jouant sur l'orientation entre hébergement en MECS.
+|               Dans ce chapitre, nous allons tenter de replacer l'orientation en MECS dans le contexte plus large du parcours de placement en Protection de l'enfance. Du fait de nos données, cette analyse va être considérablement contrainte. En effet, il va plus s'agir de replacer l'orientation en MECS entre hébergement dans un enchaînement très réduit de : où était l'enfant juste avant l'entrée en MECS et où il était juste après. Tout en sachant que ne nous connaissons pas la durée qu'ont ou vont passer ces enfants dans ces hébergements avant ou après le passage en MECS et que les modalités précisant le type d'hébergement sont imparfaites dans les informations qu'elles transmettent. Nous avons choisi en ce sens de réaliser d'abord une classification des différents parcours avant de mesurer toutes choses égales par ailleurs, les effets de chaque variable sur l'orientation vers tel ou tel parcours. Ici, nous reprendrons l'ensemble des critères vus dans le chapitre précédent comme jouant sur l'orientation entre hébergement en MECS.
 
 ```{r recodage, include=FALSE}
 s_mecs <- sor %>% subset(CATEG_rec == "MECS")
@@ -71,15 +71,14 @@ méthodes étaient possibles dans notre cas : réaliser une analyse des
 trajectoires avec l'aide de l'Optimal matching ou une classification
 ascendante hiérarchique (CAH) à partir des résultats d'une analyse des
 correspondances multiples (ACM). L'option de l'analyse des trajectoires
-a été tentée[^1], mais écartée puisque nous n'avons pas la date d'entrée
-dans l'hébergement précédant l'entrée en MECS.
+a été tentée \footnote{Vous retrouverez néanmoins dans les annexes un exemple d'analyse de trajectoire sur l'ensemble des enfants sortis qui met en évidence ce que produit l'absence d'information sur la date du type
+d'hébergement précédent. Mais aussi, une analyse des trajectoires réalisée uniquement sur les enfants pour lesquels le premier placement est la MECS et l'hébergement précédent correspond à leur famille ou tuteur légal, on s'assure ainsi que l'hébergement précédent soit celui occupé depuis la naissance de l'enfant ce qui nous donne sa date.}, mais écartée puisque nous n'avons pas la date d'entrée dans l'hébergement précédant l'entrée en MECS.
 
 Nous avons donc appliqué la deuxième méthode possible, à savoir :
 construire un espace des hébergements avant, pendant et à la sortie de
 MECS, à partir duquel réaliser une classification ascendante
 hiérarchique (CAH). L'ensemble a été calculé sur la population des
-enfants sortis au cours de l'année 2017[^2] et sur les variables actives
-suivantes :
+enfants sortis au cours de l'année 2017 \footnote{De nouveau les individus n'ayant pas l'information disponible pour l'ensemble des variables actives ont été retirés de l'analyse. On passe ainsi de 15 777 enfants sortis de MECS en 2017 à 10 522 individus pour le calcul de l'ACM. Nous nous sommes assurés que cette réduction n'avait pas pour conséquence un déséquilibrage de l'échantillon en le contrôlant par la répartition par sexe, par âge et par les variables actives. De nouveau l'effet principal est le renforcement des modalités d'hébergement les plus fréquentes, tel que l'hébergement collectif.} et sur les variables actives suivantes :
 
 -   Le type d'hébergement une fois en MECS (HEBE) ;
 -   Le type d'hébergement avant l'entrée en MECS (ARES) ;
@@ -118,7 +117,7 @@ freq(s_acm2$SRES_rec.x)
 
 En raison d'un léger décrochage entre le pourcentage d'inertie de l'axe
 2 et de l'axe 3, les deux premiers axes de l'ACM ont été retenus, ils
-résument à eux deux 27,4% de l'inertie totale (voir Annexes)[^3]. Le
+résument à eux deux 27,4% de l'inertie totale (voir Annexes) \footnote{Au vu du faible décrochage des pourcentages d'inertie, on aurait pu être tenté de prendre en considération en plus des deux premiers axes, les axes 3 et 4 dans le calcul de la CAH. Des tests ont été réalisés prenant d'abord en compte les 4 premiers axes de l'ACM puis les 3 premiers axes, les CAH alors calculées donnaient des classes peu pertinentes à l'interprétation en plus d'augmenter l'hétérogénéité intra classes.}. Le
 choix a aussi été motivé par la volonté de créer des classes de la CAH
 bien homogènes, des tests ont été effectués en prenant en compte les
 axes 3 et 4, mais ils donnaient des résultats peu concluants. L'ACM ne
@@ -126,29 +125,31 @@ sera pas particulièrement interprétée ici, puisqu'elle nous sert
 uniquement de base à la construction de la CAH. Nous résumons néanmoins
 l'interprétation de ses axes dans le tableau ci-dessous.
 
-+-----------+---------------------------+---------------------------+
-|           | **+**                     | **-**                     |
-+===========+===========================+===========================+
-| **Axe 1** | **L'hébergement           | **L'hébergement           |
-|           | familial**                | autonome**                |
-|           |                           |                           |
-|           | (Hébergement avant,       | (Hébergement éclaté ou    |
-|           | pendant et après le       | autonome en MECS et       |
-|           | placement en MECS en      | logement accompagné ou    |
-|           | famille ou à domicile)    | hors avant et après le    |
-|           |                           | passage en MECS.)         |
-+-----------+---------------------------+---------------------------+
-| **Axe 2** | **L'hébergement hors      | **L'hébergement en        |
-|           | établissement**           | établissement ou          |
-|           |                           | assistant familial**      |
-|           | (Alliance de              |                           |
-|           | l'hébergement avant,      | (Hébergement avant,       |
-|           | pendant ou après la MECS  | pendant ou après la MECS  |
-|           | en domicile ou en famille | en assistant familial et  |
-|           | et en hébergement éclaté  | en établissement civil ou |
-|           | ou logement accompagné et | pénal ou internat         |
-|           | hors.)                    | collectif.)               |
-+-----------+---------------------------+---------------------------+
++---------------+----------------------+----------------------+
+|               | **+**                | **-**                |
++===============+======================+======================+
+| **Axe 1**     | **L'hébergement      | **L'hébergement      |
+|               | familial**           | autonome**           |
+|               |                      |                      |
+|               | (Hébergement avant,  | (Hébergement éclaté  |
+|               | pendant et après le  | ou autonome en MECS  |
+|               | placement en MECS en | et logement          |
+|               | famille ou à         | accompagné ou hors   |
+|               | domicile)            | avant et après le    |
+|               |                      | passage en MECS.)    |
++---------------+----------------------+----------------------+
+| **Axe 2**     | **L'hébergement hors | **L'hébergement en   |
+|               | établissement**      | établissement ou     |
+|               |                      | assistant familial** |
+|               | (Alliance de         |                      |
+|               | l'hébergement avant, | (Hébergement avant,  |
+|               | pendant ou après la  | pendant ou après la  |
+|               | MECS en domicile ou  | MECS en assistant    |
+|               | en famille et en     | familial et en       |
+|               | hébergement éclaté   | établissement civil  |
+|               | ou logement          | ou pénal ou internat |
+|               | accompagné et hors.) | collectif.)          |
++---------------+----------------------+----------------------+
 
 : Interprétation des axes de l'ACM
 
@@ -166,16 +167,18 @@ plot.HCPC(res.HCPC2, choice = "tree", title = "")
 ```
 
 ```{=tex}
-\rightline{\small{~Source : Enquête ES-PE 2017, DREES.}}
-\rightline{\small{~Champ : France entière, hors Mayotte, enfants sortis de l’établissement d’observation au cours de 2017 (hors sections \\ d’accueil mères-enfants).}}
+\begin{flushright}
+\begin{singlespace}
+{\scriptsize Source : Enquête ES-PE 2017, DREES.
+
+Champ : France entière, hors Mayotte, enfants sortis de l’établissement d’observation au cours de 2017 (hors sections d’accueil mères-enfants).}
+\end{singlespace}
+\end{flushright}
 ```
-La CAH donne pour résultat trois classes dont une principale qui englobe
-50.4% des enfants sortis en 2017, les deux autres concernent 28.6% et
-20.9% de la population étudiée[^4]. Les différentes classes ainsi
-obtenues rassemblent les individus ayant une suite de trois types
-d'hébergement similaires avant, pendant et à la sortie de MECS. Il faut
-donc comprendre ces classes comme un enchaînement de trois types
-d'hébergement.
+
+La CAH donne pour résultat trois classes dont une principale qui englobe 50.4% des enfants sortis en 2017, les deux autres concernent 28.6% et 20.9% de la population étudiée [^32]. Les différentes classes ainsi obtenues rassemblent les individus ayant une suite de trois types d'hébergement similaires avant, pendant et à la sortie de MECS. Il faut donc comprendre ces classes comme un enchaînement de trois types d'hébergement.
+
+[^32]: Pour réduire la dissimilarité intra-classe, le choix a été fait, après avoir choisi la partition, de consolider les résultats de la CAH par un algorithme des K-means. Cette dernière réaffecte les individus dans la classe dont ils se rapprochent le plus. On obtient ainsi des classes plus robustes.
 
 ````{=tex}
 \begin{singlespace}
@@ -469,9 +472,9 @@ des enfants vers ces parcours. On modélise ainsi les deux logit suivant
 placement continu en établissement (classe 2) et le placement autonome
 (classe 3). Les variables explicatives du modèle sont les suivantes :
 
-> o L'âge d'entrée en MECS ; o L'âge de sortie de MECS[^5] ;
+> o L'âge d'entrée en MECS ; o L'âge de sortie de MECS \footnote{Pour des raisons d'effectifs, les tranches d'âge précédemment utilisées dans l'ensemble de ce mémoire n'ont pas pu être reprises dans ce modèle. On propose donc des tranches d'âge moins nombreuses qui regroupent les 0 à 10 ans ensemble. Ce choix n'est pas sans conséquence. En effet, nous l'avons vu les plus jeunes enfants sont particulièrement présents dans la classe 1 de notre CAH et pas dans les classes 2 et 3. Or, ces derniers se retrouvent ici englobé dans une catégorie bien plus large.} ;
 >
-> o Le sexe[^6] ;
+> o Le sexe\footnote{Les effets de la variable portant sur le sexe des enfants placés ne sera pas présenté dans les tableaux suivants bien que présente en tant que variable de contrôle lors du calcul du modèle. Ce choix est motivé par la volonté malgré un nombre important de variable explicative incluses dans le modèle de présenter un tableau clair, mais aussi par le fait que la variable de sexe n'a aucun effet significatif dans ce modèle.} ;
 >
 > o Le fait d'être mineur non accompagné ;
 >
@@ -488,7 +491,7 @@ Compte tenu de la significativité des différentes variables et de
 l'importance au vu de nos précédents résultats de prendre toutes ces
 dernières en compte dans le même modèle, le choix a été fait de ne
 présenter qu'un modèle complet présentant l'ensemble des variables
-précédemment évoquées[^7].
+précédemment évoquées \footnote{À noter qu'une version réduite de ce modèle est proposée dans les Annexes (voir Annexes - Table 4.2.7 et Table 4.2.8).}.
 
 ```{r, include = FALSE}
 modele <- s_acm2 %>% select(poids_sor, ID, SEX, MNA, HAND, age_ed, age_sd, MES_rec,hebe_capa2, grp2, ppla, age_s, age_e)
@@ -586,6 +589,8 @@ m4 <- multinom(grp2 ~ SEX + age_ed2 + age_sd2  + MES_rec +MNA + HAND  + ppla+ he
 \newpage
 \begin{singlespace}
 ```{r}
+set_flextable_defaults(font.size = 9, font.family = "Times", font.color = "black", line_spacing = 1)
+
 m4 %>% tbl_regression(exponentiate = TRUE,
                       label = list(age_ed2 ~ "Âge à l'entrée",
                                    age_sd2 ~ "Âge à la sortie", 
@@ -606,7 +611,6 @@ m4 %>% tbl_regression(exponentiate = TRUE,
   Source : ES-PE 2017, DREES.
                Champ : France entière, hors Mayotte, enfants sortis de MECS au cours de 2017 (hors sections d'accueil mère-enfant).
                 Lecture : Toutes choses égales par ailleurs, les chances d’être dans la classe 3 du « placement autonome » augmente de 33 fois si l’enfant sortis au cours de 2017 est mineur non accompagné.") %>%                           
-  fontsize(size = 9.5, part = "all") %>% 
   fontsize(size = 8, part = "footer") %>%
   set_caption(caption = "Modèle sur l’orientation entre les différentes classes de la CAH") %>% 
   color(color = "black", part = "all") %>% 
@@ -648,8 +652,7 @@ ans plutôt qu'entre 0 et 10 ans. Ainsi, on peut interpréter l'existence
 d'un effet de l'adolescence dans l'orientation à la sortie de MECS vers
 un placement continu en établissement plutôt que temporaire.
 
-\> *Le fait d'être mineur non accompagné et l'effet des mesures de
-placement sont en cohérences avec les résultats de l'âge*
+> *Le fait d'être mineur non accompagné et l'effet des mesures de placement sont en cohérences avec les résultats de l'âge*
 
 En lien avec cette question de l'âge, on retrouve de nouveau l'effet
 d'être mineur non accompagné ou non. Les enfants sortis ont jusqu'à 34
@@ -664,8 +667,8 @@ l'encontre des mineurs non accompagnés. I. Frechon y voit des parcours «
 fortement standardisé » qui se traduisent par le passage en internat
 collectif avant l'arrivée dans un logement autonome. C'est ce que nous
 retrouvons dans le type de parcours décrit par la classe 3 du «
-placement autonome
-»[@frechonMineursIsolesEtrangers2017][@helfterPriseChargeMineurs2010].
+placement autonome »[@frechonMineursIsolesEtrangers2017]
+[@helfterPriseChargeMineurs2010].
 
 Le résultat de l'âge trouve aussi de nouveau un écho dans ceux des
 mesures principales de placement. Toutes choses égales par ailleurs, les
@@ -776,7 +779,11 @@ soit vers les adolescents, ce qui induit des moyens d'intervention
 différents en fonction du type de politique
 adopté[@marquetEnfantsProtegesFrance2013].
 
-> **Conclusion de chapitre**
+\vspace{.5cm}
+
+\begin{large}
+\textbf{Conclusion de chapitre}
+\end{large}
 
 Durant ce chapitre, nous avons bâti une classification qui nous a
 permis, en prenant en compte l'enchaînement des trois types
@@ -838,57 +845,3 @@ MECS de diversifier les types d'hébergement et de maintenir le lien avec
 la famille au travers de la classe 1, qui est aussi la classe concernant
 le plus d'enfants, mais sans que cela nous renseigne sur les effets
 concrets de cette évolution.
-
-[^1]: Vous retrouverez néanmoins dans les annexes un exemple d'analyse
-    de trajectoire sur l'ensemble des enfants sortis qui met en évidence
-    ce que produit l'absence d'information sur la date du type
-    d'hébergement précédent. Mais aussi, une analyse des trajectoires
-    réalisée uniquement sur les enfants pour lesquels le premier
-    placement est la MECS et l'hébergement précédent correspond à leur
-    famille ou tuteur légal, on s'assure ainsi que l'hébergement
-    précédent soit celui occupé depuis la naissance de l'enfant ce qui
-    nous donne sa date.
-
-[^2]: De nouveau les individus n'ayant pas l'information disponible pour
-    l'ensemble des variables actives ont été retirés de l'analyse. On
-    passe ainsi de 15 777 enfants sortis de MECS en 2017 à 10 522
-    individus pour le calcul de l'ACM. Nous nous sommes assurés que
-    cette réduction n'avait pas pour conséquence un déséquilibrage de
-    l'échantillon en le contrôlant par la répartition par sexe, par âge
-    et par les variables actives. De nouveau l'effet principal est le
-    renforcement des modalités d'hébergement les plus fréquentes, tel
-    que l'hébergement collectif.
-
-[^3]: Au vu du faible décrochage des pourcentages d'inertie, on aurait
-    pu être tenté de prendre en considération en plus des deux premiers
-    axes, les axes 3 et 4 dans le calcul de la CAH. Des tests ont été
-    réalisés prenant d'abord en compte les 4 premiers axes de l'ACM puis
-    les 3 premiers axes, les CAH alors calculées donnaient des classes
-    peu pertinentes à l'interprétation en plus d'augmenter
-    l'hétérogénéité intra classes.
-
-[^4]: Pour réduire la dissimilarité intra-classe, le choix a été fait,
-    après avoir choisi la partition, de consolider les résultats de la
-    CAH par un algorithme des K-means. Cette dernière réaffecte les
-    individus dans la classe dont ils se rapprochent le plus. On obtient
-    ainsi des classes plus robustes.
-
-[^5]: Pour des raisons d'effectifs, les tranches d'âge précédemment
-    utilisées dans l'ensemble de ce mémoire n'ont pas pu être reprises
-    dans ce modèle. On propose donc des tranches d'âge moins nombreuses
-    qui regroupent les 0 à 10 ans ensemble. Ce choix n'est pas sans
-    conséquence. En effet, nous l'avons vu les plus jeunes enfants sont
-    particulièrement présents dans la classe 1 de notre CAH et pas dans
-    les classes 2 et 3. Or, ces derniers se retrouvent ici englobé dans
-    une catégorie bien plus large.
-
-[^6]: Les effets de la variable portant sur le sexe des enfants placés
-    ne sera pas présenté dans les tableaux suivants bien que présente en
-    tant que variable de contrôle lors du calcul du modèle. Ce choix est
-    motivé par la volonté malgré un nombre important de variable
-    explicative incluses dans le modèle de présenter un tableau clair,
-    mais aussi par le fait que la variable de sexe n'a aucun effet
-    significatif dans ce modèle.
-
-[^7]: À noter qu'une version réduite de ce modèle est proposée dans les
-    Annexes (voir Annexes - ).

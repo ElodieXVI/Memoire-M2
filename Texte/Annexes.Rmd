@@ -308,8 +308,60 @@ act2w %>% tbl_svysummary(include = c(ACCHAN,ACCDEL,ACCMUL,ACCMIE),
   align(part = "footer", align = "right") %>% 
   bold(bold = TRUE, part = "header")
 ```
+
+```{r}
+s_mecsw %>% tbl_svysummary(include = c(hebe_capa2),
+                           by = HEBE_rec3,
+                           missing = "no",
+                           percent = "row",
+                           statistic = list(all_categorical() ~ "{p}"),
+                           label = list(hebe_capa2 ~ "Nombre d'hébergement proposé")) %>%   
+  modify_header(label = "") %>%
+  modify_footnote(update = everything() ~ NA) %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  bold_labels() %>% 
+  as_flex_table() %>% 
+  add_footer_lines("Source : ES-PE 2017, DREES.
+                   Champ : France entière, hors Mayotte, enfants présents au 15/12/2017 en MECS (hors sections d'accueil mère-enfant).
+                   Lecture : Parmi les enfants présents au cours de 2017, 44% de ceux présents dans un établissement proposant tous les types d'hébergements sont hébergés en internat collectif.") %>% 
+  fontsize(size = 9, part = "footer") %>% 
+  set_caption(caption = "La répartition entre hébergements en fonction du nombre d'hébergements proposés par l'établissement (% pondérés)") %>%
+  color(color = "black", part = "all") %>% 
+  width(width = 1) %>% 
+  height_all(height = 0.5) %>%
+  align(part = "all", align = "center")%>%
+  align(part = "footer", align = "right") %>% 
+  bold(bold = TRUE, part = "header")
+```
+
+```{r}
+s_mecsw %>% tbl_svysummary(include = c(SEX, age_ed, MNA,HAND),
+                    by = HEBE_rec3,
+                    percent = "col", 
+                    statistic = list(all_categorical() ~ "{p}"),
+                    missing = "no",
+                    label = list(SEX ~ "Sexe",
+                    age_ed ~ "Âge d'entrée",
+                    HAND ~ "Situation reconnue d'handicap")) %>%   
+  modify_header(label = "") %>% 
+  bold_labels() %>% 
+  modify_footnote(update = all_stat_cols() ~ NA) %>% 
+  modify_header(all_stat_cols() ~ "**{level}**, N = {n_unweighted}") %>% 
+  as_flex_table() %>% 
+  add_footer_lines("Source : ES-PE 2017, DREES.
+                   Champ : France entière, hors Mayotte, enfants sortis de MECS au cours de 2017 (hors sections d'accueil mère-enfant).
+                   Lecture : Parmi les enfants présents en MECS au 15/12/2017, 40% des enfants hébergés en internat collectif sont des filles.") %>% 
+  fontsize(size = 9, part = "footer") %>% 
+  set_caption(caption = "Les caractéristiques individuelles des enfants sortis au cours de 2017 par catégorie d'établissement (% pondérés)") %>% 
+  color(color = "black", part = "all") %>% 
+  width(width = 1) %>% 
+  height_all(height = 0.5) %>%
+  align(part = "all", align = "center")%>%
+  align(part = "footer", align = "right")%>% 
+  bold(bold = TRUE, part = "header")
+```
 \end{singlespace}
-````
+
 
 ```{r, fig.cap = "Espace des types d'hébergements en MECS", out.width = "80%"}
 s_mecs <- sor %>% subset(CATEG_rec == "MECS")
