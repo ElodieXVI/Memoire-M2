@@ -485,8 +485,6 @@ inégalités dans la qualité des réponses envoyées, quand bien même le
 formulaire comporte de nombreuses indications afin d'aider et
 d'accompagner à son remplissage.
 
-\newpage
-
 ```{r formu, out.width="100%", fig.cap="Exemple d’une fiche du questionnaire de l'enquête ES-PE 2017"}
 knitr::include_graphics("Figure/Quest1.png")
 ```

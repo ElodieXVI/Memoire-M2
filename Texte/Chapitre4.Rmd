@@ -209,7 +209,7 @@ s_acm2$HEBE_rec3.x <- s_acm2$HEBE_rec3.x %>%
     "Assistant familial" = "hebe_Assfam",
     "Domicile" = "hebe_Domicile")
 
-## Recodage de s_acm2$ARES_rec.x
+# Recodage de s_acm2$ARES_rec.x
 s_acm2$ARES_rec.x <- s_acm2$ARES_rec.x %>%
   fct_recode(
     "Établissement de placement" = "ares_EtabASEPJJ",
@@ -218,7 +218,7 @@ s_acm2$ARES_rec.x <- s_acm2$ARES_rec.x %>%
     "Assistant familial" = "ares_Assfam",
     "Famille" = "ares_Famille")
 
-## Recodage de s_acm2$ARES_rec.x
+# Recodage de s_acm2$ARES_rec.x
 s_acm2$SRES_rec.x <- s_acm2$SRES_rec.x %>%
   fct_recode(
     "Établissement de placement" = "sres_EtabASEPJJ",
@@ -614,7 +614,7 @@ m4 %>% tbl_regression(exponentiate = TRUE,
   Source : ES-PE 2017, DREES.
                Champ : France entière, hors Mayotte, enfants sortis de MECS au cours de 2017 (hors sections d'accueil mère-enfant).
                 Lecture : Toutes choses égales par ailleurs, les chances d’être dans la classe 3 du « placement autonome » augmente de 33 fois si l’enfant sortis au cours de 2017 est mineur non accompagné.") %>%                           
-  fontsize(size = 7, part = "footer") %>%
+  fontsize(size = 9, part = "footer") %>%
   fontsize(size = 9, part = "header") %>%
   set_caption(caption = "Modèle sur l’orientation entre les différentes classes de la CAH") %>% 
   color(color = "black", part = "all") %>% 

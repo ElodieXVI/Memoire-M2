@@ -81,8 +81,6 @@ PJJ : Protection Judiciaire de la Jeunesse.
 
 \newpage
 
-````{=tex}
-\begin{singlespace}
 ```{r}
 enf$HEBE_rec3 <- enf$HEBE_rec3 %>%
   fct_recode(
@@ -361,7 +359,6 @@ s_mecsw %>% tbl_svysummary(include = c(SEX, age_ed, MNA,HAND),
   align(part = "footer", align = "right")%>% 
   bold(bold = TRUE, part = "header")
 ```
-\end{singlespace}
 
 
 ```{r, fig.cap = "Espace des types d'hébergements en MECS", out.width = "80%"}
@@ -397,8 +394,6 @@ fviz_screeplot(res.MCA, addlabels = TRUE, ylim =c(0, 50), main="", ylab = "Pourc
   theme(text = element_text(family = "Times"))
 ```
 
-````{=tex}
-\begin{singlespace}
 ```{r}
 require(readr)
 
@@ -523,8 +518,6 @@ m4 %>% tbl_regression(exponentiate = TRUE,
   align(part = "footer", align = "right")%>% 
   bold(bold = TRUE, part = "header")
 ```
-\end{singlespace}
-````
 
 ```{r, child="Trajectoires.Rmd"}
 ```
