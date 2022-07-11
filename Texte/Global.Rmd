@@ -11,7 +11,6 @@ mainfont: Times New Roman
 fontsize: 11pt
 geometry: margin=2.5cm
 papersize: a4
-urlcolor: blue
 bibliography: Biblio.bib
 csl: le-tapuscrit-note.csl
 ---
@@ -37,7 +36,7 @@ csl: le-tapuscrit-note.csl
 ```
 
 \newpage
-```{r child="Chapitre1.Rmd"}
+```{r child="Chapitre1.Rmd"} 
 ```
 
 \newpage
@@ -61,8 +60,8 @@ csl: le-tapuscrit-note.csl
 \setlength{\parskip}{0.5em}
 
 \phantomsection
-\addcontentsline{toc}{section}{Bibliographie}
-\section*{Bibliographie}
+\addcontentsline{toc}{chapter}{Bibliographie}
+\chapter*{\huge Bibliographie}
 
 <div id="refs"></div>
 

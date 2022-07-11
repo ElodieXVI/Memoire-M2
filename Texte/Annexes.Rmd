@@ -17,10 +17,9 @@ csl: le-tapuscrit-note.csl
 
 ```{=tex}
 \phantomsection
-\addcontentsline{toc}{section}{Annexes}
-\section*{\large Annexes}
+\addcontentsline{toc}{chapter}{Annexes}
+\chapter*{\Large Annexes}
 ```
-\vspace{.5cm}
 
 ```{r annexes setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = "center", message = FALSE, warning = FALSE)
@@ -30,7 +29,7 @@ p_load(tidyverse, questionr, FactoMineR, Factoshiny, survey, missMDA, knitr,
        MetBrewer, extrafont, flextable)
 theme_gtsummary_language("fr", decimal.mark = ",", big.mark = " ")
 
-set_flextable_defaults(font.size = 10, font.family = "Times", font.color = "black", line_spacing = 1)
+set_flextable_defaults(font.size = 9, font.family = "Times", font.color = "black", line_spacing = 1)
 
 source("R/Recodage.R")
 source("R/Fonctions.R")
@@ -79,6 +78,8 @@ PJJ : Protection Judiciaire de la Jeunesse.
 
 \end{mdframed}
 ```
+
+\newpage
 
 ````{=tex}
 \begin{singlespace}

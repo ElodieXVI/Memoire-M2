@@ -55,22 +55,11 @@ comparerons ici les résultats des MECS avec seulement ceux des Foyers de
 l'enfance et des lieux de vie et d'accueil.
 
 Les tendances en critères de répartition sont similaires entre les
-différents types d'établissement (voir tableau 11). Bien que les MECS
+différents types d'établissement (voir Table 3.1.1). Bien que les MECS
 utilisent surtout comme critère de répartition l'âge, il en va de même
 des autres types d'établissement. L'âge des enfants semble ainsi
 sous-tendre la plupart des logiques d'accueil des établissements de
 l'aide sociale à l'enfance.
-
-Le second critère qui concerne le plus de MECS est la répartition par
-projet pédagogique (41% des MECS disent qu'il s'agit pour elles d'un
-critère). Le projet pédagogique est édité par un établissement afin de
-décrire les moyens mis en œuvre afin d'atteindre ses grands principes
-éducatifs selon ses activités, pratiques et attitudes éducatives. Dès
-lors, s'il y a répartition selon le projet pédagogique, on peut
-comprendre que le professionnel prend en compte le profil de l'enfant
-afin de l'orienter vers l'hébergement le plus à même dans ses pratiques
-à l'accueillir. Ceci revient à répartir les enfants en fonction de leurs
-caractéristiques individuelles et de leur parcours.
 
 \begin{singlespace}
 ```{r}
@@ -116,6 +105,16 @@ actw %>% tbl_svysummary(include = c(REPSEX, REPAGE,REPFRA,REPPED, REPDUR, REPCIV
 ```
 \end{singlespace}
 
+Le second critère qui concerne le plus de MECS est la répartition par
+projet pédagogique (41% des MECS disent qu'il s'agit pour elles d'un
+critère). Le projet pédagogique est édité par un établissement afin de
+décrire les moyens mis en œuvre afin d'atteindre ses grands principes
+éducatifs selon ses activités, pratiques et attitudes éducatives. Dès
+lors, s'il y a répartition selon le projet pédagogique, on peut
+comprendre que le professionnel prend en compte le profil de l'enfant
+afin de l'orienter vers l'hébergement le plus à même dans ses pratiques
+à l'accueillir. Ceci revient à répartir les enfants en fonction de leurs
+caractéristiques individuelles et de leur parcours.
 
 > *La traduction de ces critères dans l'orientation des enfants
 > présents*
@@ -158,7 +157,7 @@ Afin d'observer l'effet des logiques gestionnaires sur la répartition
 entre les différents types d'hébergements, nous avons tout d'abord
 regardé la répartition des places installées dans les différents types
 d'hébergement selon les types d'établissement, en nous inspirant ici de
-l'étude de A. Abassi[@abassi61000Enfants2020].
+l'étude de A. Abassi[@abassi61000Enfants2020] (Voir Table 3.1.2).
 
 \begin{singlespace}
 ```{r}
@@ -200,7 +199,7 @@ d'hébergements.
 En cohérence avec le type de population accueillie, on observe que le
 taux d'hébergement éclaté ou individualisé est le plus fort en MECS à
 19%, contre 17% pour les Foyers de l'enfance, et moins de 3% pour les
-autres types d'établissement. L'hébergement à domicile est aussi
+autres types d'établissement (Voir Table 3.1.3). L'hébergement à domicile est aussi
 particulièrement présent en MECS puisqu'il représente 11% des places.
 Ces résultats représentent bien la volonté affichée par les MECS de
 diversifier leur offre et de proposer un type d'hébergement plus tourné
@@ -210,15 +209,6 @@ projet de l'établissement a aussi été observé (voir Annexes -- Table
 handicap représentent un public pour lesquels les MECS sont le moins
 destinées à l'accueil, voir au contraire elles excluent ce type de
 public de leurs établissements.}.
-
-Les MECS proposent ainsi principalement des places dans trois types
-d'hébergements : en internat collectif, en logement éclaté ou
-individualisé et à domicile. Lorsque l'on porte notre regarde sur la
-population des enfants présents au 15 décembre 2017, c'est logiquement
-dans ces trois types d'hébergement que l'on retrouve le plus d'enfants
-placés (voir tableau 13)[^1].
-
-[^1]:Concernant la variable HEBE portant sur le type d'hébergement en MECS, nous avons procédés au recodage suivant : « Collectif » correspond à l'internat collectif et aux pouponnières ; « Éclaté » à hébergement éclaté ou individualisé hors chambre d'hôtel, chambre d'hôtel, autre ; « Assistant familial » regroupe : Assistant familial ou famille d'accueil (PJJ), Lieu de vie et d'accueil ; et enfin, « Domicile » reprend seulement la modalité « Placement à domicile ».
 
 ```{r, include = FALSE}
 e_mecs <- subset(enf, CATEG_rec == "MECS")
@@ -258,6 +248,13 @@ flextable(t1)%>%
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
+
+Les MECS proposent ainsi principalement des places dans trois types
+d'hébergements : en internat collectif, en logement éclaté ou
+individualisé et à domicile. Lorsque l'on porte notre regarde sur la
+population des enfants présents au 15 décembre 2017, c'est logiquement
+dans ces trois types d'hébergement que l'on retrouve le plus d'enfants
+placés\footnote{Concernant la variable HEBE portant sur le type d'hébergement en MECS, nous avons procédés au recodage suivant : « Collectif » correspond à l'internat collectif et aux pouponnières ; « Éclaté » à hébergement éclaté ou individualisé hors chambre d'hôtel, chambre d'hôtel, autre ; « Assistant familial » regroupe : Assistant familial ou famille d'accueil (PJJ), Lieu de vie et d'accueil ; et enfin, « Domicile » reprend seulement la modalité « Placement à domicile ».}.
 
 On observe donc concrètement ce que les MECS cherchent à mettre en œuvre
 depuis les années 2010 avec la diversification des types d'hébergement.
@@ -312,7 +309,7 @@ chisq.test(t1)
 Les MECS sont le type d'établissement ayant la part la plus faible
 d'accueil complet (86% des enfants présents) et sont le type
 d'établissement ayant le plus développé l'accueil séquentiel qui
-concerne 12% des enfants présents au 15 décembre 2017. Ces résultats
+concerne 12% des enfants présents au 15 décembre 2017 (Voir Table 3.1.4). Ces résultats
 font écho à la volonté que nous avons vu précédemment des MECS de
 développer des types d'accueil alternatifs favorisant le maintien du
 lien avec la famille.
@@ -354,6 +351,26 @@ parcours de placement aussi.
 Tout ceci nous amène à détailler le profil des enfants que l'on retrouve
 dans les différents types d'hébergement.
 
+Ici, le facteur de
+l'âge\footnote{L'âge à l'entrée dans l'établissement a été recodé en
+tranche d'âge pour permettre des analyses. Les tranches d'âge choisies
+sont celles déjà employées dans la,littérature sur ces données et
+surtout sur l'étude menée par Élisa Abassi : « 61 000 enfants,
+adolescents et jeunes majeurs hébergés fin 2017 dans les établissements
+de l'aide sociale à l'enfance », art cit.} semble encore jouer un rôle
+important. Les enfants les plus jeunes se retrouverons dans des types de
+placement liés à la famille, comme les assistants familiaux et les lieux
+de vie ou encore le placement à domicile. Dans les internats collectifs,
+à l'inverse, on retrouvera une population plutôt adolescente. Et enfin,
+en hébergement éclaté ou autonome, on retrouvera surtout les adolescents
+proches de la majorité et les jeunes majeurs. Ce dernier point, comme
+nous l'avions vu lors de la présentation de la population des enfants
+présents au 15 décembre 2017, est à mettre en lien avec la présence de
+mineurs non accompagnés. Dans ce type d'hébergement, les mineurs non
+accompagnés représentent jusqu'à 42% des enfants présents. C'est-à-dire
+dans les internats collectifs ou chez les assistants familiaux et les
+lieux de vie (Voir Table 3.1.5).
+
 \begin{singlespace}
 ```{r}
 e_mecsw %>% tbl_svysummary(include = c(SEX, age_ed, MNA,HAND),
@@ -383,26 +400,6 @@ e_mecsw %>% tbl_svysummary(include = c(SEX, age_ed, MNA,HAND),
 ```
 \end{singlespace}
 
-Ici, le facteur de
-l'âge\footnote{L'âge à l'entrée dans l'établissement a été recodé en
-tranche d'âge pour permettre des analyses. Les tranches d'âge choisies
-sont celles déjà employées dans la,littérature sur ces données et
-surtout sur l'étude menée par Élisa Abassi : « 61 000 enfants,
-adolescents et jeunes majeurs hébergés fin 2017 dans les établissements
-de l'aide sociale à l'enfance », art cit.} semble encore jouer un rôle
-important. Les enfants les plus jeunes se retrouverons dans des types de
-placement liés à la famille, comme les assistants familiaux et les lieux
-de vie ou encore le placement à domicile. Dans les internats collectifs,
-à l'inverse, on retrouvera une population plutôt adolescente. Et enfin,
-en hébergement éclaté ou autonome, on retrouvera surtout les adolescents
-proches de la majorité et les jeunes majeurs. Ce dernier point, comme
-nous l'avions vu lors de la présentation de la population des enfants
-présents au 15 décembre 2017, est à mettre en lien avec la présence de
-mineurs non accompagnés. Dans ce type d'hébergement, les mineurs non
-accompagnés représentent jusqu'à 42% des enfants présents. C'est-à-dire
-dans les internats collectifs ou chez les assistants familiaux et les
-lieux de vie.
-
 Les résultats pour les enfants sortis au cours de l'année 2017 sont
 similaires, si ce n'est que les faibles effectifs en hébergement chez
 l'assistant familial fait particulièrement varier les résultats dans ce
@@ -416,7 +413,7 @@ concernés par des mesures administratives de jeunes majeurs sont plus
 présents en hébergement éclaté (74%). Ce point est cohérent avec ce type
 d'hébergement qui est un accompagnement vers l'autonomie. À l'inverse,
 les enfants concernés par des mesures administratives de mineur sont
-plus présents en internat collectif.
+plus présents en internat collectif (Voir Table 3.1.6).
 
 \begin{singlespace}
 ```{r}
@@ -504,7 +501,7 @@ Concernant la variable ARES portant sur le type d’hébergement avant l’entr�
 De manière générale, les enfants présents sont majoritairement avant
 l'entrée en MECS hébergés chez les parents ; chez de la famille, des
 amis, un tiers digne de confiance judiciaire ou tiers administratif
-(40.3%) (voir tableau 14). Cette situation correspond en partie au cas
+(40.3%) (voir Table 3.2.1). Cette situation correspond en partie au cas
 des enfants pour lesquels cette entrée en MECS correspond à leur premier
 placement. Ceci est le cas pour 23.1% des enfants présents.
 
@@ -558,11 +555,6 @@ qu'elle s'inscrit plutôt dans un parcours de placement. Il en va de même
 pour les 9.8% d'entre eux qui étaient auparavant hébergés en assistant
 familial.
 
-Si l'on regarde la répartition entre hébergements une fois en MECS en
-fonction du fait que ce soit ou non le premier placement pour l'enfant,
-on observe qu'effectivement le parcours de l'enfant est pris en
-considération dans l'orientation (voir tableau 15).
-
 \begin{singlespace}
 ```{r}
 ## Recodage de e_mecs$ppla en e_mecs$ppla2
@@ -596,6 +588,11 @@ e_mecsw %>% tbl_svysummary(include = c(HEBE_rec3),
 ```
 \end{singlespace}
 
+Si l'on regarde la répartition entre hébergements une fois en MECS en
+fonction du fait que ce soit ou non le premier placement pour l'enfant,
+on observe qu'effectivement le parcours de l'enfant est pris en
+considération dans l'orientation (voir Table 3.2.2).
+
 En effet, il existe des différences entre les enfants pour lesquels il
 s'agit du premier placement ou non. Plus précisément les enfants pour
 qui il s'agit du premier placement sont plus présents en internet
@@ -606,7 +603,7 @@ présents en hébergement éclaté ou autonome.
 
 Dès lors, on peut tenter de percevoir les effets du type d'hébgerment
 précédent l'entrée en MECS sur l'orientation une fois en MECS (voir
-Tableau 12).
+Table 3.2.3).
 
 \begin{singlespace}
 ```{r}
@@ -626,7 +623,7 @@ e_mecsw %>% tbl_svysummary(include = c(ARES_rec, HEBE_rec3),
                    Champ : France entière, hors Mayotte, enfants présents en MECS au 15/12/2017 (hors sections d'accueil mère-enfant).
                    Lecture : Parmi les enfants présents en MECS au 15/12/2017, 67% des enfants précédemment hébergés en établissement de placement sont une fois en MECS hébergés en internat collectif.") %>% 
   fontsize(size = 9, part = "footer") %>% 
-  set_caption(caption = "Le type d’hébergement en MECS en fonction du type d’hébergement avant l’entrée en MECS pour les enfants présents en 2017 (% pondérés)") %>% 
+  set_caption(caption = "Le type d’hébergement en MECS en fonction du type d’hébergement avant l’entrée en MECS pour les enfants présents en 2017 (% en ligne pondérés)") %>% 
   color(color = "black", part = "all") %>% 
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
@@ -652,7 +649,7 @@ avant l'entrée en MECS.
 
 On observe ainsi une certaine forme de mobilité, puisque les enfants
 présents en 2017 ne sont pas simplement orientés à l'entrée en MECS dans
-le même type d'hégerment dans lequel ils étaient auparavant. La seule
+le même type d'hébergement dans lequel ils étaient auparavant. Une certaine
 forme de stabilité pourrait s'observer avec le type d'hébergement éclaté
 ou autonome une fois en MECS, qui concerne 54% des enfants présents
 auparavant en logement accompagné et 30% des enfants présents en
@@ -680,7 +677,7 @@ regarder en premier. Logiquement, cet effet de l'âge perdure et permet
 d'éclairer sur les raisons de l'enchaînement entre hébergement avant et
 une fois en MECS des enfants présents. Les distinctions entre enfant,
 adolescent et jeune majeur semble jouer sur l'orientation en conduisant
-petit à petit vers les types d'hébergements les plus autonomes.
+petit à petit vers les types d'hébergements les plus autonomes (Voir Figure 3.2.1).
 
 ```{r, out.width = "70%",fig.cap="Le type d’hébergement juste avant l’entrée de MECS en fonction du type d’hébergement en MECS pour les enfants présents en 2017 par tranche d’âges (pct. pondérés)", include = FALSE, eval = FALSE}
 require(srvyr)
@@ -808,7 +805,7 @@ type d'hébergement à la sortie de MECS.
 
 ## Pour quels effets sur l'hébergement à la sortie de MECS ?
 
-### Une stabilité dans le placement entre hébergement en MECS et à la sortie...
+### Une cohérence dans le placement entre hébergement en MECS et à la sortie...
 
 La variable concernant le type d'hébergement à la sortie a pour
 particularité de n'informer que sur le moment immédiat du départ de
@@ -906,7 +903,16 @@ principal à la sortie est le logement accompagné (à 10.1%), ce qui
 relève de l'accompagnement des jeunes majeurs à l'autonomie. Les
 non-réponses ont une part non négligeable dans les types d'hébergement à
 la sortie ce qui invite à la précaution, puisqu'ils concernent 20% des
-enfants sortis en 2017.
+enfants sortis en 2017 (Voir Table 3.3.1).
+
+Lorsque l'on regarde dans quels types d'hébergement les enfants sortis
+de MECS vont, on observe qu'une forme de cohérence dans le parcours est recherchée.
+En effet, il existe tout d'abord une continuité dans le placement
+pour les enfants sortis concernés par les hébergements à domicile ou
+éclaté. Ces derniers se retrouvent à la sortie respectivement en
+hébergement chez la famille ou en logement accompagné. Ces deux
+modalités ressemblent fortement dans les situations qu'elles regroupent
+à celles des deux hébergements de MECS(Voir Table 3.3.2).
 
 \begin{singlespace}
 ```{r}
@@ -926,7 +932,7 @@ s_mecsw %>% tbl_svysummary(include = c(HEBE_rec3),
                    Champ : France entière, hors Mayotte, enfants sortis de l’établissement d’observation au cours de 2017 (hors sections d'accueil mère-enfant).
                    Lecture : Parmi les enfants sortis de MECS au cours de 2017, 76% de ceux hébergés en domicile en MECS sont hébergés à la sortie de MECS en famille ou chez leur tuteur légal.") %>% 
   fontsize(size = 9, part = "footer") %>% 
-  set_caption(caption = "Le type d’hébergement juste à la sortie de MECS en fonction du type d’hébergement en MECS pour les enfants sortis en 2017 (% pondérés)") %>% 
+  set_caption(caption = "Le type d’hébergement juste à la sortie de MECS en fonction du type d’hébergement en MECS pour les enfants sortis en 2017 (% en ligne pondérés)") %>% 
   color(color = "black", part = "all") %>% 
   width(width = 1) %>% 
   height_all(height = 0.5) %>%
@@ -935,16 +941,6 @@ s_mecsw %>% tbl_svysummary(include = c(HEBE_rec3),
   bold(bold = TRUE, part = "header")
 ```
 \end{singlespace}
-
-Lorsque l'on regarde dans quels types d'hébergement les enfants sortis
-de MECS vont, on observe, contrairement aux résultats sur le lien entre
-hébergement précédent l'entrée en MECS et hébergement une fois en MECS,
-une plus grande stabilité. Il existe une continuité dans le placement
-pour les enfants sortis concernés par les hébergements à domicile ou
-éclaté. Ces derniers se retrouvent à la sortie respectivement en
-hébergement chez la famille ou en logement accompagné. Ces deux
-modalités ressemblent fortement dans les situations qu'elles regroupent
-à celles des deux hébergements de MECS.
 
 La deuxième tendance est celle du retour auprès de la famille après un
 placement dans un type d'hébergement collectif ou la pérennisation du
@@ -964,17 +960,15 @@ d'un ancrage familial ou la pérennité de placement peuvent correspondre
 à une stratégie plus globale de répartition par l'âge tout comme c'était
 le cas pour l'orientation à l'entrée en MECS.
 
-### Relative à l'âge des enfants sortis
+### ...relative à l'âge des enfants sortis
 
 De la même façon que l'âge à l'entrée en MECS semble agir sur la
-répartition entre hébergements, dans le cas de l'hébergement à la
-sortie, il convient de regarder l'âge à la sortie de l'établissement
-d'observation en 2017. On remarque dès lors l'apparition croissante avec
+répartition entre hébergements, nous soupçonnons que l'âge à la sortie de MECS agissent de même sur le type d'hébergement après le passage en MECS. On remarque dès lors l'apparition croissante avec
 l'âge des types d'hébergement à la sortie en logement accompagné et en
 logement hors qui témoigne d'un accompagnement des adolescents et jeunes
 majeurs à l'autonomie. En effet, ce type d'hébergement leur donne accès
 à des logements où ils seront plus autonomes tout en continuant d'être
-accompagnés (voir figure 6)\footnote{À noter que la question du
+accompagnés (voir Figure 3.3.1)\footnote{À noter que la question du
 logement à la sortie de placement et notamment le recours à des
 logements accompagnés a fait l'objet d'études, voir notamment : Isabelle
 Frechon et Maryse Marpsat, « Placement dans l'enfance et précarité de la
@@ -1095,7 +1089,7 @@ part des enfants sortis allant en établissement de placement augmente.
 \textbf{Conclusion de chapitre}
 \end{large}
 ```
-Tout au long de ces analyses, nous avons rencontré des limites dans nos
+|               Tout au long de ces analyses, nous avons rencontré des limites dans nos
 données et surtout des absences de variables qui auraient pu nous
 permettre de mieux comprendre les logiques à l'œuvre dans l'orientation
 des enfants placés. Nous avons néanmoins pu voir, que quand bien même
@@ -1105,14 +1099,14 @@ enfants et surtout l'âge jouent un rôle important. Du fait de ce poids
 de l'âge et globalement des caractéristiques individuelles, nous en
 avons déduit que le parcours précédent de l'enfant pouvait aussi peser.
 Mais ici, nous avons constaté qu'il n'y avait pas de lien évident entre
-type d'hébergement avant l'entrée en MECS et orientation une fois en
+type d'hébergement avant l'entrée en MECS et l'orientation une fois en
 MECS. Du fait d'une absence de données sur le parcours de l'enfant,
-allié à la méthode employée pour l'observer, ces effets sont tout de
+alliée à la méthode employée pour l'observer, ces effets sont tout de
 même susceptibles d'être existants, mais de nous avoir échappé. Dès
-lors, notre regard s'est porté sur le lien entre hébergement en MECS et
-à la sortie de MECS. Ici, nous avons constaté une volonté de stabilité
+lors, notre regard s'est porté sur le lien entre hébergement en MECS et hébergement
+à la sortie de MECS. Ici, nous avons constaté une volonté de cohérence
 dans le placement qui était relative à l'âge de l'enfant sorti.
-Concrètement, on observe plus de situation où le type d'hébergement en
+Concrètement, on observe plus de situations où le type d'hébergement en
 MECS et à la sortie sont les mêmes ou très proches ou des situations où
 l'on cherche à pérenniser le placement avec le recours notamment aux
 assistants familiaux pour les plus jeunes. Nous nous demandons dès lors,

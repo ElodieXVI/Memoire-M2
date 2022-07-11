@@ -2,6 +2,7 @@
 \usepackage{setspace} % espace entre les lignes
 \usepackage{xunicode}
 \usepackage[french]{babel}
+\usepackage{xcolor}
 
 \usepackage[capposition=top]{floatrow}
 % pour les titres de tables et figures
@@ -35,7 +36,8 @@
 % Pour ajouter le titre de chapitre dans lequel on est en haut de la page
 \usepackage{fancyhdr} 
 \pagestyle{fancy}
-\fancyhead[LE,RO]{\thechapter}
+
+\fancyhead[LE,RO]{\chaptermark}
 
 \usepackage{amsthm}
 \newtheorem{hyp}{Hypothèse}

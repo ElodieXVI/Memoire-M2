@@ -14,7 +14,7 @@ papersize: a4
 bibliography: Biblio.bib
 csl: le-tapuscrit-note.csl
 ---
-
+\pagestyle{empty}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -26,4 +26,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 \vspace{.5cm}
 
+|               La Protection de l’enfance offre un système complexe de protection aux enfants. Ce système, par son développement et son histoire, a rendu difficile la production de données sur les populations qu’il accueille et donc, pose encore aujourd’hui un problème de connaissance de l’enfance protégée. À notre niveau, nous avons souhaité participer à la réflexion sur une part de cette population hétérogène que sont les enfants placés en établissements civils relevant de l’Aide sociale à l’enfance. Ils représentent un tiers des enfants protégés en 2017. Pour les observer à l’échelle nationale, face à un champ fragmenté de données, nous avons choisi l’enquête auprès des établissements et services de la protection de l’enfance (ES-PE) édition 2017. Nous souhaitions plus particulièrement percevoir la désinstitutionnalisation à l’œuvre au travers de l’orientation des enfants entre les différents hébergements proposés en Maison d’enfants à caractère social (MECS). En effet, ce type d’établissement, étant à la fois le plus répandu et abritant le plus d’enfants placés en Aide sociale à l’enfance, mettait en œuvre depuis plusieurs années de nouvelles méthodes d’accueil. Les MECS cherchent ainsi à diversifier les types d’hébergement et l’accompagnement en leur sein afin de mieux personnaliser les placements aux besoins des enfants accueillis. Elles cherchent aussi à mieux intégrer les familles de ces enfants dans les parcours de placement. Ces deux enjeux relèvent du mouvement de désinstitutionnalisation en protection de l’enfance à l’œuvre depuis le début des années 2000. Les MECS tentent de parvenir à ces objectifs malgré les contraintes gestionnaires et les choix des politiques départementales finançant leur fonctionnement.
+
+Notre étude est ainsi arrivée à une conclusion principale : malgré le poids des logiques gestionnaires limitant de fait par le nombre de places installées dans les différents hébergements la répartition des enfants, la personnalisation du parcours est tout de même effective au travers d’une orientation entre différents types d’hébergement. Elle se concentre principalement sur l’âge de l’enfant placé en distinguant clairement : enfance, adolescence et jeune majeur. Nous avons également pu percevoir, avec ces données, que la répartition s’effectue aussi en fonction des mesures de placement. Elle tente ainsi d’adapter l’hébergement selon la durée de placement et la possibilité de maintenir un lien avec la famille. Ces résultats ont été affinés et confirmés lorsque nous avons replacé le passage dans un hébergement en MECS dans le cadre plus large du parcours dans la protection de l’enfance.
+
+Dès lors, si on s’en tient à un bref résumé de ces tendances principales de répartition : 
+
+> -	l’hébergement au domicile serait dédié aux enfants avec possibilité de retour rapide chez la famille, 
+
+> -	l’hébergement chez l’assistant familial aux enfants dont le placement se pérennise,
+
+> -	 l’hébergement en internat collectif aux enfants en premier placement et adolescents en parcours long en protection de l’enfance, 
+
+> -	et enfin l’hébergement éclaté ou autonome est dédié aux adolescents et jeunes majeurs dans l’objectif d’un accompagnement à l’autonomie, il concerne particulièrement les mineurs non accompagnés.
+
+Nous avons aussi décelé trois types d’enchaînements au cœur desquels figurait le passage en MECS qui suivaient respectivement trois objectifs différents : préserver le lien familial dans le cadre d’un placement temporaire, protéger des enfants avec peu d’options de repli vers leur famille, et enfin, accompagner vers l’autonomie les adolescents et les jeunes majeurs.
+
+Néanmoins, notre étude a été fortement limitée par l’impossibilité de mesurer le poids des politiques départementales sur la diversification des hébergements. On ne peut nier l’effet de la contrainte principale de la place disponible dans ces répartitions. À cette grande limite, les incertitudes liées aux données et aux informations récoltées sur les parcours de placement s’ajoutent et limitent grandement nos conclusions. Bien qu’aujourd’hui, nous soyons encore limités quant à ce type d’études sur le sujet, à l’avenir les données du dispositif OLINPE de l’Observatoire national de la Protection de l’enfance (ONPE) comblera sans doute ces lacunes[@dreesDeuxiemeRapportDedie2022].
 

@@ -34,7 +34,9 @@ header-includes:
 
 \vfill 
 
-{\Large\bfseries La désinstitutionalisation du placement en Maison d’enfant à caractère sociale (MECS) au travers de l’orientation des enfants placés entre les hébergements\par}
+{\Large\bfseries La désinstitutionnalisation du placement en \\ Maison d’enfants à caractère social (MECS) :\par}
+
+{\large tensions entre logiques gestionnaires et personnalisation du placement\par}
 
 \vfill
 
@@ -56,7 +58,7 @@ Isabelle Frechon \& Marie Plessz
 
 \vspace{5mm}
 
-\textit{Relectrice}
+\textit{Rapporteure}
 
 Laure Hadj
 
@@ -81,6 +83,6 @@ Laure Hadj
 Mes remerciements vont aussi à Marie Plessz pour son attention et son aide précieuse à de nombreuses reprises. 
 
 
-Enfin, je remercie ma famille pour son aide et son soutien, mais aussi mes camarades du 3eme étage avec lesquels nous avons passés tant de temps à travailler ensemble nos différents mémoires. J'en profite pour saluer particulièrement ma mère et Juliette pour leurs relectures attentives.
+Enfin, je remercie ma famille pour son aide et son soutien, mais aussi mes camarades du 3^eme^ étage avec lesquels nous avons passés tant de temps à travailler ensemble nos différents mémoires. J'en profite pour saluer particulièrement ma mère et Juliette pour leurs relectures attentives.
 
 \newpage
