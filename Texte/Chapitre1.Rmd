@@ -96,7 +96,7 @@ Les relations entre adultes et enfants ont du fait de ces savoirs sur l'enfance 
 
 Jusqu'à présent, nous avons vu l'organisation globale de la Protection de l'enfance, les types d'enfants dont elle s'occupait et les évolutions de la société dans la perception de l'enfance et de la famille qui explique son mode d'action. Dans tout cela, le parcours en soi de placement n'a pas été abordé. Ce dernier suit un déroulement typique qui va du signalement et de l'évaluation de la situation à sa réévaluation avant la sortie de placement ou la mise en place d'une nouvelle mesure (voir Figure \ref{fig:fig_par}).
 
-```{r fig_par, out.width="90%", fig.cap="Schéma du parcous type de placement en Protection de l'enfance"}
+```{r fig_par, out.width="90%", fig.cap="Schéma du parcours type de placement en Protection de l'enfance"}
 knitr::include_graphics("Figure/SC2.png")
 ```
 

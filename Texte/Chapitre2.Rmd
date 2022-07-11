@@ -490,6 +490,13 @@ d'accompagner à son remplissage.
 ```{r formu, out.width="100%", fig.cap="Exemple d’une fiche du questionnaire de l'enquête ES-PE 2017"}
 knitr::include_graphics("Figure/Quest1.png")
 ```
+```{=tex}
+\begin{flushright}
+\begin{singlespace}
+{\scriptsize Source : Enquête ES-PE 2017, DREES.}
+\end{singlespace}
+\end{flushright}
+```
 
 > *Les limites des données de l'enquête ES-PE 2017*
 
